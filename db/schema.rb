@@ -11,7 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150328070107) do
+ActiveRecord::Schema.define(version: 20150329180927) do
+
+  create_table "areas_of_expertise", id: false, force: :cascade do |t|
+    t.string  "tag_id"
+    t.integer "user_id"
+  end
+
+  add_index "areas_of_expertise", ["tag_id", "user_id"], name: "index_areas_of_expertise_on_tag_id_and_user_id"
+
+  create_table "areas_of_interest", id: false, force: :cascade do |t|
+    t.string  "tag_id"
+    t.integer "user_id"
+  end
+
+  add_index "areas_of_interest", ["tag_id", "user_id"], name: "index_areas_of_interest_on_tag_id_and_user_id"
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "tag_name",   limit: 30
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "tags", ["tag_name"], name: "index_tags_on_tag_name", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",  null: false
