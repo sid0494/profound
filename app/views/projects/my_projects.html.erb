@@ -1,0 +1,7 @@
+<h1>Projects#index</h1>
+<p>Find me in app/views/projects/index.html.erb</p>
+<div>
+	<% @my_projects.each do |project|%>
+	<p>Project Name : <%= project.project_name %> Project Description : <%= project.project_description%> <%= link_to("Show", {:action => 'show', :id => project.id}) %> <%= link_to("Edit", {:action => 'edit', :id => project.id}) %> <%= link_to("Delete", {:action => 'delete', :id => project.id}) %></p>
+	<% end %>
+</div>
