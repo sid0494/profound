@@ -8,6 +8,14 @@
 </head>
 <body>
 
+<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar-header">
+		<div class="container-fluid">
+		  <a class="navbar-brand" href="#"><font face="exo"><b>PRO<span>found</span></b></font></a>
+	     </div>
+	</div>
+</div>
+
 <% if notice %>
   <p class="alert alert-success"><%= notice %></p>
 <% end %>
@@ -16,6 +24,12 @@
 <% end %>
 
 <%= yield %>
+
+<br><br><br><br><br><br><br><br><br>
+<div class="footer">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&copy;
+  PROfound 2015 | All Rights Reserved
+</div>
 
 </body>
 </html>

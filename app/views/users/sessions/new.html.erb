@@ -1,26 +1,42 @@
 <h2>Log in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+  	<div class="body"></div>
+		<div class="grad"></div>
+			<div class="header">
+				<div><h1><b>PRO<span>found</span></b></h1></div><br><br><br>
+				<font face="exo" size="3">
+					<center> Seek <br /> Endeavour <br /> Discover </center>
+					<center>-------</center>
+					<center>
+						Bridge the gap,<br />Broaden the Vision,<br />Proliferate the Skills
+					</center>
+				</font>
+			</div>
+			<br>
+		<div class="login">
+			<%= f.email_field :email, input_html: { class: 'login' }, type: 'text', placeholder: 'username', name: 'username' %>
+			<%= f.password_field :password, input_html: { class: 'login' }, type: 'password', placeholder: 'password', name: 'password', autocomplete: "off" %>
+			<input type="button" value="Login">
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end -%>
+			<% if devise_mapping.rememberable? -%>
+		      <div class="field">
+		        <%= f.check_box :remember_me %>
+		        <%= f.label :remember_me %><br /><br />
+		        <div class="signintext">
+		        	<%= render "users/shared/links" %>
+		    	</div>
+		      </div>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
+		        <br><br><br><br><br><br><br><br><br>
+				<div class="footer">
+				  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&copy;
+				  PROfound 2015 | All Rights Reserved
+				</div>
+		    <% end -%>
+		</div>
+
 <% end %>
 
-<%= render "users/shared/links" %>
+<script src='http://codepen.io/assets/libs/fullpage/jquery.js'></script>
