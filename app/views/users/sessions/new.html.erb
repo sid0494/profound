@@ -16,25 +16,24 @@
 			</div>
 			<br>
 		<div class="login">
-			<%= f.email_field :email, input_html: { class: 'login' }, type: 'text', placeholder: 'username', name: 'username' %>
-			<%= f.password_field :password, input_html: { class: 'login' }, type: 'password', placeholder: 'password', name: 'password', autocomplete: "off" %>
-			<input type="button" value="Login">
+			<%= f.email_field :email, type: 'text', placeholder: 'username', name: 'username' %>
+			<%= f.password_field :password, type: 'password', placeholder: 'password', name: 'password', autocomplete: "off" %>
+			<div class="actions">
+			    <%= f.submit "Log in", value: 'Login' %>
+			</div>
+			<!-- <input type="button" value="Login"> -->
 
 			<% if devise_mapping.rememberable? -%>
 		      <div class="field">
 		        <%= f.check_box :remember_me %>
-		        <%= f.label :remember_me %><br /><br />
+		        <%= f.label :remember_me %>
 		        <div class="signintext">
 		        	<%= render "users/shared/links" %>
-		    	</div>
+		        </div>
 		      </div>
 
-		        <br><br><br><br><br><br><br><br><br>
-				<div class="footer">
-				  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&copy;
-				  PROfound 2015 | All Rights Reserved
-				</div>
 		    <% end -%>
+		    
 		</div>
 
 <% end %>

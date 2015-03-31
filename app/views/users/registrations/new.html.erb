@@ -73,8 +73,11 @@
     </div>
 
     <div class="signupbutton">
-      <input type="button" value="Sign up">
-      <br><br>
+      <div class="actions">
+        <%= f.submit "Sign up", value: 'Signup' %>
+      </div>
+      <!-- <input type="button" value="Sign up"> -->
+      <br>
       <% if devise_mapping.rememberable? -%>
           <div class="field">
             <%= render "users/shared/links" %>

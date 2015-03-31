@@ -69,7 +69,7 @@ body{
 
 .signupbutton{
 	position: absolute;
-	top: calc(50% - 35px);
+	top: calc(50% - 25px);
 	left: calc(50% + 165px);
 	height: 150px;
 	width: 350px;
@@ -77,13 +77,13 @@ body{
 	z-index: 2;
 }
 
-.signupbutton input[type=button]{
+.signupbutton input[type=submit]{
 	width: 260px;
 	height: 35px;
 	background: #5379aa;
 	border: 2px solid #5379aa;
 	cursor: pointer;
-	border-radius: 2px;
+	border-radius: 5px;
 	color: #000000;
 	font-family: 'Exo', sans-serif;
 	font-size: 16px;
@@ -92,11 +92,11 @@ body{
 	margin-top: 10px;
 }
 
-.signupbutton input[type=button]:hover{
+.signupbutton input[type=submit]:hover{
 	opacity: 0.8;
 }
 
-.signupbutton input[type=button]:active{
+.signupbutton input[type=submit]:active{
 	opacity: 0.6;
 }
 
@@ -138,7 +138,7 @@ body{
 	margin-top: 10px;
 }
 
-.signup input[type=button]{
+.signup input[type=submit]{
 	width: 260px;
 	height: 35px;
 	background: #5379aa;
@@ -153,11 +153,11 @@ body{
 	margin-top: 10px;
 }
 
-.signup input[type=button]:hover{
+.signup input[type=submit]:hover{
 	opacity: 0.8;
 }
 
-.signup input[type=button]:active{
+.signup input[type=submit]:active{
 	opacity: 0.6;
 }
 
@@ -171,7 +171,7 @@ body{
 	border: 2px solid rgba(255,255,255,0.9);
 }
 
-.signup input[type=button]:focus{
+.signup input[type=submit]:focus{
 	outline: none;
 }
 
@@ -212,7 +212,7 @@ body{
 	margin-top: 10px;
 }
 
-.login input[type=button]{
+.login input[type=submit]{
 	width: 260px;
 	height: 35px;
 	background: #5379aa;
@@ -227,11 +227,11 @@ body{
 	margin-top: 10px;
 }
 
-.login input[type=button]:hover{
+.login input[type=submit]:hover{
 	opacity: 0.8;
 }
 
-.login input[type=button]:active{
+.login input[type=submit]:active{
 	opacity: 0.6;
 }
 
@@ -245,7 +245,7 @@ body{
 	border: 3px solid rgba(255,255,255,0.9);
 }
 
-.login input[type=button]:focus{
+.login input[type=submit]:focus{
 	outline: none;
 }
 
