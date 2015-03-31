@@ -3,92 +3,87 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+<div class="body"></div>
+    <div class="grad"></div>
+      <div class="header">
+        <div><h1><b>PRO<span>found</span></b></h1></div><br><br><br>
+        <font face="exo" size="3">
+          <center> Seek <br /> Endeavour <br /> Discover </center>
+          <center>-------</center>
+          <center>
+            Bridge the gap,<br />Broaden the Vision,<br />Proliferate the Skills
+          </center>
+        </font>
+      </div>
+      <br>
 
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true %>
-  </div>
+    <div class="signup">
 
-  <div class="field">
-    <%= f.label :firstname %><br />
-    <%= f.text_field :first_name, autofocus: true %>
-  </div>
+      <%= f.email_field :email, input_html: {class: 'signup'}, placeholder: 'Email', type: 'text', name: 'email' %>
+      <!-- <input type="text" placeholder="email" name="email"> -->
+      
+      <%= f.text_field :username, input_html: {class: 'signup'}, placeholder: 'Username', type: 'text', name: 'username' %>
+      <!-- <input type="text" placeholder="username" name="username"> -->
+      
+      <%= f.text_field :first_name, input_html: {class: 'signup'}, placeholder: 'First name', type: 'text', name: 'firstname' %>
+      <!-- <input type="text" placeholder="first name" name="firstname"> -->
 
-  <div class="field">
-    <%= f.label :lastname %><br />
-    <%= f.text_field :last_name, autofocus: true %>
-  </div>
+      <%= f.text_field :last_name, input_html: {class: 'signup'}, placeholder: 'Last name', type: 'text', name: 'lastname' %>
+      <!-- <input type="text" placeholder="last name" name="lastname"> -->
 
-  <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_field :address, autofocus: true %>
-  </div>
+      <%= f.text_field :address, input_html: {class: 'signup'}, placeholder: 'Address', type: 'text', name: 'address' %>
+      <!-- <input type="text" placeholder="address" name="address"> -->
 
-  <div class="field">
-    <%= f.label :city %><br />
-    <%= f.text_field :city, autofocus: true %>
-  </div>
+      <%= f.text_field :city, input_html: {class: 'signup'}, placeholder: 'City', type: 'text', name: 'city' %>
+      <!-- <input type="text" placeholder="city" name="city"> -->
 
-  <div class="field">
-    <%= f.label :state %><br />
-    <%= f.text_field :state, autofocus: true %>
-  </div>
+      <%= f.text_field :state, input_html: {class: 'signup'}, placeholder: 'State', type: 'text', name: 'state' %>
+      <!-- <input type="text" placeholder="state" name="state"> -->
 
-  <div class="field">
-    <%= f.label :country %><br />
-    <%= f.text_field :country, autofocus: true %>
-  </div>
+      <%= f.text_field :country, input_html: {class: 'signup'}, placeholder: 'Country', type: 'text', name: 'country' %>
+      <!-- <input type="text" placeholder="country" name="country"> -->
 
-  <div class="field">
-    <%= f.label :profession %><br />
-    <%= f.text_field :profession, autofocus: true %>
-  </div>
+      <%= f.text_field :profession, input_html: {class: 'signup'}, placeholder: 'Profession', type: 'text', name: 'profession' %>
+      <!-- <input type="text" placeholder="profession" name="profession"> -->
 
-  <div class="field">
-    <%= f.label :institute %><br />
-    <%= f.text_field :institute, autofocus: true %>
-  </div>
+      <%= f.text_field :institute, input_html: {class: 'signup'}, placeholder: 'Institute', type: 'text', name: 'institute' %>
+      <!-- <input type="text" placeholder="institute" name="institute"> -->
 
-  <div class="field">
-    <%= f.label :degree %><br />
-    <%= f.text_field :degree, autofocus: true %>
-  </div>
+      <%= f.text_field :institute, input_html: {class: 'signup'}, placeholder: 'Highest degree', type: 'text', name: 'degree' %>
+      <!-- <input type="text" placeholder="highest degree" name="degree"> -->
 
-  <div class="field">
-    <%= f.label :contact %><br />
-    <%= f.text_field :contact, autofocus: true %>
-  </div>
+      <%= f.text_field :contact, input_html: {class: 'signup'}, placeholder: 'Contact number', type: 'text', name: 'contact' %>
+      <!-- <input type="text" placeholder="contact number" name="contact"> -->
 
-  <div class="field">
-    <%= f.label :security_que %><br />
-    <%= f.text_field :security_que, autofocus: true %>
-  </div>
+      <%= f.text_field :security_que, input_html: {class: 'signup'}, placeholder: 'Security question', type: 'text', name: 'securityquestion' %>
+      <!-- <input type="text" placeholder="security question" name="securityquestion"> -->
 
-  <div class="field">
-    <%= f.label :security_ans %><br />
-    <%= f.text_field :security_ans, autofocus: true %>
-  </div>
+      <%= f.text_field :security_ans, input_html: {class: 'signup'}, placeholder: 'Security answer', type: 'text', name: 'securityanswer' %>
+      <!-- <input type="text" placeholder="security answer" name="securityanswer"> -->
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @validatable %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+      <div class="field">
+        <%= f.password_field :password, input_html: {class: 'signup'}, placeholder: 'Password', type: 'password', name: 'password', autocomplete: "off" %>
+      </div>
+      <!-- <input type="password" placeholder="email" name="password"> -->
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+      <div class="field">
+        <%= f.password_field :password_confirmation, input_html: {class: 'signup'}, placeholder: 'Re-type password', type: 'password', name: 'passwordconfirmation', autocomplete: "off" %>
+      </div>
+      <!-- <input type="password" placeholder="password confirmation" name="passwordconfirmation"> -->
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+    <div class="signupbutton">
+      <div class="actions">
+        <%= f.submit "Sign up", value: 'Signup' %>
+      </div>
+      <!-- <input type="button" value="Sign up"> -->
+      <br>
+      <% if devise_mapping.rememberable? -%>
+          <div class="field">
+            <%= render "users/shared/links" %>
+          </div>
+      <% end -%>
+
+    </div>
+
 <% end %>
-
-<%= render "users/shared/links" %>

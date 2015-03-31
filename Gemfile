@@ -44,5 +44,8 @@ group :development, :test do
 
   # Devise for login and email verification system
   gem 'devise'
+
+  # for some date time synchronization
+  gem 'tzinfo-data'
 end
 
