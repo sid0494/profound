@@ -1,0 +1,18 @@
+<h2>Send Message</h2>
+
+<%= form_for(@message, url: messaging_save_path(@message)) do |f| %>
+
+  <div class="field">
+    <%= f.label :username %><br />
+    <input type="text" name="username">
+  </div>
+
+  <div class="field">
+    <%= f.label :message %><br />
+    <%= f.text_field :content, autofocus: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Send" %>
+  </div>
+<% end %>

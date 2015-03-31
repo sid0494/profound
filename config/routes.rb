@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'messaging/send_message'
+
+  post 'messaging/save'
+
+  get 'messaging/show'
+
   get 'dashboard/home'
 
   devise_for :users, controllers: { 

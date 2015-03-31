@@ -10,5 +10,13 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :expertise_areas, 
   		class_name: "Tag", 
-  		join_table: "areas_of_expertise"  
+  		join_table: "areas_of_expertise"
+
+  has_many :sent_messages,
+      class_name: "Message",
+      foreign_key: "sender_id"
+
+  has_many :received_messages,
+      class_name: "Message",
+      foreign_key: "receiver_id" 
 end

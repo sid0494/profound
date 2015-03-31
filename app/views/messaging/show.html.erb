@@ -1,0 +1,7 @@
+<h1>Messaging#show</h1>
+<p>Find me in app/views/messaging/show.html.erb</p>
+
+<% @messages.each do |message| %>
+	<p>Sender : <%= message.sender.username %></p>
+	<p>Message : <%= message.content %></p><br>
+<% end %>

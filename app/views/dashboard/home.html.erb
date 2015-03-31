@@ -1,3 +1,5 @@
 <h1>Dashboard#home <%= @name %></h1>
+<h3><%= link_to "Send Message", messaging_send_message_path, :method => :get %></h3>
+<h3><%= link_to "Show Messages", messaging_show_path, :method => :get %></h3>
 <h3><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></h3>
 <p>Find me in app/views/dashboard/home.html.erb</p>
