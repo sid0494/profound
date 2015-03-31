@@ -12,6 +12,12 @@
     <%= f.text_field :project_description, autofocus: true %>
   </div>
 
+  
+  <%= fields_for :tags do |tag| %>
+  <%= tag.text_field :tags %>
+  <% end %>
+
+  
   <div class="actions">
     <%= f.submit "Create Project" %>
   </div>

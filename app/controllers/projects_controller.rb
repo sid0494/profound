@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+
+  before_action :authenticate_user!
   
   def index
     @projects = Array.new
@@ -24,10 +26,16 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(params.require(:project).permit(:project_name, :project_description))
+    params.permit(:tags => [])
+    @tags = params[:tags]
+    #print @tags
     @project.user_id = current_user.id
 
     #Try to save the newly created project
     if @project.save
+      #Add tags for the project
+      @tags.each do |tag|
+        @project.project_tags << Tag.find_by_tag_name(tag)
       #If successful then display My Projects Page
       redirect_to(:action => 'my_projects')
     else
