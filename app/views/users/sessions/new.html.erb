@@ -15,9 +15,18 @@
 				</font>
 			</div>
 			<br>
+			<div class="alert-box">
+				<% if notice %>
+			  <center><p class="alert alert-success"><%= notice %></p></center>
+			<% end %>
+			<% if alert %>
+			  <center><p class="alert alert-danger"><%= alert %></p></center>
+			<% end %>
+			
+			</div>
 		<div class="login">
-			<%= f.email_field :email, type: 'text', placeholder: 'username', name: 'username' %>
-			<%= f.password_field :password, type: 'password', placeholder: 'password', name: 'password', autocomplete: "off" %>
+			<%= f.email_field :email, type: 'text', placeholder: 'Username', name: 'username' %>
+			<%= f.password_field :password, type: 'password', placeholder: 'Password', name: 'password', autocomplete: "off" %>
 			<div class="actions">
 			    <%= f.submit "Log in", value: 'Login' %>
 			</div>
@@ -31,7 +40,6 @@
 		        	<%= render "users/shared/links" %>
 		        </div>
 		      </div>
-
 		    <% end -%>
 		    
 		</div>

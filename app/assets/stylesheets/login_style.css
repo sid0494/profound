@@ -102,7 +102,7 @@ body{
 
 .signup{
 	position: absolute;
-	top: 40px;
+	top: 0px;
 	left: calc(50% - 125px);
 	height: 150px;
 	width: 350px;
@@ -247,6 +247,16 @@ body{
 
 .login input[type=submit]:focus{
 	outline: none;
+}
+
+.alert-box{
+	position: absolute;
+	top: calc(50% - 150px);
+	left: calc(50% - 160px);
+	height: 150px;
+	width: 350px;
+	padding: 10px;
+	z-index: 2;
 }
 
 ::-webkit-input-placeholder{
