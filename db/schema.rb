@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150331122914) do
+ActiveRecord::Schema.define(version: 20150402081431) do
 
   create_table "areas_of_expertise", id: false, force: :cascade do |t|
     t.string  "tag_id"
@@ -27,16 +27,23 @@ ActiveRecord::Schema.define(version: 20150331122914) do
 
   add_index "areas_of_interest", ["tag_id", "user_id"], name: "index_areas_of_interest_on_tag_id_and_user_id"
 
-  create_table "messages", force: :cascade do |t|
-    t.string   "content"
-    t.integer  "sender_id"
-    t.integer  "receiver_id"
+  create_table "discussion_replies", force: :cascade do |t|
+    t.integer  "discussion_id"
+    t.string   "user_id"
+    t.string   "reply"
+    t.float    "upvotes"
+    t.float    "downvotes"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "discussions", force: :cascade do |t|
+    t.string   "topic_name"
+    t.string   "description"
+    t.integer  "owner_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
-
-  add_index "messages", ["receiver_id"], name: "index_messages_on_receiver_id"
-  add_index "messages", ["sender_id"], name: "index_messages_on_sender_id"
 
   create_table "project_applications", id: false, force: :cascade do |t|
     t.integer "project_id"
