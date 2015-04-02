@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150402081431) do
+ActiveRecord::Schema.define(version: 20150402100609) do
 
   create_table "areas_of_expertise", id: false, force: :cascade do |t|
     t.string  "tag_id"
@@ -44,6 +44,38 @@ ActiveRecord::Schema.define(version: 20150402081431) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "discussions_tags", id: false, force: :cascade do |t|
+    t.integer "discussion_id"
+    t.integer "tag_id"
+  end
+
+  add_index "discussions_tags", ["discussion_id", "tag_id"], name: "index_discussions_tags_on_discussion_id_and_tag_id"
+
+  create_table "project_applications", id: false, force: :cascade do |t|
+    t.integer "project_id"
+    t.integer "user_id"
+  end
+
+  add_index "project_applications", ["project_id", "user_id"], name: "index_project_applications_on_project_id_and_user_id"
+
+  create_table "projects", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "project_name",                            null: false
+    t.string   "project_status",      default: "ongoing"
+    t.string   "project_description"
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+  end
+
+  add_index "projects", ["user_id"], name: "index_projects_on_user_id"
+
+  create_table "projects_tags", id: false, force: :cascade do |t|
+    t.integer "project_id"
+    t.integer "tag_id"
+  end
+
+  add_index "projects_tags", ["project_id", "tag_id"], name: "index_projects_tags_on_project_id_and_tag_id"
 
   create_table "tags", force: :cascade do |t|
     t.string   "tag_name",   limit: 30

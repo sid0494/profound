@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'discussions/index'
+
+  get 'discussions/new'
+
+  get 'discussions/show'
+
+  get 'discussions/edit'
+
   get 'dashboard/home'
 
   devise_for :users, controllers: { 

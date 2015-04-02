@@ -5,4 +5,7 @@ class Discussion < ActiveRecord::Base
 
 	has_many :discussion_replies,
 		dependent: :destroy
+
+	has_and_belongs_to_many :discussion_tags,
+		class_name: "Tag"
 end
