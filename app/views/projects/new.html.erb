@@ -1,0 +1,24 @@
+<h2>New Project</h2>
+
+<%= form_for(@project, url: projects_create_path(@project)) do |f| %>
+
+  <div class="field">
+    <%= f.label :project_name %><br />
+    <%= f.text_field :project_name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :project_description %><br />
+    <%= f.text_field :project_description, autofocus: true %>
+  </div>
+
+  
+  <%= fields_for :tags do |tag| %>
+  <%= tag.text_field :tags %>
+  <% end %>
+
+  
+  <div class="actions">
+    <%= f.submit "Create Project" %>
+  </div>
+<% end %>

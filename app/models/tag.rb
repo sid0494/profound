@@ -9,4 +9,7 @@ class Tag < ActiveRecord::Base
   		join_table: "areas_of_expertise"
 
   	has_and_belongs_to_many :discussions
+
+  	has_and_belongs_to_many :projects
+  	
 end

@@ -1,0 +1,8 @@
+<h1>Delete Project</h1>
+<%= form_tag({:action => 'destroy', :id => @project.id}) do %>
+	<p>Are you sure you want to delete <b><%= @project.project_name %></b></p>
+	<p><%= submit_tag("Delete Project") %></p>
+<% end %>
+
+
+
