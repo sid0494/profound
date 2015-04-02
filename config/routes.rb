@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+
+  get 'discussions/index'
+
+  get 'discussions/new'
+
+  get 'discussions/show'
+
+  get 'discussions/edit'
+
   get 'projects/index'
 
   get 'projects/show'
@@ -16,6 +25,7 @@ Rails.application.routes.draw do
   patch 'projects/update'
 
   post 'projects/destroy'
+
 
   get 'dashboard/home'
 

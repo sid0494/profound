@@ -16,5 +16,10 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :expertise_areas, 
   		class_name: "Tag", 
-  		join_table: "areas_of_expertise"  
+  		join_table: "areas_of_expertise"
+
+  has_many :discussions,
+      foreign_key: "owner_id"
+
+  has_many :discussion_replies  
 end
