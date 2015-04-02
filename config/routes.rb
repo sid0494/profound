@@ -1,5 +1,25 @@
 Rails.application.routes.draw do
+  get 'projects/index'
+
+  get 'projects/show'
+
+  get 'projects/new'
+
+  get 'projects/edit'
+
+  get 'projects/delete'
+
+  post 'projects/create'
+
+  get 'projects/my_projects'
+
+  patch 'projects/update'
+
+  post 'projects/destroy'
+
   get 'dashboard/home'
+
+
 
   devise_for :users, controllers: { 
     sessions: "users/sessions",

@@ -1,0 +1,7 @@
+<h1>Projects#index</h1>
+<p>Find me in app/views/projects/index.html.erb</p>
+<div>
+	<% @projects.each do |project|%>
+	<p>Project Name : <%= project.project_name %> Owner : <%= project.user.first_name %></p>
+	<% end %>
+</div>
