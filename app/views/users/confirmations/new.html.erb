@@ -26,6 +26,15 @@
 	
 	</div>
 
+	<div class="alert-box">
+		<% if notice %>
+		  <center><p class="alert alert-success"><%= notice %></p></center>
+		<% end %>
+		<% if alert %>
+		  <center><p class="alert alert-danger"><%= alert %></p></center>
+		<% end %>	
+	</div>
+
   <div class="login">
   	<h3><font color="black">Resend confirmation instructions</font></h3>
     <%= f.email_field :email, type: 'text', placeholder: 'Email' %>

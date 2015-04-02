@@ -47,5 +47,8 @@ group :development, :test do
 
   # for some date time synchronization
   gem 'tzinfo-data'
+
+  # for icons
+  gem "font-awesome-rails"
 end
 
