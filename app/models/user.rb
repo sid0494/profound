@@ -21,5 +21,8 @@ class User < ActiveRecord::Base
   has_many :discussions,
       foreign_key: "owner_id"
 
-  has_many :discussion_replies  
+  has_many :discussion_replies 
+
+  has_many :learning_topics,
+      foreign_key: "owner_id" 
 end

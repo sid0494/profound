@@ -11,5 +11,7 @@ class Tag < ActiveRecord::Base
   	has_and_belongs_to_many :discussions
 
   	has_and_belongs_to_many :projects
+
+  	has_and_belongs_to_many :learning_topics
   	
 end
