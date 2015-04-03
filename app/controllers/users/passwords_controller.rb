@@ -1,4 +1,6 @@
 class Users::PasswordsController < Devise::PasswordsController
+
+  layout :resolve_layout
   # GET /resource/password/new
   # def new
   #   super
@@ -29,4 +31,14 @@ class Users::PasswordsController < Devise::PasswordsController
   # def after_sending_reset_password_instructions_path_for(resource_name)
   #   super(resource_name)
   # end
+
+  private
+  def resolve_layout
+    case action_name
+    when 'new'
+      'login_header'
+    else
+      'header'
+    end
+  end
 end
