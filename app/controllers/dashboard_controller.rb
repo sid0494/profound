@@ -5,7 +5,9 @@ class DashboardController < ApplicationController
 
   def home
   	@name = current_user.first_name
-  	puts "#{@name} is shakal.."
+  	@rp = (10 * current_user.learning_rp + 10 * current_user.discussion_rp + 10 * current_user.project_rp).to_i
+  	@my_projects = current_user.projects
+  	@my_topics = current_user.learning_topics
   end
 
   def about_us

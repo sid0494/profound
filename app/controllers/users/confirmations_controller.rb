@@ -30,11 +30,6 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
 
   private
   def resolve_layout
-    case action_name
-    when 'new'
-      'login_header'
-    else
-      'header'
-    end
+    'login_header'
   end
 end

@@ -151,7 +151,7 @@
                     <li>
                         <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
                     </li>
-                    <li><center><%= button_to "Sign out", destroy_user_session_path, :method => :delete, :class => 'btn btn btn-default btn-danger btn-xs btn-group-justified'%></center></li>
+                    <li><center><%= button_to destroy_user_session_path, :method => :delete, :class => 'btn btn btn-default btn-danger btn-xs btn-group-justified', remote: true do %> <i class="fa fa-fw fa-gear"></i> Sign Out <% end %></center></li>
                 </ul>
             </li>
         </ul>

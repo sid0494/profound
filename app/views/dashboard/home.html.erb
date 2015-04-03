@@ -8,14 +8,14 @@
 </div>
 <!-- /.row -->
 
-<div class="row">
+<!-- div class="row">
     <div class="col-lg-12">
         <div class="alert alert-info alert-dismissable">
         	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <strong>After the user logs in, the notifications could be shown here for once!</strong>
         </div>
     </div>
-</div>
+</div> -->
 <!-- /.row -->
 
 <div class="row">
@@ -27,18 +27,11 @@
                         <i class="fa fa-money fa-4x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">26</div>
+                        <div class="huge"><%= @rp %></div>
                         <div>Reputation Points</div>
                     </div>
                 </div>
             </div>
-            <a href="#">
-                <div class="panel-footer">
-                    <span class="pull-left">View Details</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
-            </a>
         </div>
     </div>
     <div class="col-lg-3 col-md-6">
@@ -54,13 +47,6 @@
                     </div>
                 </div>
             </div>
-            <a href="#">
-                <div class="panel-footer">
-                    <span class="pull-left">View Details</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
-            </a>
         </div>
     </div>
     <div class="col-lg-3 col-md-6">
@@ -71,18 +57,11 @@
                         <i class="fa fa-group fa-4x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">124</div>
+                        <div class="huge">12</div>
                         <div> Followers</div>
                     </div>
                 </div>
             </div>
-            <a href="#">
-                <div class="panel-footer">
-                    <span class="pull-left">View Details</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
-            </a>
         </div>
     </div>
     <div class="col-lg-3 col-md-6">
@@ -98,13 +77,6 @@
                     </div>
                 </div>
             </div>
-            <a href="#">
-                <div class="panel-footer">
-                    <span class="pull-left">View Details</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
-            </a>
         </div>
     </div>
 </div>
@@ -116,42 +88,34 @@
             <div class="panel-heading">
                 <h3 class="panel-title"><i class="fa fa-tasks fa-fw"></i> My Projects
                 <div class="pull-right">
-                	<button> Post a New Project</button>
+                <%= button_to "Post a new Project", projects_new_path , :class => "btn btn-xs btn-success pull-right", :method => "get" %>   
                 </div>
             </h3>
             </div>
             <div class="panel-body">
             	<font color="black">
                 	<table class="table table-hover">
-                		<thead>
+                		
+                            <% if not @my_projects.empty? %>
+                            <tbody>
+                            <thead>
+                            <tr>
+                                <th>Project Name</th>
+                                <th>Posted At</th>
+                                <th>Description</th>
+                            </tr>
+                            </thead>
+                            <% @my_projects.each do |project| %>
                 			<tr>
-                				<th>Project Name</th>
-                				<th>Author</th>
-                				<th>Posted At</th>
-                				<th>Description</th>
+                				<td><%= project.project_name %></td>
+                				<td><%= time_ago_in_words(project.created_at) %></td>
+                				<td><%= project.project_description %></td>
                 			</tr>
-                		</thead>
-
-                		<tbody>
-                			<tr>
-                				<td>PROfound</td>
-                				<td>Mayank Ladha</td>
-                				<td>2 hours age</td>
-                				<td>Wanted frontend, backend designers in ROR and documentation experts.</td>
-                			</tr>
-                			<tr>
-                				<td>Dummy Project</td>
-                				<td>Siddharth Bhutiya</td>
-                				<td>1 day ago</td>
-                				<td>Wanted a dummy developer to develop a dummy project.</td>
-                			</tr>
-                			<tr>
-                				<td>Maha-dummy Project</td>
-                				<td>Rohan Garg</td>
-                				<td>3 days ago</td>
-                				<td>Wanted a maha dummy developer to develop a maha-dummy project.</td>
-                			</tr>
-                		</tbody>
+                            <% end %>
+                            </tbody>
+                            <% else %>
+                            <center><b>You have not created any projects yet !</b></center>
+                            <% end %>
                 	</table>
                 </font>
             </div>
@@ -166,38 +130,31 @@
             <div class="panel-heading">
                 <h3 class="panel-title"><i class="fa fa-comments fa-fw"></i> My Discussion Topics
                 	<div class="pull-right">
-                		<button> Post a New Discussion Topic</button>
+                		<%= button_to "Start a discussion", discussions_new_path , :class => "btn btn-xs btn-success pull-right", :method => "get" %>
                 	</div>
                 </h3>
             </div>
             <div class="panel-body">
             	<font color="black">
                 	<table class="table table-hover">
+                        <% if not @my_topics.empty? %>
                 		<thead>
                 			<tr>
                 				<th>Question</th>
-                				<th>Author</th>
                 				<th>Posted At</th>
                 			</tr>
                 		</thead>
-
                 		<tbody>
+                            <% @my_topics.each do |topic| %>
                 			<tr>
-                				<td>Will PROfound be completed on time?</td>
-                				<td>Mayank Ladha</td>
-                				<td>2 hours age</td>
+                				<td><%= topic.topic_name %></td>
+                				<td><%= topic.created_at %></td>
                 			</tr>
-                			<tr>
-                				<td>How many stars are there in the sky?</td>
-                				<td>Siddharth Bhutiya</td>
-                				<td>1 day ago</td>
-                			</tr>
-                			<tr>
-                				<td>Where is Rohan?</td>
-                				<td>Rohan Garg</td>
-                				<td>3 days ago</td>
-                			</tr>
+                            <% end %>
                 		</tbody>
+                        <% else %>
+                        <center><b>You have not created any discussion topics yet !</b></center>
+                        <% end %>
                 	</table>
                 </font>
             </div>
