@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
 
+  get 'learning_topics/index'
+
+  get 'learning_topics/show'
+
+  get 'learning_topics/new'
+
+  get 'learning_topics/edit'
+
+  get 'learning_topics/delete'
+
+  get 'learning_topics/my_topics'
+
   get 'discussions/index'
 
   get 'discussions/new'
