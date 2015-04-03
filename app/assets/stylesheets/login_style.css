@@ -5,7 +5,6 @@ body{
 	margin: 0;
 	padding: 0;
 	background: #fff;
-
 	color: #fff;
 	font-family: Arial;
 	font-size: 12px;
@@ -59,7 +58,7 @@ body{
 
 .signintext{
 	position: absolute;
-	top: calc(50% - 35px);
+	top: calc(50% - 45px);
 	left: calc(50% + 100px);
 	height: 150px;
 	width: 350px;
