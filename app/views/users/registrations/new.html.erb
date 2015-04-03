@@ -17,7 +17,7 @@
       </div>
       <br>
 
-    <div class="signup">
+    <div class="login">
 
       <%= f.email_field :email, input_html: {class: 'signup'}, placeholder: 'Email', type: 'text'%>
       <!-- <input type="text" placeholder="email" name="email"> -->
@@ -26,41 +26,7 @@
       <!-- <input type="text" placeholder="username" name="username"> -->
       
       <%= f.text_field :first_name, input_html: {class: 'signup'}, placeholder: 'First name', type: 'text' %>
-
       <!-- <input type="text" placeholder="first name" name="firstname"> -->
-
-      <%= f.text_field :last_name, input_html: {class: 'signup'}, placeholder: 'Last name', type: 'text' %>
-      <!-- <input type="text" placeholder="last name" name="lastname"> -->
-
-      <%= f.text_field :address, input_html: {class: 'signup'}, placeholder: 'Address', type: 'text' %>
-      <!-- <input type="text" placeholder="address" name="address"> -->
-
-      <%= f.text_field :city, input_html: {class: 'signup'}, placeholder: 'City', type: 'text' %>
-      <!-- <input type="text" placeholder="city" name="city"> -->
-
-      <%= f.text_field :state, input_html: {class: 'signup'}, placeholder: 'State', type: 'text' %>
-      <!-- <input type="text" placeholder="state" name="state"> -->
-
-      <%= f.text_field :country, input_html: {class: 'signup'}, placeholder: 'Country', type: 'text' %>
-      <!-- <input type="text" placeholder="country" name="country"> -->
-
-      <%= f.text_field :profession, input_html: {class: 'signup'}, placeholder: 'Profession', type: 'text' %>
-      <!-- <input type="text" placeholder="profession" name="profession"> -->
-
-      <%= f.text_field :institute, input_html: {class: 'signup'}, placeholder: 'Institute', type: 'text' %>
-      <!-- <input type="text" placeholder="institute" name="institute"> -->
-
-      <%= f.text_field :institute, input_html: {class: 'signup'}, placeholder: 'Highest degree', type: 'text' %>
-      <!-- <input type="text" placeholder="highest degree" name="degree"> -->
-
-      <%= f.text_field :contact, input_html: {class: 'signup'}, placeholder: 'Contact number', type: 'text' %>
-      <!-- <input type="text" placeholder="contact number" name="contact"> -->
-
-      <%= f.text_field :security_que, input_html: {class: 'signup'}, placeholder: 'Security question', type: 'text' %>
-      <!-- <input type="text" placeholder="security question" name="securityquestion"> -->
-
-      <%= f.text_field :security_ans, input_html: {class: 'signup'}, placeholder: 'Security answer', type: 'text' %>
-      <!-- <input type="text" placeholder="security answer" name="securityanswer"> -->
 
       <div class="field">
         <%= f.password_field :password, input_html: {class: 'signup'}, placeholder: 'Password', type: 'password', autocomplete: "off" %>

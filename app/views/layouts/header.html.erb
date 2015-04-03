@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+    <title>PROfound</title>
 
     <!-- Bootstrap Core CSS -->
     <%= stylesheet_link_tag "bootstrap.min" %>
@@ -140,7 +140,7 @@
                 </ul>
             </li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Mayank Ladha <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <%= current_user.first_name+" "+ current_user.last_name %><b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li>
                         <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -151,41 +151,32 @@
                     <li>
                         <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
                     </li>
-                    <li><center><%= button_to "Sign out", destroy_user_session_path, :method => :delete, :class => 'btn btn btn-default btn-xs btn-group-justified'%></center></li>
+                    <li><center><%= button_to "Sign out", destroy_user_session_path, :method => :delete, :class => 'btn btn btn-default btn-danger btn-xs btn-group-justified'%></center></li>
                 </ul>
             </li>
         </ul>
         <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
-                <li class="active">
-                    <a href="#"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                <li>
+                    <%= link_to "<i class='fa fa-fw fa-home'></i> Home".html_safe, "/dashboard/home" %>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-fw fa-home"></i> Home</a>
+                <li>
+                    <%= link_to "<i class='fa fa-fw fa-graduation-cap'></i> Projects".html_safe, '/projects/index' %>
+                </li>
                 </li>
                 <li>
-                    <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-graduation-cap"></i> New Projects <i class="fa fa-fw fa-caret-down"></i></a>
-                    <ul id="demo" class="collapse">
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-file"></i> All</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-file"></i> Matching my Skills</a>
-                        </li>
-                    </ul>
+                    <%= link_to"<i class='fa fa-fw fa-suitcase'></i> Discussion Forum".html_safe, '/discussions/index' %>
                 </li>
                 <li>
-                    <a href="blank-page.html"><i class="fa fa-fw fa-suitcase"></i> Discussion Forum</a>
+                    <%= link_to "<i class='fa fa-fw fa-paste'></i> Learning-Teaching".html_safe, '/learning_topics/index' %>
                 </li>
                 <li>
-                    <a href="index-rtl.html"><i class="fa fa-fw fa-paste"></i> Learning Teaching</a>
+                    <%= link_to "<i class='fa fa-fw fa-book'></i> About Us".html_safe, "/dashboard/about_us" %>
                 </li>
                 <li>
-                    <a href="index-rtl.html"><i class="fa fa-fw fa-book"></i> About Us</a>
-                </li>
-                <li>
-                    <a href="index-rtl.html"><i class="fa fa-fw fa-phone"></i> Contact Us</a>
+                    <%= link_to "<i class='fa fa-fw fa-phone'></i> Contact Us".html_safe, "/dashboard/contact_us" %>
                 </li>
             </ul>
         </div>

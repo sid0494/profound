@@ -2,6 +2,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 # before_filter :configure_sign_up_params, only: [:create]
 # before_filter :configure_account_update_params, only: [:update]
 
+  layout :resolve_layout
+
   # GET /resource/sign_up
   # def new
   #   super
@@ -57,4 +59,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  private
+  def resolve_layout
+    case action_name
+    when 'new'
+      'login_header'
+    else
+      'header'
+    end
+  end
 end

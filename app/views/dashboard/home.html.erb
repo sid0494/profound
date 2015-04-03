@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
-            <font color="black"><font face="verdana"><b><i class="fa fa-fw fa-dashboard"></i> Dashboard </b></font></font><small>Mayank Ladha</small>
+            <font color="black" face="verdana"><b><i class="fa fa-fw fa-home"></i> <%= current_user.first_name+" "+current_user.last_name %></b></font>
         </h1>
     </div>
 </div>
@@ -50,7 +50,7 @@
                     </div>
                     <div class="col-xs-9 text-right">
                         <div class="huge">12</div>
-                        <div>My Learning Topics</div>
+                        <div> Messages</div>
                     </div>
                 </div>
             </div>
@@ -122,7 +122,37 @@
             </div>
             <div class="panel-body">
             	<font color="black">
-                	This is the projects section where those projects will be shown on which the user is currently working on.
+                	<table class="table table-hover">
+                		<thead>
+                			<tr>
+                				<th>Project Name</th>
+                				<th>Author</th>
+                				<th>Posted At</th>
+                				<th>Description</th>
+                			</tr>
+                		</thead>
+
+                		<tbody>
+                			<tr>
+                				<td>PROfound</td>
+                				<td>Mayank Ladha</td>
+                				<td>2 hours age</td>
+                				<td>Wanted frontend, backend designers in ROR and documentation experts.</td>
+                			</tr>
+                			<tr>
+                				<td>Dummy Project</td>
+                				<td>Siddharth Bhutiya</td>
+                				<td>1 day ago</td>
+                				<td>Wanted a dummy developer to develop a dummy project.</td>
+                			</tr>
+                			<tr>
+                				<td>Maha-dummy Project</td>
+                				<td>Rohan Garg</td>
+                				<td>3 days ago</td>
+                				<td>Wanted a maha dummy developer to develop a maha-dummy project.</td>
+                			</tr>
+                		</tbody>
+                	</table>
                 </font>
             </div>
         </div>
@@ -142,7 +172,33 @@
             </div>
             <div class="panel-body">
             	<font color="black">
-                	Here, those discussion topics will be shown in which the user is involved, like posted a question, answered, followed a question, etc.
+                	<table class="table table-hover">
+                		<thead>
+                			<tr>
+                				<th>Question</th>
+                				<th>Author</th>
+                				<th>Posted At</th>
+                			</tr>
+                		</thead>
+
+                		<tbody>
+                			<tr>
+                				<td>Will PROfound be completed on time?</td>
+                				<td>Mayank Ladha</td>
+                				<td>2 hours age</td>
+                			</tr>
+                			<tr>
+                				<td>How many stars are there in the sky?</td>
+                				<td>Siddharth Bhutiya</td>
+                				<td>1 day ago</td>
+                			</tr>
+                			<tr>
+                				<td>Where is Rohan?</td>
+                				<td>Rohan Garg</td>
+                				<td>3 days ago</td>
+                			</tr>
+                		</tbody>
+                	</table>
                 </font>
             </div>
         </div>
