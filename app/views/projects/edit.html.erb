@@ -1,0 +1,19 @@
+<h2>Edit Project</h2>
+
+<%= form_for(@project, url: {:action => 'update', :id => @project.id}) do |f| %>
+  
+
+  <div class="field">
+    <%= f.label :project_name %><br />
+    <%= f.text_field :project_name, autofocus: true, value: @project.project_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :project_description %><br />
+    <%= f.text_field :project_description, autofocus: true, value: @project.project_description %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update Project" %>
+  </div>
+<% end %>
