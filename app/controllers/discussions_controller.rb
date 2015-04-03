@@ -1,6 +1,8 @@
 class DiscussionsController < ApplicationController
   before_action :authenticate_user!
 
+  layout 'header'
+
   def index
   	@discussions = Array.new
   	temp_discussions = Array.new

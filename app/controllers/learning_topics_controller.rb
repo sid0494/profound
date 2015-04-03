@@ -1,4 +1,7 @@
 class LearningTopicsController < ApplicationController
+  before_action :authenticate_user!
+
+  layout 'header'
   
   def index
     @topics = Array.new
