@@ -7,4 +7,11 @@ class DashboardController < ApplicationController
   	@name = current_user.first_name
   	puts "#{@name} is shakal.."
   end
+
+  def about_us
+  end
+
+  def contact_us
+  end
+
 end

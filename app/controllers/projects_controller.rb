@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
 
   before_action :authenticate_user!
+  layout 'header'
   
   def index
     @projects = Array.new

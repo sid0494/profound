@@ -41,6 +41,9 @@ Rails.application.routes.draw do
 
   get 'dashboard/home'
 
+  get 'dashboard/about_us'
+
+  get 'dashboard/contact_us'
 
 
   devise_for :users, controllers: { 
