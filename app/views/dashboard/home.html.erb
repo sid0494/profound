@@ -87,7 +87,7 @@
                         <% @my_projects.each do |project| %>
                             <% if project.project_status == "completed"%>
                             <%      badge = "label label-success" %>
-                            <% elseif project.project_status == "ongoing"%>
+                            <% elsif project.project_status == "ongoing"%>
                             <%      badge = "label label-primary" %>
                             <% else %>
                             <%      badge = "label label-danger" %>
