@@ -1,7 +1,7 @@
 class DashboardController < ApplicationController
 	before_action :authenticate_user!
 
-	layout 'header'
+	layout 'header_new'
 
   def home
   	@name = current_user.first_name
