@@ -1,0 +1,15 @@
+
+<li>
+<div class="timeline-item">
+  <span class="time"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(discussion.created_at) + " ago" %></span>
+  <h3 class="timeline-header"><i class="ion-android-list"></i> <%= discussion.topic_name %></h3>
+  <div class="timeline-body">
+    <%= discussion.description %>
+  </div>
+  <div class='timeline-footer'>
+    <% discussion.discussion_tags.each do |tag| %>
+    <a class="btn btn-primary btn-xs disabled"><%= tag.tag_name %></a>
+    <% end %>
+  </div>
+</div>
+</li>

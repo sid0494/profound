@@ -1,2 +1,14 @@
-<h2><font face="verdana"><b><i class="fa fa-fw fa-suitcase"></i> Discussions Forum</b></font></h2>
+<section class="content-header">
+  <h1>
+    Discussion Forum
+  </h1>
+</section><br>
 
+<ul class="timeline">
+
+  <% @discussions.each do |discussion| %>
+  <%=  render partial: "discuss", locals: {discussion: discussion}   %>
+  <% end %>
+
+</ul>
+<div class="clearfix"></div>

@@ -13,6 +13,8 @@ class DiscussionsController < ApplicationController
 
   	@discussions = temp_discussions.sort!{|discussion1, discussion2| discussion1.created_at <=> discussion2.created_at}.uniq
 
+    @discussions = Discussion.all
+
   end
 
   def new
