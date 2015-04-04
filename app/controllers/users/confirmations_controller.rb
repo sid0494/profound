@@ -34,7 +34,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     when 'new'
       'login_header'
     else
-      'header'
+      'header_new'
     end
   end
 end

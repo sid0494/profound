@@ -38,7 +38,7 @@ class Users::PasswordsController < Devise::PasswordsController
     when 'new'
       'login_header'
     else
-      'header'
+      'header_new'
     end
   end
 end
