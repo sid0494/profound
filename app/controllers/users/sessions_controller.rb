@@ -31,7 +31,7 @@ private
     when 'new'
       'login_header'
     else
-      'header'
+      'header_new'
     end
   end
 end
