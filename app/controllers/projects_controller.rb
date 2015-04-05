@@ -15,6 +15,8 @@ class ProjectsController < ApplicationController
     #Select the latest 10 projects to display
     @projects = temp_projects.sort! {|project_1, project_2| project_1.created_at <=> project_2.created_at}.uniq[0..9]
 
+    @projects = Project.all
+
   end
 
   def show
@@ -26,7 +28,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.new(params.require(:project).permit(:project_name, :project_description))
+    @project = Project.new(params.require(:project).permit(:project_name, :project_description, :project_status))
     # params.permit(:tags => [])
     # @tags = params[:tags]
     #print @tags

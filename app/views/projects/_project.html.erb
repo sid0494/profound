@@ -1,0 +1,26 @@
+<div class="col-md-3">
+  <% if project.project_status == "completed"%>
+  <%      badge = "box box-success box-solid" %>
+  <% elsif project.project_status == "ongoing"%>
+  <%      badge = "box box-primary box-solid" %>
+  <% else %>
+  <%      badge = "box box-danger box-solid" %>
+  <% end %>
+  <div class="<%= badge %>">
+    <div class="box-header with-border">
+      <h3 class="box-title"><%= link_to project.project_name, {:action => 'show', :id => project.id} %></h3>
+      <div class="box-tools pull-right">
+        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+      </div>
+    </div>
+    <div class="box-body">
+      <h4><%= link_to project.user.username, "#" %></h4>
+      <p><%= project.project_description %></p>
+      <p>
+      <% project.project_tags.each do |tag| %>
+      <a class="btn btn-primary btn-xs disabled"><%= tag.tag_name %></a>
+      <% end %>
+      </p>
+    </div>
+  </div>
+</div>

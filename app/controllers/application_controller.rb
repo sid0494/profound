@@ -13,5 +13,12 @@ class ApplicationController < ActionController::Base
       													:discussion_rp, :project_rp,
       													:projects_worked_on, :ongoing_projects,
       													:email, :password, :password_confirmation) }
+  devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:username,:first_name, :last_name,
+                                :dob, :address, :city, :state, :country,
+                                :profession, :institute, :degree, :contact,
+                                :security_que, :security_ans, :learning_rp,
+                                :discussion_rp, :project_rp,
+                                :projects_worked_on, :ongoing_projects,
+                                :email, :password, :password_confirmation, :current_password) }
 end
 end

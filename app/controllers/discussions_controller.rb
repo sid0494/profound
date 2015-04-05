@@ -11,7 +11,7 @@ class DiscussionsController < ApplicationController
   		area.discussions.collect {|discussion| temp_discussions << discussion}
   	end
 
-  	@discussions = temp_discussions.sort!{|discussion1, discussion2| discussion1.created_at <=> discussion2.created_at}.uniq
+  	@discussions = temp_discussions.sort!{|discussion1, discussion2| discussion1.created_at <=> discussion2.created_at}.uniq.reverse
 
     @discussions = Discussion.all
 
@@ -33,11 +33,11 @@ class DiscussionsController < ApplicationController
   		# 	@discussion.discussion_tags << Tag.find_by_name(tag)
   		# end
 
-  		if @discussion.save
+  		#if @discussion.save
   			redirect_to(:action => 'my_discussions')
-  		else
-  			print "Error in tags addition."
-  		end
+  		#else
+  		#	print "Error in tags addition."
+  		#end
   	else
   		render('new')
   	end
@@ -64,11 +64,11 @@ class DiscussionsController < ApplicationController
   		# 	@discussion.discussion_tags << Tag.find_by_name(tag)
   		# end
 
-  		if @discussion.save
+  		#if @discussion.save
   			redirect_to(:action => 'my_discussions')
-  		else
-  			print "Error in tags addition."
-  		end
+  		# else
+  		# 	print "Error in tags addition."
+  		# end
   	else
   		render('edit')
   	end

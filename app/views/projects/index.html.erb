@@ -1,6 +1,14 @@
-<h2><font="verdana"><b><i class="fa fa-fw fa-graduation-cap"></i><b> Projects</font></b></h2>
-<div>
-	<% @projects.each do |project|%>
-	<p>Project Name : <%= project.project_name %> Owner : <%= project.user.first_name %></p>
-	<% end %>
-</div>
+<section class="content-header">
+  <h1>
+    <b>Projects</b> <%= link_to "Create Project", projects_new_path, :class => "btn btn-primary pull-right" %> 
+  </h1>
+</section>
+<hr>
+
+<section class="content">
+  <% @projects.each do |project| %>
+  <%=  render partial: "project", locals: {project: project}   %>
+  <% end %>
+</section>
+
+<div class="clearfix"></div>
