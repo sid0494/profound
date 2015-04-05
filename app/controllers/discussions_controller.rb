@@ -24,14 +24,14 @@ class DiscussionsController < ApplicationController
   def create
   	@discussion = Discussion.new(params.require(:discussion).permit(:topic_name, :description))
   	@discussion.owner_id = current_user.id
-  	params.permit(:tags => [])
-  	@tags = params[:tags]
+  	# params.permit(:tags => [])
+  	# @tags = params[:tags]
 
   	if @discussion.save
 
-  		@tags.each do |tag|
-  			@discussion.discussion_tags << Tag.find_by_name(tag)
-  		end
+  		# @tags.each do |tag|
+  		# 	@discussion.discussion_tags << Tag.find_by_name(tag)
+  		# end
 
   		if @discussion.save
   			redirect_to(:action => 'my_discussions')
@@ -56,13 +56,13 @@ class DiscussionsController < ApplicationController
   def update
   	@discussion = Discussion.find(params[:id])
   	@discussion.update_attributes(params.require(:discussion).permit(:topic_name, :description))
-  	params.permit(:tags => [])
+  	# params.permit(:tags => [])
 
   	if @discussion.save
 
-  		@tags.each do |tag|
-  			@discussion.discussion_tags << Tag.find_by_name(tag)
-  		end
+  		# @tags.each do |tag|
+  		# 	@discussion.discussion_tags << Tag.find_by_name(tag)
+  		# end
 
   		if @discussion.save
   			redirect_to(:action => 'my_discussions')
@@ -85,7 +85,7 @@ class DiscussionsController < ApplicationController
   end
 
   def my_discussions
-  	@discussions = Discussion.where(owner_id: current_user.id).find_each  	
+  	@discussions = current_user.discussions  	
   end
 
   def reply

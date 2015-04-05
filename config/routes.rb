@@ -16,9 +16,19 @@ Rails.application.routes.draw do
 
   get 'discussions/new'
 
+  post 'discussions/create'
+
+  get 'discussions/delete'
+
+  post 'discussions/destroy'
+
+  get 'discussions/my_discussions'
+
   get 'discussions/show'
 
   get 'discussions/edit'
+
+  patch 'discussions/update'
 
   get 'projects/index'
 

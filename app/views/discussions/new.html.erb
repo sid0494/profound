@@ -1,2 +1,51 @@
-<h1>Discussions#new</h1>
-<p>Find me in app/views/discussions/new.html.erb</p>
+<%= form_for(@discussion, url: discussions_create_path(@discussion)) do |f| %>
+
+<section class="content-header">
+  <h1>
+    <font face="verdana">
+      <b>New Discussion Topic</b>
+    </font>
+  </h1>
+</section>
+
+<section class="content">
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-12">
+      <!-- general form elements -->
+      <div class="box box-primary">
+        <div class="box-header">
+          <h3 class="box-title">New Discussion Thread</h3>
+        </div><!-- /.box-header -->
+        <!-- form start -->
+        <form role="form">
+          <div class="box-body">
+            <div class="form-group">
+              <label for="exampleInputEmail1"><font size="3">Discussion Topic/Question</font></label>
+              <%= f.text_field :topic_name, autofocus: true, class: 'form-control', placeholder: 'Enter your Question' %>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1"><font size="3">Description</font></label>
+              <%= f.text_area :description, autofocus: true, class: 'form-control', placeholder: 'Enter the Description here', rows: '4' %>
+            </div>
+
+            <div class="form-group">
+            	<label for="exampleInputPassword1"><font size="3">Tags</font></label>
+            	<input type="text" name"id" class="form-control" placeholder="Enter the Tags here" />
+            </div>
+	        <br>
+	        <p class="help-block">All the users could see this question and the users having these skills could see it in their newsfeed too.</p>
+            </div>
+
+          </div><!-- /.box-body -->
+
+          <div class="box-footer actions">
+            <%= f.submit "Create Discussion", class: 'btn btn-success' %>
+          </div>
+        </form>
+      </div><!-- /.box -->
+    </div>
+</section>
+
+
+<% end %>
