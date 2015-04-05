@@ -3,11 +3,8 @@
 <div class="timeline-item">
   <span class="time"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(discussion.created_at) + " ago" %></span>
   <h2 class="timeline-header"><b><%= link_to(discussion.topic_name, {:action => 'show', :id => discussion.id}) %></b>
-    <% if current_user == discussion.owner %>
-      <%= link_to("Edit", {:action => 'edit', :id => discussion.id}, class: 'btn btn-xs') %>
-      <%= link_to("Delete", {:action => 'delete', :id => discussion.id}, class: 'btn btn-xs') %>
-    <% end %>
-  </h2>
+  	<%= link_to("Edit", {:action => 'edit', :id => discussion.id}, class: 'btn btn-xs') %>
+  	<%= link_to("Delete", {:action => 'delete', :id => discussion.id}, class: 'btn btn-xs') %></h2>
   <div class="timeline-body">
     <%= discussion.description %>
   </div>

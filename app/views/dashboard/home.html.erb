@@ -90,7 +90,7 @@
                             <%      badge = "label label-danger" %>
                             <% end %>
                             <tr>
-                              <td><%= project.project_name %></td>
+                              <td><%= link_to project.project_name, projects_show_path %></td>
                               <td><span class='<%= badge %>'><%= project.project_status %></span></td>
                               <td><%= time_ago_in_words(project.created_at) %> ago</td>
                               <td><%= project.project_description %></td>
@@ -128,7 +128,7 @@
                         </tr>
                         <% @my_discussions.each do |discussion| %>
                             <tr>
-                              <td><%= discussion.topic_name %></td>
+                              <td><%= link_to discussion.topic_name, discussions_show_path %></td>
                               <td><%= time_ago_in_words(discussion.created_at) %></td>
                               <td><%= discussion.description %></td>
                             </tr>
