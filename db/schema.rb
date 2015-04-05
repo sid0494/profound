@@ -31,10 +31,10 @@ ActiveRecord::Schema.define(version: 20150402144542) do
     t.integer  "discussion_id"
     t.string   "user_id"
     t.string   "reply"
-    t.float    "upvotes"
-    t.float    "downvotes"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "upvotes",       default: 0
+    t.integer  "downvotes",     default: 0
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "discussions", force: :cascade do |t|
