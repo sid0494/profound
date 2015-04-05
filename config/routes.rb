@@ -6,9 +6,15 @@ Rails.application.routes.draw do
 
   get 'learning_topics/new'
 
+  post 'learning_topics/create'
+
   get 'learning_topics/edit'
 
+  patch 'learning_topics/update'
+
   get 'learning_topics/delete'
+
+  post 'learning_topcis/destroy'
 
   get 'learning_topics/my_topics'
 
