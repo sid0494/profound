@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
   get 'discussions/edit'
 
+  post 'discussions/reply'
+
   get 'projects/index'
 
   get 'projects/show'
