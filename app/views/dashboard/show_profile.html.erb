@@ -43,22 +43,38 @@
 	          	<br>
 	          	<div class="form-control">
 	          		<%= f.label :address %>
-	          		<%= ": "+current_user.address %>
+	          		<% if !current_user.address.nil? %>
+	          			<%= ": "+current_user.address %>
+	          		<% else %>
+	          			<%= " : N.A." %>
+	          		<% end %>
 	          	</div>
 	          	<br>
 							<div class="form-control">
 	          		<%= f.label :city %>
-	          		<%= ": "+current_user.city %>
+	          		<% if !current_user.city.nil? %>
+	          			<%= ": "+current_user.city %>
+	          		<% else %>
+	          			<%= " : N.A." %>
+	          		<% end %>
 	          	</div>
 	          	<br>
 	          	<div class="form-control">
 	          		<%= f.label :state %>
-	          		<%= ": "+current_user.state %>
+	          		<% if !current_user.state.nil? %>
+	          			<%= ": "+current_user.state %>
+	          		<% else %>
+	          			<%= " : N.A." %>
+	          		<% end %>
 	          	</div>
 	          	<br>
 	          	<div class="form-control">
 	          		<%= f.label :country %>
-	          		<%= ": "+current_user.country %>
+	          		<% if !current_user.country.nil? %>
+	          			<%= ": "+current_user.country %>
+	          		<% else %>
+	          			<%= " : N.A." %>
+	          		<% end %>
 	          	</div>
           	</div>
           	<div class="form-group">
@@ -80,25 +96,43 @@
           	<div class="form-group">
           		<div class="form-control">
 	          		<%= f.label :profession %>
-	          		<%= ": "+current_user.profession %>
+	          		<% if !current_user.profession.nil? %>
+	          			<%= ": "+current_user.profession %>
+	          		<% else %>
+	          			<%= " : N.A." %>
+	          		<% end %>
 	          	</div>
 	          	<br>
 	          	<div class="form-control">
 	          		<%= f.label :highest_degree %>
-	          		<%= ": "+current_user.degree %>
+	          		<% if !current_user.degree.nil? %>
+	          			<%= ": "+current_user.degree %>
+	          		<% else %>
+	          			<%= " : N.A." %>
+	          		<% end %>
 	          	</div>
 	          	<br>
 	          	<div class="form-control">
 	          		<%= f.label :institute %>
-	          		<%= ": "+current_user.institute %>
+	          		<% if !current_user.institute.nil? %>
+	          			<%= ": "+current_user.institute %>
+	          		<% else %>
+	          			<%= " : N.A." %>
+	          		<% end %>
 	          	</div>
 	          	<br>
 	          	<div class="form-control">
-	          		<%= f.label :contact %>
-	          		<%= ": "+current_user.contact %>
+	          		<%= f.label :contact_number %>
+	          		<% if !current_user.contact.nil? %>
+	          			<%= ": "+current_user.contact %>
+	          		<% else %>
+	          			<%= " : N.A." %>
+	          		<% end %>
 	          	</div>
 	          	<br>
-	          	<%= button_to "Contact the Person", '#', :class => 'btn btn-primary' %>
+	          	<%= button_to "Contact the Person", '#', :class => 'btn btn-primary pull-left' %>
+	          	<%= button_to "Download Resume/CV", '#', :class => 'btn btn-success pull-right' %>
+	          	<br>
           	</div>
           </div>
       	</form>
