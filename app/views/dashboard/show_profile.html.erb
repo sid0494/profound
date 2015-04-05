@@ -1,0 +1,110 @@
+<%= form_for(@user, url: '#') do |f| %>
+
+<section class="content-header">
+  <h1>
+    <font face="verdana">
+      <b>
+      	<i class='fa fa-fw fa-user'></i><%= current_user.first_name+" "+current_user.last_name %>
+      	<small>
+      		<%= " ("+current_user.username+") " %>
+      	</small>
+      </b>
+    </font>
+  </h1>
+</section>
+
+<section class="content">
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-6">
+      <!-- general form elements -->
+      <div class="box box-primary">
+        <div class="box-header">
+          <h3 class="box-title">Personal Details</h3>
+        </div><!-- /.box-header -->
+        <!-- form start -->
+        <form role="form">
+          <div class="box-body">
+          	<div class="form-group">
+          		<div class="form-control">
+	          		<%= f.label :name %>
+	          		<%= ": "+current_user.first_name+" "+current_user.last_name %>
+	          	</div>
+	          	<br>
+	          	<div class="form-control">
+	          		<%= f.label :username %>
+	          		<%= ": "+current_user.username %>
+	          	</div>
+	          	<br>
+	          	<div class="form-control">
+	          		<%= f.label :email %>
+	          		<%= ": "+current_user.email %>
+	          	</div>
+	          	<br>
+	          	<div class="form-control">
+	          		<%= f.label :address %>
+	          		<%= ": "+current_user.address %>
+	          	</div>
+	          	<br>
+							<div class="form-control">
+	          		<%= f.label :city %>
+	          		<%= ": "+current_user.city %>
+	          	</div>
+	          	<br>
+	          	<div class="form-control">
+	          		<%= f.label :state %>
+	          		<%= ": "+current_user.state %>
+	          	</div>
+	          	<br>
+	          	<div class="form-control">
+	          		<%= f.label :country %>
+	          		<%= ": "+current_user.country %>
+	          	</div>
+          	</div>
+          	<div class="form-group">
+          	</div>
+          </div>
+      	</form>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <!-- general form elements -->
+      <div class="box box-primary">
+        <div class="box-header">
+          <h3 class="box-title">Educational Details</h3>
+        </div><!-- /.box-header -->
+        <!-- form start -->
+        <form role="form">
+          <div class="box-body">
+          	<div class="form-group">
+          		<div class="form-control">
+	          		<%= f.label :profession %>
+	          		<%= ": "+current_user.profession %>
+	          	</div>
+	          	<br>
+	          	<div class="form-control">
+	          		<%= f.label :highest_degree %>
+	          		<%= ": "+current_user.degree %>
+	          	</div>
+	          	<br>
+	          	<div class="form-control">
+	          		<%= f.label :institute %>
+	          		<%= ": "+current_user.institute %>
+	          	</div>
+	          	<br>
+	          	<div class="form-control">
+	          		<%= f.label :contact %>
+	          		<%= ": "+current_user.contact %>
+	          	</div>
+	          	<br>
+	          	<%= button_to "Contact the Person", '#', :class => 'btn btn-primary' %>
+          	</div>
+          </div>
+      	</form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<% end %>

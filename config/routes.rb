@@ -63,6 +63,8 @@ Rails.application.routes.draw do
 
   get 'dashboard/contact_us'
 
+  get 'dashboard/show_profile'
+
 
   devise_for :users, controllers: { 
     sessions: "users/sessions",

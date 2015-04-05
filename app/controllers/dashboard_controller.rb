@@ -16,4 +16,8 @@ class DashboardController < ApplicationController
   def contact_us
   end
 
+  def show_profile
+    @user = User.find(current_user.id)
+  end
+
 end
