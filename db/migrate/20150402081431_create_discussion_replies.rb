@@ -4,8 +4,8 @@ class CreateDiscussionReplies < ActiveRecord::Migration
       t.integer :discussion_id
       t.string :user_id
       t.string :reply
-      t.float :upvotes
-      t.float :downvotes
+      t.integer :upvotes, :default => 0
+      t.integer :downvotes, :default => 0
 
       t.timestamps null: false
     end

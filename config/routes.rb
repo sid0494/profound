@@ -27,8 +27,10 @@ Rails.application.routes.draw do
   get 'discussions/show'
 
   get 'discussions/edit'
-
+  
   patch 'discussions/update'
+
+  post 'discussions/reply'
 
   get 'projects/index'
 

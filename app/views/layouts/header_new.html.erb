@@ -247,13 +247,12 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <%= image_tag("user2-160x160.jpg", :class => 'user-image', :alt => 'User Image') %>
+                <i class="fa fa-user"></i>
                   <span class="hidden-xs"><%= current_user.first_name + " " + current_user.last_name %></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
-                  <li class="user-header">
-                    <%= image_tag("user2-160x160.jpg", :class => 'img-circle', :alt => 'User Image') %>
+                  <li class="user-header" height="100px">
                     <p>
                        <%= current_user.username %>
                       <small><%= current_user.first_name + " " + current_user.last_name %></small>
@@ -274,7 +273,7 @@
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
-                      <a href="#" class="btn btn-default btn-flat">Profile</a>
+                    <%= button_to "Profile", edit_user_registration_path, :method => :get, :class => 'btn btn-default btn-flat'%>
                     </div>
                     <div class="pull-right">
                       <%= button_to "Sign out", destroy_user_session_path, :method => :delete, :class => 'btn btn-default btn-flat'%>
@@ -292,11 +291,8 @@
         <section class="sidebar">
           <!-- Sidebar user panel -->
           <div class="user-panel">
-            <div class="pull-left image">
-              <%= image_tag("user2-160x160.jpg", :class => 'img-circle', :alt => 'User Image') %>
-            </div>
             <div class="pull-left info">
-              <p><%= current_user.first_name + " " + current_user.last_name %></p>
+              <p><i class="fa fa-user"></i>  <%= " " + current_user.first_name + " " + current_user.last_name %></p>
 
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>

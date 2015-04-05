@@ -89,7 +89,17 @@ class DiscussionsController < ApplicationController
   end
 
   def reply
-    
+    @discussion_reply = DiscussionReply.new(params.require(:discussion_reply).permit(:reply))
+    @discussion_reply.user = current_user
+
+    if @discussion_reply.save
+      params.require(:discussion_reply).permit(:id)
+      @discussion = Discussion.find(params[:discussion_reply][:id])
+      @discussion.discussion_replies << @discussion_reply
+      redirect_to(:action =>'show',:id => @discussion.id)
+    else
+      print "Error posting reply"
+    end
   end
 
 end
