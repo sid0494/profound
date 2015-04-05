@@ -1,0 +1,144 @@
+<%= form_for(@user, url: '#') do |f| %>
+
+<section class="content-header">
+  <h1>
+    <font face="verdana">
+      <b>
+      	<i class='fa fa-fw fa-user'></i><%= current_user.first_name+" "+current_user.last_name %>
+      	<small>
+      		<%= " ("+current_user.username+") " %>
+      	</small>
+      </b>
+    </font>
+  </h1>
+</section>
+
+<section class="content">
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-6">
+      <!-- general form elements -->
+      <div class="box box-primary">
+        <div class="box-header">
+          <h3 class="box-title">Personal Details</h3>
+        </div><!-- /.box-header -->
+        <!-- form start -->
+        <form role="form">
+          <div class="box-body">
+          	<div class="form-group">
+          		<div class="form-control">
+	          		<%= f.label :name %>
+	          		<%= ": "+current_user.first_name+" "+current_user.last_name %>
+	          	</div>
+	          	<br>
+	          	<div class="form-control">
+	          		<%= f.label :username %>
+	          		<%= ": "+current_user.username %>
+	          	</div>
+	          	<br>
+	          	<div class="form-control">
+	          		<%= f.label :email %>
+	          		<%= ": "+current_user.email %>
+	          	</div>
+	          	<br>
+	          	<div class="form-control">
+	          		<%= f.label :address %>
+	          		<% if !current_user.address.nil? %>
+	          			<%= ": "+current_user.address %>
+	          		<% else %>
+	          			<%= " : N.A." %>
+	          		<% end %>
+	          	</div>
+	          	<br>
+							<div class="form-control">
+	          		<%= f.label :city %>
+	          		<% if !current_user.city.nil? %>
+	          			<%= ": "+current_user.city %>
+	          		<% else %>
+	          			<%= " : N.A." %>
+	          		<% end %>
+	          	</div>
+	          	<br>
+	          	<div class="form-control">
+	          		<%= f.label :state %>
+	          		<% if !current_user.state.nil? %>
+	          			<%= ": "+current_user.state %>
+	          		<% else %>
+	          			<%= " : N.A." %>
+	          		<% end %>
+	          	</div>
+	          	<br>
+	          	<div class="form-control">
+	          		<%= f.label :country %>
+	          		<% if !current_user.country.nil? %>
+	          			<%= ": "+current_user.country %>
+	          		<% else %>
+	          			<%= " : N.A." %>
+	          		<% end %>
+	          	</div>
+          	</div>
+          	<div class="form-group">
+          	</div>
+          </div>
+      	</form>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <!-- general form elements -->
+      <div class="box box-primary">
+        <div class="box-header">
+          <h3 class="box-title">Educational Details</h3>
+        </div><!-- /.box-header -->
+        <!-- form start -->
+        <form role="form">
+          <div class="box-body">
+          	<div class="form-group">
+          		<div class="form-control">
+	          		<%= f.label :profession %>
+	          		<% if !current_user.profession.nil? %>
+	          			<%= ": "+current_user.profession %>
+	          		<% else %>
+	          			<%= " : N.A." %>
+	          		<% end %>
+	          	</div>
+	          	<br>
+	          	<div class="form-control">
+	          		<%= f.label :highest_degree %>
+	          		<% if !current_user.degree.nil? %>
+	          			<%= ": "+current_user.degree %>
+	          		<% else %>
+	          			<%= " : N.A." %>
+	          		<% end %>
+	          	</div>
+	          	<br>
+	          	<div class="form-control">
+	          		<%= f.label :institute %>
+	          		<% if !current_user.institute.nil? %>
+	          			<%= ": "+current_user.institute %>
+	          		<% else %>
+	          			<%= " : N.A." %>
+	          		<% end %>
+	          	</div>
+	          	<br>
+	          	<div class="form-control">
+	          		<%= f.label :contact_number %>
+	          		<% if !current_user.contact.nil? %>
+	          			<%= ": "+current_user.contact %>
+	          		<% else %>
+	          			<%= " : N.A." %>
+	          		<% end %>
+	          	</div>
+	          	<br>
+	          	<%= button_to "Contact the Person", '#', :class => 'btn btn-primary pull-left' %>
+	          	<%= button_to "Download Resume/CV", '#', :class => 'btn btn-success pull-right' %>
+	          	<br>
+          	</div>
+          </div>
+      	</form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<% end %>
