@@ -10,7 +10,7 @@ Rails.application.config.assets.precompile += %w( font-awesome.min.css )
 
 Rails.application.config.assets.precompile += %w( ionicons.min.css )
 Rails.application.config.assets.precompile += %w( AdminLTE.min.css )
-Rails.application.config.assets.precompile += %w( skin-green.min.css )
+Rails.application.config.assets.precompile += %w( skin-blue.min.css )
 Rails.application.config.assets.precompile += %w( green.css ) 
 Rails.application.config.assets.precompile += %w( jquery-jvectormap-1.2.2.css )
 

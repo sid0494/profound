@@ -13,6 +13,8 @@ class DiscussionsController < ApplicationController
 
   	@discussions = temp_discussions.sort!{|discussion1, discussion2| discussion1.created_at <=> discussion2.created_at}.uniq
 
+    @discussions = Discussion.all
+
   end
 
   def new
@@ -44,6 +46,7 @@ class DiscussionsController < ApplicationController
 
   def show
   	@discussion = Discussion.find(params[:id])
+    @discussion_reply = DiscussionReply.new
   end
 
   def edit
@@ -83,6 +86,10 @@ class DiscussionsController < ApplicationController
 
   def my_discussions
   	@discussions = Discussion.where(owner_id: current_user.id).find_each  	
+  end
+
+  def reply
+    
   end
 
 end

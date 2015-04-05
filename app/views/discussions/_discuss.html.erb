@@ -1,0 +1,16 @@
+
+<li>
+<i class="fa fa-flag bg-blue"></i>
+<div class="timeline-item">
+  <span class="time"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(discussion.created_at) + " ago" %></span>
+  <h2 class="timeline-header"><b><%= link_to(discussion.topic_name, {:action => 'show', :id => discussion.id}) %></b></h2>
+  <div class="timeline-body">
+    <%= discussion.description %>
+  </div>
+  <div class='timeline-footer'>
+    <% discussion.discussion_tags.each do |tag| %>
+    <a class="btn btn-primary btn-xs disabled"><%= tag.tag_name %></a>
+    <% end %>
+  </div>
+</div>
+</li>

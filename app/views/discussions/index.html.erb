@@ -1,2 +1,14 @@
-<h2><font face="verdana"><b><i class="fa fa-fw fa-suitcase"></i> Discussions Forum</b></font></h2>
+<section class="content-header">
+  <h1>
+    <b>Discussion Forum</b> <%= link_to "Start a Discussion", discussions_new_path, :class => "btn btn-primary pull-right" %> 
+  </h1>
+</section>
+<hr>
+<ul class="timeline">
 
+  <% @discussions.each do |discussion| %>
+  <%=  render partial: "discuss", locals: {discussion: discussion}   %>
+  <% end %>
+
+</ul>
+<div class="clearfix"></div>
