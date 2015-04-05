@@ -2,7 +2,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    <%= current_user.first_name %>
+    <b><%= current_user.first_name %></b>
     <small>Dashboard</small>
   </h1>
 </section>
@@ -63,15 +63,12 @@
   <!-- Main row -->
     <div class="row">
             <div class="col-xs-12">
-              <div class="box">
+              <div class="box box-warning">
                 <div class="box-header">
                   <h3 class="box-title">My Projects</h3>
                   <div class="box-tools">
                     <div class="input-group">
-                      <input type="text" name="table_project_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
-                      <div class="input-group-btn">
-                        <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-                      </div>
+                      <%= button_to "Create a Project", projects_new_path, :class => "btn btn-default", method: :get %>
                     </div>
                   </div>
                 </div><!-- /.box-header -->
@@ -95,7 +92,7 @@
                             <tr>
                               <td><%= project.project_name %></td>
                               <td><span class='<%= badge %>'><%= project.project_status %></span></td>
-                              <td><%= time_ago_in_words(project.created_at) %></td>
+                              <td><%= time_ago_in_words(project.created_at) %> ago</td>
                               <td><%= project.project_description %></td>
                             </tr>
                         <% end %>
@@ -112,15 +109,12 @@
   
     <div class="row">
             <div class="col-xs-12">
-              <div class="box">
+              <div class="box box-danger">
                 <div class="box-header">
                   <h3 class="box-title">My Discussions</h3>
                   <div class="box-tools">
                     <div class="input-group">
-                      <input type="text" name="table_discussion_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
-                      <div class="input-group-btn">
-                        <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-                      </div>
+                      <%= button_to "Start a Discussion", discussions_new_path, :class => "btn btn-default", method: :get %>
                     </div>
                   </div>
                 </div><!-- /.box-header -->

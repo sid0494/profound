@@ -46,6 +46,7 @@ class DiscussionsController < ApplicationController
 
   def show
   	@discussion = Discussion.find(params[:id])
+    @discussion_reply = DiscussionReply.new
   end
 
   def edit
@@ -85,6 +86,10 @@ class DiscussionsController < ApplicationController
 
   def my_discussions
   	@discussions = Discussion.where(owner_id: current_user.id).find_each  	
+  end
+
+  def reply
+    
   end
 
 end

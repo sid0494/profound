@@ -1,2 +1,54 @@
-<h1>Discussions#show</h1>
-<p>Find me in app/views/discussions/show.html.erb</p>
+<section class="content-header">
+  
+</section>
+
+<section class="invoice">
+  <!-- title row -->
+  <div class="row">
+    <div class="col-xs-12">
+      <h2 class="page-header">
+        <b><%= @discussion.topic_name %></b>
+        <small class="pull-right"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(@discussion.created_at) + " ago" %></small>
+        <small><%= @discussion.owner.first_name + " " + @discussion.owner.last_name %></small>   
+      </h2>
+      
+    </div><!-- /.col -->
+  </div>
+
+  <!-- Table row -->
+  <div class="row">
+    <div class="col-xs-12">
+      <p><%= @discussion.description %></p>
+      <p>
+        <% @discussion.discussion_tags.each do |tag| %>
+        <a class="btn btn-primary btn-xs disabled"><%= tag.tag_name %></a>
+        <% end %>
+      </p>
+    </div>  
+  </div>
+
+  <hr>
+
+  <% if not @discussion.discussion_replies.empty? %>
+    <% @discussion.discussion_replies.each do |discussion_reply| %>
+      <div class="row">
+        <div class="col-xs-12">
+          <%=  render partial: "comments", locals: {discussion_reply: discussion_reply}   %>
+        </div>  
+      </div>
+    <% end %>
+  <% end %>
+
+  <%= form_for(@discussion_reply, url: "#") do |f| %>
+    <div class="box-body">
+      <div class="form-group">
+        <%= f.text_area :reply, autofocus: true, class: 'form-control', placeholder: 'Post a reply....', rows: '2' %>
+        </div>
+        <div class="form-group">
+        <%= f.submit "Post Reply", class: 'btn btn-primary' %>
+      </div>
+    </div>
+  <% end %>
+
+</section><!-- /.content -->
+<div class="clearfix"></div>

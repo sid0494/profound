@@ -1,8 +1,9 @@
 
 <li>
+<i class="fa fa-flag bg-blue"></i>
 <div class="timeline-item">
   <span class="time"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(discussion.created_at) + " ago" %></span>
-  <h3 class="timeline-header"><i class="ion-android-list"></i> <%= discussion.topic_name %></h3>
+  <h2 class="timeline-header"><b><%= link_to(discussion.topic_name, {:action => 'show', :id => discussion.id}) %></b></h2>
   <div class="timeline-body">
     <%= discussion.description %>
   </div>
