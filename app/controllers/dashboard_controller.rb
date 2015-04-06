@@ -10,14 +10,19 @@ class DashboardController < ApplicationController
   	@my_discussions = current_user.discussions
   end
 
+  def show_profile
+    @user = User.find(params[:id])
+    @rp = ((@user.learning_rp + @user.project_rp + @user.discussion_rp) * 10).to_i
+  end
+
+  def search
+  	@user = User.find_by_username(params[:username])
+  	render ('show_profile')
+  end
+
   def about_us
   end
 
   def contact_us
   end
-
-  def show_profile
-    @user = User.find(params[:id])
-  end
-
 end

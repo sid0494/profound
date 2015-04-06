@@ -1,8 +1,15 @@
 <div class="row">
 <div class="col-xs-12">
+  <% if current_user.id == discussion_reply.user.id %>
+  <% 	badge_up = "btn btn-success btn-xs disabled" %>
+  <% 	badge_down = "btn btn-danger btn-xs disabled" %>
+  <% else %>
+  <% 	badge_up = "btn btn-success btn-xs" %>
+  <% 	badge_down = "btn btn-danger btn-xs" %>
+  <% end %>
   <p><b><%= discussion_reply.user.first_name + " " + discussion_reply.user.last_name %></b></p>
   <p><%= discussion_reply.reply %></p>
-  <p><%= link_to("Upvote (#{discussion_reply.upvotes})", "#", :class => "btn btn-success btn-xs") %>  <%= link_to("Downvote (#{discussion_reply.downvotes})", "#", :class => "btn btn-danger btn-xs") %></p>
+  <p><%= link_to("Upvote (#{discussion_reply.upvotes})", "#", :class => "#{badge_up}") %>  <%= link_to("Downvote (#{discussion_reply.downvotes})", "#", :class => "#{badge_down}") %></p>
 </div>  
 </div>
 <hr>
