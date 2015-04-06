@@ -1,8 +1,14 @@
-<h1>Projects#index</h1>
-<p>Find me in app/views/projects/index.html.erb</p>
-<h4><%= link_to("Create Project", {:action => 'new'}) %></h4>
-<div>
-	<% @my_projects.each do |project|%>
-	<p>Project Name : <%= project.project_name %> Project Description : <%= project.project_description%> <%= link_to("Show", {:action => 'show', :id => project.id}) %> <%= link_to("Edit", {:action => 'edit', :id => project.id}) %> <%= link_to("Delete", {:action => 'delete', :id => project.id}) %></p>
-	<% end %>
-</div>
+<section class="content-header">
+  <h1>
+    <b>My Projects </b><small> <i class="fa fa-circle text-success"></i> Completed <i class="fa fa-circle text-primary"></i> Ongoing <i class="fa fa-circle text-danger"></i> Yet to start </small> <%= link_to "Create Project", projects_new_path, :class => "btn btn-primary pull-right" %> 
+  </h1>
+</section>
+<hr>
+
+<section class="content">
+  <% @projects.each do |project| %>
+  <%=  render partial: "project", locals: {project: project}   %>
+  <% end %>
+</section>
+
+<div class="clearfix"></div>

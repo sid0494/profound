@@ -12,6 +12,7 @@ class LearningTopicsController < ApplicationController
     end
 
     @topics = temp_topics.sort!{|topic1, topic2| topic1.created_at <=> topic2.created_at}.uniq
+    @topics = LearningTopic.all
 
   end
 
@@ -26,28 +27,24 @@ class LearningTopicsController < ApplicationController
   def create
     @topic = LearningTopic.new(params.require(:learning_topic).permit(:topic_name, :description))
     @topic.owner_id = current_user.id
-    params.permit(:tags => [])
-    @tags = params[:tags]
+    #params.permit(:tags => [])
+    #@tags = params[:tags]
 
     if @topic.save
 
-      @tags.each do |tag|
-        @topic.learning_tags << Tag.find_by_name(tag)
-      end
+     # @tags.each do |tag|
+     #   @topic.learning_tags << Tag.find_by_name(tag)
+     # end
 
-      if @topic.save
+     # if @topic.save
         redirect_to(:action => 'my_topics')
-      else
-        print "Error in tags addition."
-      end
+      # else
+      #   print "Error in tags addition."
+      # end
     else
       render('new')
     end
     
-  end
-
-  def show
-    @topic = Discussion.find(params[:id])
   end
 
   def edit
@@ -55,21 +52,21 @@ class LearningTopicsController < ApplicationController
   end
 
   def update
-    @topic = Discussion.find(params[:id])
+    @topic = LearningTopic.find(params[:id])
     @topic.update_attributes(params.require(:learning_topic).permit(:topic_name, :description))
-    params.permit(:tags => [])
+    #params.permit(:tags => [])
 
     if @topic.save
 
-      @tags.each do |tag|
-        @topic.learning_tags << Tag.find_by_name(tag)
-      end
+      # @tags.each do |tag|
+      #   @topic.learning_tags << Tag.find_by_name(tag)
+      # end
 
-      if @topic.save
+      # if @topic.save
         redirect_to(:action => 'my_topics')
-      else
-        print "Error in tags addition."
-      end
+      # else
+      #   print "Error in tags addition."
+      # end
     else
       render('edit')
     end
@@ -87,6 +84,14 @@ class LearningTopicsController < ApplicationController
   end
 
   def my_topics
-    @topics = LearningTopic.where(owner_id: current_user.id).find_each
+    @topics = current_user.learning_topics
+  end
+
+  def commend
+    @user = User.find(params[:id])
+    @user.learning_rp += 1
+    @user.save
+
+    redirect_to(:action => 'index')
   end
 end

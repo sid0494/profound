@@ -1,2 +1,57 @@
-<h1>LearningTopics#show</h1>
-<p>Find me in app/views/learning_topics/show.html.erb</p>
+<section class="content-header">
+  <h1>
+      <b>
+      	<i class='fa fa-fw fa-graduation-cap'></i> Topic Details
+      </b>
+  </h1>
+</section>
+
+<section class="content">
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-12">
+      <!-- general form elements -->
+      <div class="box box-primary">
+        <!-- form start -->
+        <form role="form">
+          <div class="box-body">
+          	<div class="form-group">
+          		<div>
+	          		<b>Topic Name</b>
+	          		<%= ": " + @topic.topic_name %>
+	          	</div>
+	          	<br>
+	          	<div>
+	          		<b>Created By</b>
+	          		<%= link_to ": " + @topic.owner.username, {:controller => 'dashboard', :action => 'show_profile', :id => @topic.owner_id} %>
+	          	</div>
+	          	<br>
+	          	<div>
+	          		<b>Description</b>
+	          		<%= ": " + @topic.description %>
+	          	</div>
+	          	<br>
+	          	<div>
+	          		<% @topic.learning_tags.each do |tag| %>
+      				<a class="btn btn-primary btn-xs disabled"><%= tag.tag_name %></a>
+      				<% end %>
+	          	</div>
+	          	<br>
+	          	<% if not @topic.owner_id == current_user.id %>
+	          	<%= button_to "Contact User", '#', :class => 'btn btn-primary pull-left' %>
+	          	<%= link_to "Commend User", {:action => 'commend', :id => @topic.owner_id}, :class => 'btn btn-success pull-right' %>
+	          	<br>
+	          	<% else %>
+	          	<%= link_to "Edit Topic", {:action => 'edit', :id => @topic.id}, :class => "btn btn-success pull-left", method: :get %>
+    			<%= link_to "Delete Topic", {:action => 'delete', :id => @topic.id}, :class => "btn btn-danger pull-right", method: :get %>
+    			<br>
+	          	<% end %>
+          	</div>
+          	<div class="form-group">
+          	</div>
+          </div>
+      </div>
+    </div>
+
+  </div>
+</section>

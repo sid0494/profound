@@ -1,2 +1,14 @@
-<h1>LearningTopics#my_topics</h1>
-<p>Find me in app/views/learning_topics/my_topics.html.erb</p>
+<section class="content-header">
+  <h1>
+    <b>My Topics </b> <%= link_to "Create Topic", learning_topics_new_path, :class => "btn btn-primary pull-right" %> 
+  </h1>
+</section>
+<hr>
+
+<section class="content">
+  <% @topics.each do |topic| %>
+  <%=  render partial: "topic", locals: {learning_topic: topic}   %>
+  <% end %>
+</section>
+
+<div class="clearfix"></div>

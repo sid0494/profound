@@ -17,7 +17,7 @@ class DashboardController < ApplicationController
   end
 
   def show_profile
-    @user = User.find(current_user.id)
+    @user = User.find(params[:id])
   end
 
 end

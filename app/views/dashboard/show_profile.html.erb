@@ -4,12 +4,17 @@
   <h1>
     <font face="verdana">
       <b>
-      	<i class='fa fa-fw fa-user'></i><%= current_user.first_name+" "+current_user.last_name %>
+      	<i class='fa fa-fw fa-user'></i><%= @user.first_name+" "+@user.last_name %>
       	<small>
-      		<%= " ("+current_user.username+") " %>
+      		<%= " ("+@user.username+") " %>
       	</small>
       </b>
     </font>
+    <% if @user == current_user %>
+    <%= link_to "Edit Profile", edit_user_registration_path, :class => "btn btn-primary pull-right" %>
+    <% else %>
+    <%= link_to "Report User", "#", :class => "btn btn-danger pull-right" %>
+    <% end %>
   </h1>
 </section>
 
@@ -28,23 +33,23 @@
           	<div class="form-group">
           		<div class="form-control">
 	          		<%= f.label :name %>
-	          		<%= ": "+current_user.first_name+" "+current_user.last_name %>
+	          		<%= ": "+@user.first_name+" "+@user.last_name %>
 	          	</div>
 	          	<br>
 	          	<div class="form-control">
 	          		<%= f.label :username %>
-	          		<%= ": "+current_user.username %>
+	          		<%= ": "+@user.username %>
 	          	</div>
 	          	<br>
 	          	<div class="form-control">
 	          		<%= f.label :email %>
-	          		<%= ": "+current_user.email %>
+	          		<%= ": "+@user.email %>
 	          	</div>
 	          	<br>
 	          	<div class="form-control">
 	          		<%= f.label :address %>
-	          		<% if !current_user.address.nil? %>
-	          			<%= ": "+current_user.address %>
+	          		<% if !@user.address.nil? %>
+	          			<%= ": "+@user.address %>
 	          		<% else %>
 	          			<%= " : N.A." %>
 	          		<% end %>
@@ -52,8 +57,8 @@
 	          	<br>
 							<div class="form-control">
 	          		<%= f.label :city %>
-	          		<% if !current_user.city.nil? %>
-	          			<%= ": "+current_user.city %>
+	          		<% if !@user.city.nil? %>
+	          			<%= ": "+@user.city %>
 	          		<% else %>
 	          			<%= " : N.A." %>
 	          		<% end %>
@@ -61,8 +66,8 @@
 	          	<br>
 	          	<div class="form-control">
 	          		<%= f.label :state %>
-	          		<% if !current_user.state.nil? %>
-	          			<%= ": "+current_user.state %>
+	          		<% if !@user.state.nil? %>
+	          			<%= ": "+@user.state %>
 	          		<% else %>
 	          			<%= " : N.A." %>
 	          		<% end %>
@@ -70,8 +75,8 @@
 	          	<br>
 	          	<div class="form-control">
 	          		<%= f.label :country %>
-	          		<% if !current_user.country.nil? %>
-	          			<%= ": "+current_user.country %>
+	          		<% if !@user.country.nil? %>
+	          			<%= ": "+@user.country %>
 	          		<% else %>
 	          			<%= " : N.A." %>
 	          		<% end %>
@@ -96,8 +101,8 @@
           	<div class="form-group">
           		<div class="form-control">
 	          		<%= f.label :profession %>
-	          		<% if !current_user.profession.nil? %>
-	          			<%= ": "+current_user.profession %>
+	          		<% if !@user.profession.nil? %>
+	          			<%= ": "+@user.profession %>
 	          		<% else %>
 	          			<%= " : N.A." %>
 	          		<% end %>
@@ -105,8 +110,8 @@
 	          	<br>
 	          	<div class="form-control">
 	          		<%= f.label :highest_degree %>
-	          		<% if !current_user.degree.nil? %>
-	          			<%= ": "+current_user.degree %>
+	          		<% if !@user.degree.nil? %>
+	          			<%= ": "+@user.degree %>
 	          		<% else %>
 	          			<%= " : N.A." %>
 	          		<% end %>
@@ -114,8 +119,8 @@
 	          	<br>
 	          	<div class="form-control">
 	          		<%= f.label :institute %>
-	          		<% if !current_user.institute.nil? %>
-	          			<%= ": "+current_user.institute %>
+	          		<% if !@user.institute.nil? %>
+	          			<%= ": "+@user.institute %>
 	          		<% else %>
 	          			<%= " : N.A." %>
 	          		<% end %>
@@ -123,15 +128,20 @@
 	          	<br>
 	          	<div class="form-control">
 	          		<%= f.label :contact_number %>
-	          		<% if !current_user.contact.nil? %>
-	          			<%= ": "+current_user.contact %>
+	          		<% if !@user.contact.nil? %>
+	          			<%= ": "+@user.contact %>
 	          		<% else %>
 	          			<%= " : N.A." %>
 	          		<% end %>
 	          	</div>
 	          	<br>
+	          	<% if @user != current_user %>
 	          	<%= button_to "Contact the Person", '#', :class => 'btn btn-primary pull-left' %>
 	          	<%= button_to "Download Resume/CV", '#', :class => 'btn btn-success pull-right' %>
+			    <% else %>
+			    <%= button_to "Verify Account", '#', :class => 'btn btn-success pull-left' %>
+	          	<%= button_to "Upload Resume/CV", '#', :class => 'btn btn-success pull-right' %>
+			    <% end %>
 	          	<br>
           	</div>
           </div>

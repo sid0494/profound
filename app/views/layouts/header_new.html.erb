@@ -47,7 +47,8 @@
       
       <header class="main-header">
         <!-- Logo -->
-        <a href="index2.html" class="logo"><b>PRO</b>found</a>
+        <%= link_to "<b>PRO</b>found".html_safe, root_path, :class => 'logo' %>
+        <!-- <a href="index2.html" class="logo"><b>PRO</b>found</a> -->
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
           <!-- Sidebar toggle button-->
@@ -261,20 +262,17 @@
                   </li>
                   <!-- Menu Body -->
                   <li class="user-body">
-                    <div class="col-xs-4 text-center">
-                      <a href="#">Followers</a>
+                    <div class="col-xs-6 text-center">
+                      <a href="#">Followers (44)</a>
                     </div>
-                    <div class="col-xs-4 text-center">
-                      <a href="#">Sales</a>
-                    </div>
-                    <div class="col-xs-4 text-center">
-                      <a href="#">Friends</a>
+                    <div class="col-xs-6 text-center">
+                      <a href="#">Following (65)</a>
                     </div>
                   </li>
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
-                    <%= button_to "Profile", edit_user_registration_path, :method => :get, :class => 'btn btn-default btn-flat'%>
+                    <%= link_to "Profile", dashboard_show_profile_path(:id => current_user.id), :method => :get, :class => 'btn btn-default btn-flat'%>
                     </div>
                     <div class="pull-right">
                       <%= button_to "Sign out", destroy_user_session_path, :method => :delete, :class => 'btn btn-default btn-flat'%>

@@ -55,7 +55,7 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
-    @project.update_attributes(params.require(:project).permit(:id, :project_name, :project_description))
+    @project.update_attributes(params.require(:project).permit(:id, :project_name, :project_description, :project_status))
 
     #Try to save the newly update project
     if @project.save
@@ -80,6 +80,14 @@ class ProjectsController < ApplicationController
 
   def my_projects
     #Create array of all the projects created by the current user
-    @my_projects = Project.where(user_id: current_user.id).find_each
+    @projects = current_user.projects
+  end
+
+  def commend
+    @user = User.find(params[:id])
+    @user.project_rp += 1
+    @user.save
+
+    redirect_to(:action => 'index')
   end
 end

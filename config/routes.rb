@@ -14,9 +14,11 @@ Rails.application.routes.draw do
 
   get 'learning_topics/delete'
 
-  post 'learning_topcis/destroy'
+  post 'learning_topics/destroy'
 
   get 'learning_topics/my_topics'
+
+  get 'learning_topics/commend'
 
   get 'discussions/index'
 
@@ -55,6 +57,8 @@ Rails.application.routes.draw do
   patch 'projects/update'
 
   post 'projects/destroy'
+
+  get 'projects/commend'
 
 
   get 'dashboard/home'
