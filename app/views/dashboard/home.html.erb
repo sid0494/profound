@@ -7,6 +7,9 @@
   </h1>
 </section>
 
+<% if current_user.username == 'admin' %>
+<!-- admin dashboard -->
+
 <!-- Main content -->
 <section class="content">
   <!-- Small boxes (Stat box) -->
@@ -145,6 +148,100 @@
     </div>
 
 </section><!-- /.content -->
+
+
+<% else %>
+
+<!-- general user dashboard -->
+
+<!-- Main content -->
+<section class="content">
+  <!-- Small boxes (Stat box) -->
+  <!-- Main row -->
+    <div class="row">
+        <div class="col-xs-12">
+          <div class="box box-warning">
+            <div class="box-header">
+              <h3 class="box-title"><%= link_to "User Verification", {:controller => 'projects', :action => 'my_projects'} %></h3>
+            </div><!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+
+                <!-- if users for verification are none -->
+                <% if not @my_projects.empty? %>
+                    <tr>
+                      <th>Username</th>
+                      <th>Applied On</th>
+                      <th>Uploaded File</th>
+                      <th>Status</th>           <!-- Verified, verification denied or Pending -->
+                    </tr>
+
+                    <!-- show all the users for verification -->
+                    <% @my_discussions.each do |discussion| %>
+                        <tr>
+                          <td><%= link_to discussion.topic_name, {:controller => 'discussions', :action => 'show', :id => discussion.id} %></td>
+                          <td><%= time_ago_in_words(discussion.created_at) %> ago</td>
+                          <td><%= discussion.description %></td>
+                          <td>Verified User.</td>
+                        </tr>
+                    <% end %>
+                <% else %>
+                      <tr>
+                      <p><center><b>No reported User !!</b></center></p>
+                      </tr>
+                <% end %>
+              </table>
+            </div><!-- /.box-body -->
+          </div><!-- /.box -->
+        </div>
+    </div>
+
+  <!-- Small boxes (Stat box) -->
+  <!-- Main row -->
+    <div class="row">
+        <div class="col-xs-12">
+          <div class="box box-warning">
+            <div class="box-header">
+              <h3 class="box-title"><%= link_to "Reported Users", {:controller => 'projects', :action => 'my_projects'} %></h3>
+            </div><!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                
+                <!-- if reported users are none -->
+                <% if not @my_projects.empty? %>
+                    <tr>
+                      <th>Username</th>
+                      <th>Reported By</th>
+                      <th>Reported On</th>
+                      <th>Status</th>       <!-- Reported, Warned or Blocked -->
+                      <th>Remarks</th>
+                    </tr>
+
+                    <!-- show all the reported users -->
+                    <% @my_discussions.each do |discussion| %>
+                        <tr>
+                          <td><%= link_to discussion.topic_name, {:controller => 'discussions', :action => 'show', :id => discussion.id} %></td>
+                          <td><%= time_ago_in_words(discussion.created_at) %> ago</td>
+                          <td><%= discussion.description %></td>
+                          <td><div class="label label-success">Blocked</div></td>
+                          <td>User found guilty.</td>
+                        </tr>
+                    <% end %>
+                <% else %>
+                      <tr>
+                      <p><center><b>No reported User !!</b></center></p>
+                      </tr>
+                <% end %>
+              </table>
+            </div><!-- /.box-body -->
+          </div><!-- /.box -->
+        </div>
+    </div>
+</section><!-- /.content -->
+
+
+<% end %>
+
 <!-- Page Heading 
 <div class="row">
     <div class="col-lg-12">
