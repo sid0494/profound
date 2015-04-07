@@ -23,7 +23,7 @@
           <div class="box-body">
             <div class="form-group">
               <%= f.label :email %><br />
-              <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Email' %>
+              <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Email', disabled: true %>
             </div>
 
             <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -32,7 +32,7 @@
 
             <div class="form-group">
               <%= f.label :username %><br />
-              <%= f.text_field :username, autofocus: true, class: 'form-control', placeholder: 'Username' %>
+              <%= f.text_field :username, autofocus: true, class: 'form-control', placeholder: 'Username', disabled: true %>
             </div>
 
             <div class="form-group">
@@ -83,6 +83,16 @@
             <div class="form-group">
               <%= f.label :contact %><br />
               <%= f.text_field :contact, autofocus: true, class: 'form-control', placeholder: 'Contact number' %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :areas_Of_Interest %><br />
+              <%= select_tag "tags_interest_areas", options_for_select(Tag.all.collect{ |t| t.tag_name }), multiple: true, class: "form-control", :width => "100px" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :areas_Of_Expertise %><br />
+              <%= select_tag "tags_expertise_areas", options_for_select(Tag.all.collect{ |t| t.tag_name }), multiple: true, class: "form-control", :width => "100px" %>
             </div>
 
             <div class="form-group">

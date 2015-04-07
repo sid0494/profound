@@ -9,13 +9,20 @@ class ProjectsController < ApplicationController
 
     #Create array of all the projects that have the tags of the user's expertise area
     current_user.expertise_areas.each do |area|
-      area.projects[0..9].collect {|project| temp_projects << project}
+      area.projects.collect {|project| temp_projects << project}
+      # print "~~~~~~~~~~"
     end
 
-    #Select the latest 10 projects to display
-    @projects = temp_projects.sort! {|project_1, project_2| project_1.created_at <=> project_2.created_at}.uniq[0..9]
+    current_user.interest_areas.each do |area|
+      area.projects.collect {|project| temp_projects << project}
+    end
 
-    @projects = Project.all.reverse
+    print temp_projects
+
+    #Select the latest 10 projects to display
+    @projects = temp_projects.sort! {|project_1, project_2| project_1.created_at <=> project_2.created_at}.uniq.reverse
+
+    # @projects = Project.all.reverse
 
   end
 
@@ -95,7 +102,7 @@ class ProjectsController < ApplicationController
 
   def my_projects
     #Create array of all the projects created by the current user
-    @projects = current_user.projects
+    @projects = current_user.projects.sort! {|project_1, project_2| project_1.created_at <=> project_2.created_at}.reverse
   end
 
   def commend

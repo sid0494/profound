@@ -20,9 +20,39 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    super
+
+    if resource.save
+      params.permit(:tags_interest_areas => [])
+      @interest_tags = params[:tags_interest_areas]
+
+      if not @interest_tags.nil?
+        @interest_tags.each do |tag|
+          temp_tag = Tag.find_by_tag_name(tag)
+          if not temp_tag.nil?
+            resource.interest_areas << temp_tag if not resource.interest_areas.include?(temp_tag)           
+          else
+            resource.interest_areas << Tag.create(tag_name: tag)
+          end
+        end
+      end
+
+      params.permit(:tags_expertise_areas => [])
+      @expertise_tags = params[:tags_expertise_areas]
+
+      if not @expertise_tags.nil?
+        @expertise_tags.each do |tag|
+          temp_tag = Tag.find_by_tag_name(tag)
+          if not temp_tag.nil?
+            resource.expertise_areas << Tag.find_by_tag_name(tag) if not resource.expertise_areas.include?(temp_tag)           
+          else
+            resource.expertise_areas << Tag.create(tag_name: tag)
+          end
+        end
+      end
+    end
+  end
 
   # DELETE /resource
   # def destroy

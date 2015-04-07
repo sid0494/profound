@@ -11,9 +11,13 @@ class DiscussionsController < ApplicationController
   		area.discussions.collect {|discussion| temp_discussions << discussion}
   	end
 
-  	@discussions = temp_discussions.sort!{|discussion1, discussion2| discussion1.created_at <=> discussion2.created_at}.uniq.reverse
+    current_user.interest_areas.each do |area|
+      area.discussions.collect {|discussion| temp_discussions << discussion}
+    end
 
-    @discussions = Discussion.all.reverse
+  	@discussions = temp_discussions.sort!{|discussion1, discussion2| discussion1.created_at <=> discussion2.created_at}.uniq.reverse.reverse
+
+    # @discussions = Discussion.all.reverse
 
   end
 
@@ -96,7 +100,7 @@ class DiscussionsController < ApplicationController
   end
 
   def my_discussions
-  	@discussions = current_user.discussions  	
+  	@discussions = current_user.discussions.reverse	
   end
 
   def reply

@@ -7,12 +7,12 @@ class LearningTopicsController < ApplicationController
     @topics = Array.new
     temp_topics = Array.new
 
-    current_user.expertise_areas.each do |area|
-      area.collect {|topic| temp_topics << topic }
+    current_user.interest_areas.each do |area|
+      area.learning_topics.collect {|topic| temp_topics << topic }
     end
 
-    @topics = temp_topics.sort!{|topic1, topic2| topic1.created_at <=> topic2.created_at}.uniq
-    @topics = LearningTopic.all
+    @topics = temp_topics.sort!{|topic1, topic2| topic1.created_at <=> topic2.created_at}.uniq.reverse
+    # @topics = LearningTopic.all
 
   end
 

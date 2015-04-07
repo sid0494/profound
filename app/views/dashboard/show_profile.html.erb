@@ -82,6 +82,15 @@
 	          			<%= " : N.A." %>
 	          		<% end %>
 	          	</div>
+	          	<br>
+	          	<div class="form-control">
+	          		<%= f.label :contact_number %>
+	          		<% if !@user.contact.nil? %>
+	          			<%= ": "+@user.contact %>
+	          		<% else %>
+	          			<%= " : N.A." %>
+	          		<% end %>
+	          	</div>
           	</div>
           	<div class="form-group">
           	</div>
@@ -127,15 +136,20 @@
 	          		<% end %>
 	          	</div>
 	          	<br>
-	          	<div class="form-control">
-	          		<%= f.label :contact_number %>
-	          		<% if !@user.contact.nil? %>
-	          			<%= ": "+@user.contact %>
-	          		<% else %>
-	          			<%= " : N.A." %>
-	          		<% end %>
-	          	</div>
-	          	<br>
+	          	<div>
+	          	<%= f.label :areas_Of_Interest %><br>
+	          	<% @user.interest_areas.each do |tag| %>
+			      <a class="btn btn-primary btn-xs disabled"><%= tag.tag_name %></a>
+			    <% end %>
+			    </div>
+			    <br>
+			    <div>
+			    <%= f.label :areas_Of_Expertise %><br>
+			    <% @user.expertise_areas.each do |tag| %>
+			      <a class="btn btn-primary btn-xs disabled"> <%= tag.tag_name %></a>
+			    <% end %>
+			    </div>
+			    <br>
 	          	<% if @user != current_user %>
 	          	<%= button_to "Contact the Person", '#', :class => 'btn btn-primary pull-left' %>
 	          	<%= button_to "Download Resume/CV", '#', :class => 'btn btn-success pull-right' %>
