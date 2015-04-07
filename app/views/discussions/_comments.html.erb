@@ -9,7 +9,9 @@
   <% end %>
   <p><b><%= discussion_reply.user.first_name + " " + discussion_reply.user.last_name %></b></p>
   <p><%= discussion_reply.reply %></p>
-  <p><%= link_to("Upvote (#{discussion_reply.upvotes})", "#", :class => "#{badge_up}") %>  <%= link_to("Downvote (#{discussion_reply.downvotes})", "#", :class => "#{badge_down}") %></p>
+  <p><%= link_to("Upvote (#{discussion_reply.upvotes})", "#", :class => "#{badge_up}") %>  <%= link_to("Downvote (#{discussion_reply.downvotes})", "#", :class => "#{badge_down}") %>
+  <small class="pull-right"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(discussion_reply.created_at) + " ago" %></small></p>
+  </p>
 </div>  
 </div>
 <hr>

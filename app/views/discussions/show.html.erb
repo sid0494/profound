@@ -8,7 +8,7 @@
     <div class="col-xs-12">
       <h2 class="page-header">
         <b><%= @discussion.topic_name %></b>
-        <small class="pull-right"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(@discussion.created_at) + " ago" %></small>
+        <small class="pull-right"><i class="fa fa-clock-o"></i> Discussion started <%= time_ago_in_words(@discussion.created_at) + " ago" %></small>
         <small><%= @discussion.owner.first_name + " " + @discussion.owner.last_name %></small>   
       </h2>
       

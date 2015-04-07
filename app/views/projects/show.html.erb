@@ -42,6 +42,10 @@
       				<% end %>
 	          	</div>
 	          	<br>
+	          	<div>
+	          		<small><span class="time"><i class="fa fa-clock-o"></i> Created <%= time_ago_in_words(@project.created_at) + " ago" %></span></small>
+	          	</div>
+	          	<br>
 	          	<% if not @project.user == current_user %>
 	          	<%= button_to "Apply for project", '#', :class => 'btn btn-primary pull-left' %>
 	          	<%= link_to "Commend User", {:action => 'commend', :id => @project.user_id}, :class => 'btn btn-success pull-right' %>

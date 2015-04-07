@@ -29,6 +29,10 @@
               <%= f.text_area :project_description, autofocus: true, class: 'form-control', placeholder: 'Enter the project Description here', rows: '4' %>
             </div>
             <div class="form-group">
+              <label for="exampleInputPassword1"><font size="3">Tags</font></label>
+              <%= select_tag "tags", options_for_select(Tag.all.collect{ |t| t.tag_name }), multiple: true, class: "form-control", :width => "100px" %>
+            </div>
+            <div class="form-group">
               <form action="">
                 <label><font size="3">Project Status</font></label><br>
                 <%= f.radio_button :project_status, "yet to start" %>

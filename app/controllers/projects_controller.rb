@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
     #Select the latest 10 projects to display
     @projects = temp_projects.sort! {|project_1, project_2| project_1.created_at <=> project_2.created_at}.uniq[0..9]
 
-    @projects = Project.all
+    @projects = Project.all.reverse
 
   end
 
@@ -29,17 +29,22 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(params.require(:project).permit(:project_name, :project_description, :project_status))
-    # params.permit(:tags => [])
-    # @tags = params[:tags]
+    params.permit(:tags => [])
+    @tags = params[:tags]
     #print @tags
     @project.user_id = current_user.id
 
     #Try to save the newly created project
     if @project.save
       #Add tags for the project
-      # @tags.each do |tag|
-      #   @project.project_tags << Tag.find_by_tag_name(tag)
-      # end
+      @tags.each do |tag|
+        temp_tag = Tag.find_by_tag_name(tag)
+        if not temp_tag.nil?
+          @project.project_tags << Tag.find_by_tag_name(tag)            
+        else
+          @project.project_tags << Tag.create(tag_name: tag)
+        end
+      end
       #If successful then display My Projects Page
       redirect_to(:action => 'my_projects')
     else
@@ -56,9 +61,19 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
     @project.update_attributes(params.require(:project).permit(:id, :project_name, :project_description, :project_status))
+    params.permit(:tags => [])
+    @tags = params[:tags]
 
     #Try to save the newly update project
     if @project.save
+      @tags.each do |tag|
+        temp_tag = Tag.find_by_tag_name(tag)
+        if not temp_tag.nil?
+          @project.project_tags << Tag.find_by_tag_name(tag)            
+        else
+          @project.project_tags << Tag.create(tag_name: tag)
+        end
+      end
       #If successful then display My Projects Page
       redirect_to(:action => 'my_projects')
     else

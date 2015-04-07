@@ -27,14 +27,19 @@ class LearningTopicsController < ApplicationController
   def create
     @topic = LearningTopic.new(params.require(:learning_topic).permit(:topic_name, :description))
     @topic.owner_id = current_user.id
-    #params.permit(:tags => [])
-    #@tags = params[:tags]
+    params.permit(:tags => [])
+    @tags = params[:tags]
 
     if @topic.save
 
-     # @tags.each do |tag|
-     #   @topic.learning_tags << Tag.find_by_name(tag)
-     # end
+     @tags.each do |tag|
+       temp_tag = Tag.find_by_tag_name(tag)
+        if not temp_tag.nil?
+          @topic.learning_tags << Tag.find_by_tag_name(tag)            
+        else
+          @topic.learning_tags << Tag.create(tag_name: tag)
+        end
+     end
 
      # if @topic.save
         redirect_to(:action => 'my_topics')
@@ -54,13 +59,19 @@ class LearningTopicsController < ApplicationController
   def update
     @topic = LearningTopic.find(params[:id])
     @topic.update_attributes(params.require(:learning_topic).permit(:topic_name, :description))
-    #params.permit(:tags => [])
+    params.permit(:tags => [])
+    @tags = params[:tags]
 
     if @topic.save
 
-      # @tags.each do |tag|
-      #   @topic.learning_tags << Tag.find_by_name(tag)
-      # end
+      @tags.each do |tag|
+        temp_tag = Tag.find_by_tag_name(tag)
+        if not temp_tag.nil?
+          @topic.learning_tags << Tag.find_by_tag_name(tag)            
+        else
+          @topic.learning_tags << Tag.create(tag_name: tag)
+        end
+      end
 
       # if @topic.save
         redirect_to(:action => 'my_topics')

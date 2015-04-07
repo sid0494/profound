@@ -7,18 +7,20 @@
   <%      badge = "box box-danger box-solid" %>
   <% end %>
   <div class="<%= badge %>">
-    <div class="box-header with-border">
+    <div class="box-header with-border" >
+      <div style="overflow: hidden">
       <h3 class="box-title"><%= link_to project.project_name, {:action => 'show', :id => project.id} %></h3>
-      <div class="box-tools pull-right">
-        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
       </div>
     </div>
-    <div class="box-body">
+    <div class="box-body" style="overflow: hidden">
       <h4><%= link_to project.user.username, {:controller => 'dashboard', :action => 'show_profile', :id => project.user.id} %></h4>
-      <p><%= project.project_description %></p>
+      <p style="text-overflow: ellipsis"><%= project.project_description %></p>
       <p>
-      <% project.project_tags.each do |tag| %>
+      <% project.project_tags[0..4].each do |tag| %>
       <a class="btn btn-primary btn-xs disabled"><%= tag.tag_name %></a>
+      <% end %>
+      <% if project.project_tags.length  > 5 %>
+      <a class="btn btn-primary btn-xs disabled">....</a>
       <% end %>
       </p>
     </div>

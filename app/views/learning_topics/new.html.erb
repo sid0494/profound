@@ -30,8 +30,8 @@
             </div>
 
             <div class="form-group">
-            	<label for="exampleInputPassword1"><font size="3">Tags</font></label>
-            	<input type="text" name"id" class="form-control" placeholder="Enter the Tags here" />
+              <label for="exampleInputPassword1"><font size="3">Tags</font></label>
+              <%= select_tag "tags", options_for_select(Tag.all.collect{ |t| t.tag_name }), multiple: true, class: "form-control", :width => "100px" %>
             </div>
 	        <br>
 	        <p class="help-block">All the users could see this thread and the users having these skills could see it in their newsfeed too.</p>

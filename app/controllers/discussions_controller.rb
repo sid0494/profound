@@ -13,7 +13,7 @@ class DiscussionsController < ApplicationController
 
   	@discussions = temp_discussions.sort!{|discussion1, discussion2| discussion1.created_at <=> discussion2.created_at}.uniq.reverse
 
-    @discussions = Discussion.all
+    @discussions = Discussion.all.reverse
 
   end
 
@@ -24,14 +24,19 @@ class DiscussionsController < ApplicationController
   def create
   	@discussion = Discussion.new(params.require(:discussion).permit(:topic_name, :description))
   	@discussion.owner_id = current_user.id
-  	# params.permit(:tags => [])
-  	# @tags = params[:tags]
+  	params.permit(:tags => [])
+  	@tags = params[:tags]
 
   	if @discussion.save
 
-  		# @tags.each do |tag|
-  		# 	@discussion.discussion_tags << Tag.find_by_name(tag)
-  		# end
+  		@tags.each do |tag|
+  			temp_tag = Tag.find_by_tag_name(tag)
+        if not temp_tag.nil?
+          @discussion.discussion_tags << Tag.find_by_tag_name(tag)            
+        else
+          @discussion.discussion_tags << Tag.create(tag_name: tag)
+        end
+  		end
 
   		#if @discussion.save
   			redirect_to(:action => 'my_discussions')
@@ -56,13 +61,19 @@ class DiscussionsController < ApplicationController
   def update
   	@discussion = Discussion.find(params[:id])
   	@discussion.update_attributes(params.require(:discussion).permit(:topic_name, :description))
-  	# params.permit(:tags => [])
+  	params.permit(:tags => [])
+    @tags = params[:tags]
 
   	if @discussion.save
 
-  		# @tags.each do |tag|
-  		# 	@discussion.discussion_tags << Tag.find_by_name(tag)
-  		# end
+  		@tags.each do |tag|
+  			temp_tag = Tag.find_by_tag_name(tag)
+        if not temp_tag.nil?
+          @discussion.discussion_tags << Tag.find_by_tag_name(tag)            
+        else
+          @discussion.discussion_tags << Tag.create(tag_name: tag)
+        end
+  		end
 
   		#if @discussion.save
   			redirect_to(:action => 'my_discussions')
