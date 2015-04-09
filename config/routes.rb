@@ -71,6 +71,14 @@ Rails.application.routes.draw do
 
   post 'dashboard/search'
 
+  get 'dashboard/follow'
+
+  get 'dashboard/unfollow'
+
+  get 'dashboard/followers'
+
+  get 'dashboard/followings'
+
 
   devise_for :users, controllers: { 
     sessions: "users/sessions",

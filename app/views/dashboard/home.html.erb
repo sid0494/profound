@@ -130,8 +130,8 @@
       <!-- small box -->
       <div class="small-box bg-green">
         <div class="inner">
-          <h3>44</h3>
-          <p>Followers</p>
+          <h3><%= current_user.followers.count %></h3>
+          <p><%= link_to "Followers", {:controller => 'dashboard', :action => 'followers'}, {:style=>'color:#FFFFFF;'} %></p>
         </div>
         <div class="icon">
           <i class="ion-ios-people"></i>
@@ -142,8 +142,8 @@
       <!-- small box -->
       <div class="small-box bg-red">
         <div class="inner">
-          <h3>65</h3>
-          <p>Following</p>
+          <h3><%= current_user.followings.count %></h3>
+          <p><%= link_to "Followings", {:controller => 'dashboard', :action => 'followings'}, {:style=>'color:#FFFFFF;'} %></p>
         </div>
         <div class="icon">
           <i class="ion-ios-people"></i>

@@ -2,9 +2,6 @@
   <div class="box box-primary box-solid">
     <div class="box-header with-border">
       <h3 class="box-title"><%= link_to learning_topic.topic_name, {:action => 'show', :id => learning_topic.id} %></h3>
-      <div class="box-tools pull-right">
-        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-      </div>
     </div>
     <div class="box-body">
       <h4><%= link_to learning_topic.owner.username, {:controller => 'dashboard', :action => 'show_profile', :id => learning_topic.owner_id} %></h4>
