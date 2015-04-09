@@ -4,93 +4,86 @@
   <h1>
     <font face="verdana">
       <b>
-      	<i class='fa fa-fw fa-user'></i><%= @user.first_name+" "+@user.last_name %>
+      	<i class='fa fa-fw fa-user fa-3x'></i><%= @user.first_name+" "+@user.last_name %>
       	<small>
       		<%= " ("+@user.username+") " %>
       	</small>
       	<span class="label label-warning"><i class="fa fa-star"></i> <%= @rp %></span>
+
+      	<!-- show followers here. -->
+      	<span class="label label-success"><i class='fa fa-fw fa-users'></i> 30</span>
       </b>
+      <% if @user == current_user %>
+	    	<%= link_to "Edit Profile", edit_user_registration_path, :class => "btn btn-primary pull-right" %>
+	    <% else %>
+	    	<%= link_to "Report User", "#", :class => "btn btn-danger pull-right" %>
+	    <% end %>
+      <br>
+      <h4>
+      	<div class="col-md-1"></div>
+	      &nbsp;&nbsp;
+	      Qualification
+		    <% if !@user.degree.nil? %>
+	  			<%= ": "+@user.degree %>
+	  		<% else %>
+	  			<%= " : N.A." %>
+	  		<% end %>
+	  	</h4>
     </font>
-    <% if @user == current_user %>
-    <%= link_to "Edit Profile", edit_user_registration_path, :class => "btn btn-primary pull-right" %>
-    <% else %>
-    <%= link_to "Report User", "#", :class => "btn btn-danger pull-right" %>
-    <% end %>
   </h1>
 </section>
 
 <section class="content">
   <div class="row">
     <!-- left column -->
-    <div class="col-md-6">
+    <div class="col-md-8">
       <!-- general form elements -->
       <div class="box box-primary">
         <div class="box-header">
-          <h3 class="box-title">Personal Details</h3>
+          <h3><b>Personal Details</h3></b>
         </div><!-- /.box-header -->
         <!-- form start -->
         <form role="form">
           <div class="box-body">
-          	<div class="form-group">
-          		<div class="form-control">
-	          		<%= f.label :name %>
-	          		<%= ": "+@user.first_name+" "+@user.last_name %>
-	          	</div>
+          	<div class="form-group"><h4>
+          		<%= f.label :email %>
+          		<%= ": "+@user.email %>
 	          	<br>
-	          	<div class="form-control">
-	          		<%= f.label :username %>
-	          		<%= ": "+@user.username %>
-	          	</div>
+          		<%= f.label :address %>
+          		<% if !@user.address.nil? %>
+          			<%= ": "+@user.address %>
+          		<% else %>
+          			<%= " : N.A." %>
+          		<% end %>
 	          	<br>
-	          	<div class="form-control">
-	          		<%= f.label :email %>
-	          		<%= ": "+@user.email %>
-	          	</div>
+          		<%= f.label :city %>
+          		<% if !@user.city.nil? %>
+          			<%= ": "+@user.city %>
+          		<% else %>
+          			<%= " : N.A." %>
+          		<% end %>
 	          	<br>
-	          	<div class="form-control">
-	          		<%= f.label :address %>
-	          		<% if !@user.address.nil? %>
-	          			<%= ": "+@user.address %>
-	          		<% else %>
-	          			<%= " : N.A." %>
-	          		<% end %>
-	          	</div>
+          		<%= f.label :state %>
+          		<% if !@user.state.nil? %>
+          			<%= ": "+@user.state %>
+          		<% else %>
+          			<%= " : N.A." %>
+          		<% end %>
 	          	<br>
-							<div class="form-control">
-	          		<%= f.label :city %>
-	          		<% if !@user.city.nil? %>
-	          			<%= ": "+@user.city %>
-	          		<% else %>
-	          			<%= " : N.A." %>
-	          		<% end %>
-	          	</div>
+          		<%= f.label :country %>
+          		<% if !@user.country.nil? %>
+          			<%= ": "+@user.country %>
+          		<% else %>
+          			<%= " : N.A." %>
+          		<% end %>
 	          	<br>
-	          	<div class="form-control">
-	          		<%= f.label :state %>
-	          		<% if !@user.state.nil? %>
-	          			<%= ": "+@user.state %>
-	          		<% else %>
-	          			<%= " : N.A." %>
-	          		<% end %>
-	          	</div>
-	          	<br>
-	          	<div class="form-control">
-	          		<%= f.label :country %>
-	          		<% if !@user.country.nil? %>
-	          			<%= ": "+@user.country %>
-	          		<% else %>
-	          			<%= " : N.A." %>
-	          		<% end %>
-	          	</div>
-	          	<br>
-	          	<div class="form-control">
-	          		<%= f.label :contact_number %>
-	          		<% if !@user.contact.nil? %>
-	          			<%= ": "+@user.contact %>
-	          		<% else %>
-	          			<%= " : N.A." %>
-	          		<% end %>
-	          	</div>
+          		<%= f.label :contact_number %>
+          		<% if !@user.contact.nil? %>
+          			<%= ": "+@user.contact %>
+          		<% else %>
+          			<%= " : N.A." %>
+          		<% end %>
+	          </h4>
           	</div>
           	<div class="form-group">
           	</div>
@@ -99,65 +92,51 @@
       </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-8">
       <!-- general form elements -->
       <div class="box box-primary">
         <div class="box-header">
-          <h3 class="box-title">Educational Details</h3>
+          <h3><b>Educational Details</b></h3>
         </div><!-- /.box-header -->
         <!-- form start -->
         <form role="form">
           <div class="box-body">
-          	<div class="form-group">
-          		<div class="form-control">
+          	<div class="form-group"><h4>
 	          		<%= f.label :profession %>
 	          		<% if !@user.profession.nil? %>
 	          			<%= ": "+@user.profession %>
 	          		<% else %>
 	          			<%= " : N.A." %>
 	          		<% end %>
-	          	</div>
 	          	<br>
-	          	<div class="form-control">
-	          		<%= f.label :highest_degree %>
-	          		<% if !@user.degree.nil? %>
-	          			<%= ": "+@user.degree %>
-	          		<% else %>
-	          			<%= " : N.A." %>
-	          		<% end %>
-	          	</div>
-	          	<br>
-	          	<div class="form-control">
 	          		<%= f.label :institute %>
 	          		<% if !@user.institute.nil? %>
 	          			<%= ": "+@user.institute %>
 	          		<% else %>
 	          			<%= " : N.A." %>
 	          		<% end %>
-	          	</div>
 	          	<br>
-	          	<div>
-	          	<%= f.label :areas_Of_Interest %><br>
-	          	<% @user.interest_areas.each do |tag| %>
-			      <a class="btn btn-primary btn-xs disabled"><%= tag.tag_name %></a>
-			    <% end %>
-			    </div>
-			    <br>
-			    <div>
-			    <%= f.label :areas_Of_Expertise %><br>
-			    <% @user.expertise_areas.each do |tag| %>
-			      <a class="btn btn-primary btn-xs disabled"> <%= tag.tag_name %></a>
-			    <% end %>
-			    </div>
-			    <br>
-	          	<% if @user != current_user %>
-	          	<%= button_to "Contact the Person", '#', :class => 'btn btn-primary pull-left' %>
-	          	<%= button_to "Download Resume/CV", '#', :class => 'btn btn-success pull-right' %>
-			    <% else %>
-			    <%= button_to "Verify Account", '#', :class => 'btn btn-success pull-left' %>
-	          	<%= button_to "Upload Resume/CV", '#', :class => 'btn btn-success pull-right' %>
-			    <% end %>
+		          	<%= f.label :areas_Of_Interest %>
+		          		<%= ": " %>
+			          	<% @user.interest_areas.each do |tag| %>
+					      	<a class="btn btn-primary btn-xs disabled"><%= tag.tag_name %></a>
+				    		<% end %>
+			    		<br>
+						    <%= f.label :areas_Of_Expertise %>
+						    <%= ": " %>
+						    <% @user.expertise_areas.each do |tag| %>
+						      <a class="btn btn-primary btn-xs disabled"> <%= tag.tag_name %></a>
+						    <% end %>
+			    		<br><br>
+		          	<% if @user != current_user %>
+			          	<%= button_to "Contact the Person", '#', :class => 'btn btn-primary pull-left' %>
+			          	<%= button_to "Download Resume/CV", '#', :class => 'btn btn-success pull-right' %>
+			    			<% else %>
+				    			<%= button_to "Verify Account", '#', :class => 'btn btn-success pull-left' %>
+		          		<%= button_to "Upload Resume/CV", '#', :class => 'btn btn-success pull-right' %>
+			    			<% end %>
 	          	<br>
+	          </h4>
           	</div>
           </div>
       	</form>
