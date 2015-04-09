@@ -20,6 +20,30 @@ class DashboardController < ApplicationController
   	render ('show_profile')
   end
 
+  def follow
+  	user = User.find(params[:id])
+  	current_user.followings << user
+  	redirect_to('/')
+  end
+
+  def unfollow
+  	user = User.find(params[:id])
+  	current_user.followings.delete(user)
+  	redirect_to('/')
+  end
+
+  def followers
+  	@users = current_user.followers
+  	@page_name = "Followers"
+  	render('follow')
+  end
+
+  def followings
+  	@users = current_user.followings
+  	@page_name = "Followings"
+  	render('follow')
+  end
+
   def about_us
   end
 

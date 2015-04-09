@@ -2,9 +2,9 @@
 
 <section class="content-header">
   <h1>
-    <font face="verdana">
+    <font face="verdana" size="6px">
       <b>
-      	<i class='fa fa-fw fa-user fa-3x'></i><%= @user.first_name+" "+@user.last_name %>
+      	<i class='fa fa-fw fa-user'></i><%= @user.first_name+" "+@user.last_name %>
       	<small>
       		<%= " ("+@user.username+") " %>
       	</small>
@@ -15,20 +15,12 @@
       </b>
       <% if @user == current_user %>
 	    	<%= link_to "Edit Profile", edit_user_registration_path, :class => "btn btn-primary pull-right" %>
+	    <% elsif current_user.followings.include?(@user)%>
+	    	<%= link_to "<i class='fa fa-minus'></i> Unfollow".html_safe, {:controller => 'dashboard', :action => 'unfollow', :id => @user.id}, :class => "btn btn-info pull-right" %>
 	    <% else %>
-	    	<%= link_to "Report User", "#", :class => "btn btn-danger pull-right" %>
+	    	<%= link_to "<i class='fa fa-plus'></i> Follow".html_safe, {:controller => 'dashboard', :action => 'follow', :id => @user.id}, :class => "btn btn-info pull-right" %>
 	    <% end %>
       <br>
-      <h4>
-      	<div class="col-md-1"></div>
-	      &nbsp;&nbsp;
-	      Qualification
-		    <% if !@user.degree.nil? %>
-	  			<%= ": "+@user.degree %>
-	  		<% else %>
-	  			<%= " : N.A." %>
-	  		<% end %>
-	  	</h4>
     </font>
   </h1>
 </section>
@@ -48,35 +40,35 @@
           	<div class="form-group"><h4>
           		<%= f.label :email %>
           		<%= ": "+@user.email %>
-	          	<br>
+	          	<br><br>
           		<%= f.label :address %>
           		<% if !@user.address.nil? %>
           			<%= ": "+@user.address %>
           		<% else %>
           			<%= " : N.A." %>
           		<% end %>
-	          	<br>
+	          	<br><br>
           		<%= f.label :city %>
           		<% if !@user.city.nil? %>
           			<%= ": "+@user.city %>
           		<% else %>
           			<%= " : N.A." %>
           		<% end %>
-	          	<br>
+	          	<br><br>
           		<%= f.label :state %>
           		<% if !@user.state.nil? %>
           			<%= ": "+@user.state %>
           		<% else %>
           			<%= " : N.A." %>
           		<% end %>
-	          	<br>
+	          	<br><br>
           		<%= f.label :country %>
           		<% if !@user.country.nil? %>
           			<%= ": "+@user.country %>
           		<% else %>
           			<%= " : N.A." %>
           		<% end %>
-	          	<br>
+	          	<br><br>
           		<%= f.label :contact_number %>
           		<% if !@user.contact.nil? %>
           			<%= ": "+@user.contact %>
@@ -108,33 +100,44 @@
 	          		<% else %>
 	          			<%= " : N.A." %>
 	          		<% end %>
-	          	<br>
+	          	<br><br>
+		          	<%= f.label :degree %>
+		          		<% if !@user.degree.nil? %>
+		          			<%= ": "+@user.degree %>
+		          		<% else %>
+		          			<%= " : N.A." %>
+		          		<% end %>
+	          	<br><br>
 	          		<%= f.label :institute %>
 	          		<% if !@user.institute.nil? %>
 	          			<%= ": "+@user.institute %>
 	          		<% else %>
 	          			<%= " : N.A." %>
 	          		<% end %>
-	          	<br>
+	          	<br><br>
 		          	<%= f.label :areas_Of_Interest %>
-		          		<%= ": " %>
-			          	<% @user.interest_areas.each do |tag| %>
-					      	<a class="btn btn-primary btn-xs disabled"><%= tag.tag_name %></a>
-				    		<% end %>
-			    		<br>
-						    <%= f.label :areas_Of_Expertise %>
-						    <%= ": " %>
-						    <% @user.expertise_areas.each do |tag| %>
-						      <a class="btn btn-primary btn-xs disabled"> <%= tag.tag_name %></a>
-						    <% end %>
-			    		<br><br>
+	          		<%= ": " %>
+		          	<% @user.interest_areas.each do |tag| %>
+				      	<a class="btn btn-primary btn-xs disabled"><%= tag.tag_name %></a>
+			    		<% end %>
+		    	<br><br>
+				    <%= f.label :areas_Of_Expertise %>
+				    <%= ": " %>
+				    <% @user.expertise_areas.each do |tag| %>
+				    <a class="btn btn-primary btn-xs disabled"> <%= tag.tag_name %></a>
+				    <% end %>
+				<br><br>
+					<%= f.label :Resume %>
+				    <%= ": " %>
+				    <%= button_to "Download Resume/CV", '#', :class => 'btn btn-xs btn-success' %>
+		    	<br><br><br><br>
 		          	<% if @user != current_user %>
 			          	<%= button_to "Contact the Person", '#', :class => 'btn btn-primary pull-left' %>
-			          	<%= button_to "Download Resume/CV", '#', :class => 'btn btn-success pull-right' %>
-			    			<% else %>
-				    			<%= button_to "Verify Account", '#', :class => 'btn btn-success pull-left' %>
+			          	<%= button_to "Report", '#', :class => 'btn btn-danger pull-right' %>
+			    	<% else %>
+				    	<%= button_to "Verify Account", '#', :class => 'btn btn-success pull-left' %>
 		          		<%= button_to "Upload Resume/CV", '#', :class => 'btn btn-success pull-right' %>
-			    			<% end %>
+			    	<% end %>
 	          	<br>
 	          </h4>
           	</div>
