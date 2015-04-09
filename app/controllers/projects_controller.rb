@@ -102,7 +102,7 @@ class ProjectsController < ApplicationController
 
   def my_projects
     #Create array of all the projects created by the current user
-    @projects = current_user.projects.sort! {|project_1, project_2| project_1.created_at <=> project_2.created_at}.reverse
+    @projects = current_user.projects.sort {|project_1, project_2| project_1.created_at <=> project_2.created_at}.reverse
   end
 
   def commend
