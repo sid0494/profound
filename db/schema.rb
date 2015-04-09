@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150402144542) do
+ActiveRecord::Schema.define(version: 20150409102401) do
 
   create_table "areas_of_expertise", id: false, force: :cascade do |t|
     t.string  "tag_id"
@@ -51,6 +51,13 @@ ActiveRecord::Schema.define(version: 20150402144542) do
   end
 
   add_index "discussions_tags", ["discussion_id", "tag_id"], name: "index_discussions_tags_on_discussion_id_and_tag_id"
+
+  create_table "follows", force: :cascade do |t|
+    t.integer  "follower_id"
+    t.integer  "following_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "learning_topics", force: :cascade do |t|
     t.string   "topic_name"
