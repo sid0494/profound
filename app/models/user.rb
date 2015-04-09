@@ -24,5 +24,21 @@ class User < ActiveRecord::Base
   has_many :discussion_replies 
 
   has_many :learning_topics,
-      foreign_key: "owner_id" 
+      foreign_key: "owner_id"
+
+  has_many :follower_follows,
+      foreign_key: "following_id",
+      class_name: "Follow"
+
+  has_many :followers,
+      through:  :follower_follows,
+      source: :follower
+
+  has_many :following_follows,
+      foreign_key: "follower_id",
+      class_name: "Follow"
+
+  has_many :followings,
+      through: :following_follows,
+      source: :following
 end
