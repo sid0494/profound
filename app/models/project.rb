@@ -8,4 +8,8 @@ class Project < ActiveRecord::Base
 
 	has_and_belongs_to_many :project_tags, 
   		class_name: "Tag"
+
+  	has_and_belongs_to_many :s_users,
+  		class_name: "User",
+  		join_table: "shared_projects_users"
 end

@@ -11,7 +11,7 @@
       	<span class="label label-warning"><i class="fa fa-star"></i> <%= @rp %></span>
 
       	<!-- show followers here. -->
-      	<span class="label label-success"><i class='fa fa-fw fa-users'></i> 30</span>
+      	<span class="label label-success"><i class='fa fa-fw fa-users'></i><%= current_user.followers.count %></span>
       </b>
       <% if @user == current_user %>
 	    	<%= link_to "Edit Profile", edit_user_registration_path, :class => "btn btn-primary pull-right" %>

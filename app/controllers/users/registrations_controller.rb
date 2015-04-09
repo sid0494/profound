@@ -93,7 +93,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
   def resolve_layout
     case action_name
-    when 'new','edit','create'
+    when 'new','create'
       'login_header'
     else
       'header_new'
