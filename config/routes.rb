@@ -60,6 +60,8 @@ Rails.application.routes.draw do
 
   get 'projects/commend'
 
+  get 'projects/share'
+
 
   get 'dashboard/home'
 
