@@ -23,6 +23,7 @@ class DashboardController < ApplicationController
   def follow
   	user = User.find(params[:id])
   	current_user.followings << user
+  	Notification.create(type: "follow", type_id: current_user.id, user_id: user.id,read: false)
   	redirect_to('/')
   end
 

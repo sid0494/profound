@@ -111,6 +111,7 @@ class DiscussionsController < ApplicationController
       params.require(:discussion_reply).permit(:id)
       @discussion = Discussion.find(params[:discussion_reply][:id])
       @discussion.discussion_replies << @discussion_reply
+      Notification.create(type: "discussion_reply", type_id: @discussion.id, user_id: @discussion.owner_id)
       redirect_to(:action =>'show',:id => @discussion.id)
     else
       print "Error posting reply"
