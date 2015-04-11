@@ -81,6 +81,8 @@ Rails.application.routes.draw do
 
   get 'dashboard/followings'
 
+  get 'dashboard/show_notifications'
+
 
   devise_for :users, controllers: { 
     sessions: "users/sessions",

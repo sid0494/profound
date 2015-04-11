@@ -45,6 +45,10 @@ class DashboardController < ApplicationController
   	render('follow')
   end
 
+  def show_notifications
+  	@notifications = current_user.notifications
+  end
+
   def about_us
   end
 
