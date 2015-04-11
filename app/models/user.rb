@@ -41,4 +41,6 @@ class User < ActiveRecord::Base
   has_many :followings,
       through: :following_follows,
       source: :following
+
+  has_many :notifications
 end
