@@ -71,6 +71,10 @@ Rails.application.routes.draw do
 
   get 'dashboard/show_profile'
 
+  get 'dashboard/help'
+
+  get 'dashboard/faqs'
+
   post 'dashboard/search'
 
   get 'dashboard/follow'
