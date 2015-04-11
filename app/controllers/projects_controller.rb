@@ -105,6 +105,12 @@ class ProjectsController < ApplicationController
     @projects = current_user.projects.sort {|project_1, project_2| project_1.created_at <=> project_2.created_at}.reverse
   end
 
+  def share
+    project = Project.find(params[:id])
+    current_user.shared_projects << project
+    redirect_to('/')
+  end
+
   def commend
     @user = User.find(params[:id])
     @user.project_rp += 1

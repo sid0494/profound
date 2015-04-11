@@ -41,4 +41,8 @@ class User < ActiveRecord::Base
   has_many :followings,
       through: :following_follows,
       source: :following
+
+  has_and_belongs_to_many :shared_projects,
+      class_name: "Project",
+      join_table: "shared_projects_users"
 end
