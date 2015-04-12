@@ -3,6 +3,7 @@ class CreateNotifications < ActiveRecord::Migration
     create_table :notifications do |t|
       t.string :type
       t.integer :type_id
+      t.integer :optional_id
       t.integer :user_id
       t.boolean :read, default: false
 

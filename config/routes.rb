@@ -85,7 +85,10 @@ Rails.application.routes.draw do
 
   get 'dashboard/followings'
 
+  get 'dashboard/show_notifications'
+
   post 'messages/create'
+
 
 
   devise_for :users, controllers: { 
