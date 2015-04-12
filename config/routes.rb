@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'conversations/index'
+
+  get 'conversations/create'
+
   get 'learning_topics/index'
 
   get 'learning_topics/show'
@@ -81,6 +85,8 @@ Rails.application.routes.draw do
 
   get 'dashboard/followings'
 
+  post 'messages/create'
+
 
   devise_for :users, controllers: { 
     sessions: "users/sessions",
@@ -96,6 +102,8 @@ Rails.application.routes.draw do
   # root 'welcome#index'
 
   root to: "dashboard#home"
+
+
 
 
   # Example of regular route:

@@ -8,6 +8,7 @@ class DashboardController < ApplicationController
   	@rp = (10 * current_user.learning_rp + 10 * current_user.discussion_rp + 10 * current_user.project_rp).to_i
   	@my_projects = current_user.projects
   	@my_discussions = current_user.discussions
+  	@message = Message.new
   end
 
   def show_profile
