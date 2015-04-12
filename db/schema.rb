@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150411051503) do
+ActiveRecord::Schema.define(version: 20150411121749) do
 
   create_table "areas_of_expertise", id: false, force: :cascade do |t|
     t.string  "tag_id"
@@ -26,6 +26,13 @@ ActiveRecord::Schema.define(version: 20150411051503) do
   end
 
   add_index "areas_of_interest", ["tag_id", "user_id"], name: "index_areas_of_interest_on_tag_id_and_user_id"
+
+  create_table "conversations", force: :cascade do |t|
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "discussion_replies", force: :cascade do |t|
     t.integer  "discussion_id"
@@ -73,6 +80,18 @@ ActiveRecord::Schema.define(version: 20150411051503) do
   end
 
   add_index "learning_topics_tags", ["learning_topic_id", "tag_id"], name: "index_learning_topics_tags_on_learning_topic_id_and_tag_id"
+
+  create_table "messages", force: :cascade do |t|
+    t.string   "body"
+    t.integer  "conversation_id"
+    t.integer  "user_id"
+    t.boolean  "read",            default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id"
+  add_index "messages", ["user_id"], name: "index_messages_on_user_id"
 
   create_table "notifications", force: :cascade do |t|
     t.string   "type"
