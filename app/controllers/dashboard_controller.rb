@@ -9,6 +9,7 @@ class DashboardController < ApplicationController
   	@my_projects = current_user.projects
   	@my_discussions = current_user.discussions
     @my_topics = current_user.learning_topics
+  	@message = Message.new
   end
 
   def show_profile
@@ -44,6 +45,10 @@ class DashboardController < ApplicationController
   	@users = current_user.followings
   	@page_name = "Followings"
   	render('follow')
+  end
+
+  def show_notifications
+  	@notifications = current_user.notifications
   end
 
   def about_us

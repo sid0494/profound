@@ -108,6 +108,9 @@ class ProjectsController < ApplicationController
   def share
     project = Project.find(params[:id])
     current_user.shared_projects << project
+    current_user.followers.each do |user|
+      Notification.create(type: "share", type_id: project.id, optional_id: current_user.id, user_id: user.id)
+    end
     redirect_to('/')
   end
 
