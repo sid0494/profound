@@ -8,6 +8,7 @@ class DashboardController < ApplicationController
   	@rp = (10 * current_user.learning_rp + 10 * current_user.discussion_rp + 10 * current_user.project_rp).to_i
   	@my_projects = current_user.projects
   	@my_discussions = current_user.discussions
+    @my_topics = current_user.learning_topics
   	@message = Message.new
   end
 
@@ -54,5 +55,11 @@ class DashboardController < ApplicationController
   end
 
   def contact_us
+  end
+
+  def help
+  end
+
+  def faqs
   end
 end

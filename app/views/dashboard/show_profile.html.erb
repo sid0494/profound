@@ -2,7 +2,7 @@
 
 <section class="content-header">
   <h1>
-    <font face="verdana" size="6px">
+    <font face="verdana" size="5px">
       <b>
       	<i class='fa fa-fw fa-user'></i><%= @user.first_name+" "+@user.last_name %>
       	<small>
@@ -12,7 +12,7 @@
 
       	<!-- show followers here. -->
       	<span class="label label-success"><i class='fa fa-fw fa-users'></i><%= current_user.followers.count %></span>
-      </b>
+      
       <% if @user == current_user %>
 	    	<%= link_to "Edit Profile", edit_user_registration_path, :class => "btn btn-primary pull-right" %>
 	    <% elsif current_user.followings.include?(@user)%>
@@ -21,20 +21,9 @@
 	    	<%= link_to "<i class='fa fa-plus'></i> Follow".html_safe, {:controller => 'dashboard', :action => 'follow', :id => @user.id}, :class => "btn btn-info pull-right" %>
 	    <% end %>
       <br>
+      </b>
     </font>
   </h1>
-
-  <% if @user != current_user %>
-    <h1>
-      <div class="pull-right">
-        <font face="verdana" size="6px">
-          <!-- Modal button -->
-          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"><i class="fa fa-fw fa-envelope"></i> Message this User</button>
-        </font>
-      </div>
-    </h1>
-  <% end %>
-</section>
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -43,13 +32,13 @@
       <div class="modal-header">
         <section class="content-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel"><b><i class="fa fa-fw fa-envelope"></i> Send a Message</b></h4>
+          <h4 class="modal-title" id="myModalLabel"><b><i class="fa fa-fw fa-envelope"></i> Send <em><%= @user.username %></em> a Message</b></h4>
         </section>
       </div>
       <div class="modal-body">
         <form role="form">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Message To (Enter the username here)" autofocus="true" value="<%= current_user.username %>" disabled="true" /><br>
+            <input type="text" class="form-control" placeholder="Message To (Enter the username here)" autofocus="true" value="<%= @user.username %>" disabled="true" /><br>
             <textarea rows="4" class="form-control" placeholder="Type the Message here" autofocus="true" /></textarea>
           </div>
         </form>
@@ -78,35 +67,35 @@
           		<%= ": "+@user.email %>
 	          	<br><br>
           		<%= f.label :address %>
-          		<% if !@user.address.nil? %>
+          		<% if !@user.address.empty? %>
           			<%= ": "+@user.address %>
           		<% else %>
           			<%= " : N.A." %>
           		<% end %>
 	          	<br><br>
           		<%= f.label :city %>
-          		<% if !@user.city.nil? %>
+          		<% if !@user.city.empty? %>
           			<%= ": "+@user.city %>
           		<% else %>
           			<%= " : N.A." %>
           		<% end %>
 	          	<br><br>
           		<%= f.label :state %>
-          		<% if !@user.state.nil? %>
+          		<% if !@user.state.empty? %>
           			<%= ": "+@user.state %>
           		<% else %>
           			<%= " : N.A." %>
           		<% end %>
 	          	<br><br>
           		<%= f.label :country %>
-          		<% if !@user.country.nil? %>
+          		<% if !@user.country.empty? %>
           			<%= ": "+@user.country %>
           		<% else %>
           			<%= " : N.A." %>
           		<% end %>
 	          	<br><br>
           		<%= f.label :contact_number %>
-          		<% if !@user.contact.nil? %>
+          		<% if !@user.contact.empty? %>
           			<%= ": "+@user.contact %>
           		<% else %>
           			<%= " : N.A." %>
@@ -131,21 +120,21 @@
           <div class="box-body">
           	<div class="form-group"><h4>
 	          		<%= f.label :profession %>
-	          		<% if !@user.profession.nil? %>
+	          		<% if !@user.profession.empty? %>
 	          			<%= ": "+@user.profession %>
 	          		<% else %>
 	          			<%= " : N.A." %>
 	          		<% end %>
 	          	<br><br>
 		          	<%= f.label :degree %>
-		          		<% if !@user.degree.nil? %>
+		          		<% if !@user.degree.empty? %>
 		          			<%= ": "+@user.degree %>
 		          		<% else %>
 		          			<%= " : N.A." %>
 		          		<% end %>
 	          	<br><br>
 	          		<%= f.label :institute %>
-	          		<% if !@user.institute.nil? %>
+	          		<% if !@user.institute.empty? %>
 	          			<%= ": "+@user.institute %>
 	          		<% else %>
 	          			<%= " : N.A." %>
@@ -168,7 +157,8 @@
 				    <%= button_to "Download Resume/CV", '#', :class => 'btn btn-xs btn-success' %>
 		    	<br><br><br><br>
 		          	<% if @user != current_user %>
-			          	<%= button_to "Contact the Person", '#', :class => 'btn btn-primary pull-left' %>
+                  <!-- Modal button -->
+                  <button type="button" class="btn btn-info btn-s pull-left" data-toggle="modal" data-target="#myModal"><i class="fa fa-fw fa-envelope"></i> Message <%= @user.username %></button>
 			          	<%= button_to "Report", '#', :class => 'btn btn-danger pull-right' %>
 			    	<% else %>
 				    	<%= button_to "Verify Account", '#', :class => 'btn btn-success pull-left' %>

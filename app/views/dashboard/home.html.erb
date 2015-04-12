@@ -2,7 +2,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    <b><%= current_user.first_name %></b>
+    <b><i class="fa fa-fw fa-home"></i> <%= current_user.first_name %></b>
     <small>Dashboard</small>
     <div class="pull-right">
       <!-- Modal button -->
@@ -183,6 +183,7 @@
       </div>
     </div><!-- ./col -->
   </div><!-- /.row -->
+ 
   <!-- Main row -->
     <div class="row">
         <div class="col-xs-12">
@@ -259,6 +260,44 @@
                 <% else %>
                 <tr>
                 <p><center><b>You have not created any discussion threads yet !!</b></center></p>
+                </tr>
+                <% end %>
+              </table>
+            </div><!-- /.box-body -->
+          </div><!-- /.box -->
+        </div>
+    </div>
+
+    <!-- Main row -->
+    <div class="row">
+        <div class="col-xs-12">
+          <div class="box box-warning">
+            <div class="box-header">
+              <h3 class="box-title"><%= link_to "My Teaching Topics", {:controller => 'learning_topics', :action => 'my_topics'} %></h3>
+              <div class="box-tools">
+                <div class="input-group">
+                  <%= button_to "Post a new Topic to Teach", learning_topics_new_path, :class => "btn btn-default", method: :get %>
+                </div>
+              </div>
+            </div><!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <% if not @my_topics.empty? %>
+                    <tr>
+                      <th>Teaching Topic</th>
+                      <th>Created At</th>
+                      <th>Description</th>
+                    </tr>
+                    <% @my_topics.each do |topic| %>
+                        <tr>
+                          <td><%= link_to topic.topic_name, {:controller => 'learning_teaching', :action => 'show', :id => topic.owner_id} %></td>
+                          <td><%= time_ago_in_words(topic.created_at) %> ago</td>
+                          <td><%= topic.description %></td>
+                        </tr>
+                    <% end %>
+                <% else %>
+                <tr>
+                <p><center><b>You have not created any learning topics yet !!</b></center></p>
                 </tr>
                 <% end %>
               </table>
