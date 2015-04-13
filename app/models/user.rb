@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :projects
+  has_many :projects, dependent: :destroy
 
   has_and_belongs_to_many :project_applications,
       class_name: "Project",
@@ -12,23 +12,28 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :interest_areas, 
   		class_name: "Tag", 
-  		join_table: "areas_of_interest" 
+  		join_table: "areas_of_interest",
+      dependent: :destroy 
 
   has_and_belongs_to_many :expertise_areas, 
   		class_name: "Tag", 
-  		join_table: "areas_of_expertise"
+  		join_table: "areas_of_expertise",
+      dependent: :destroy
 
   has_many :discussions,
-      foreign_key: "owner_id"
+      foreign_key: "owner_id",
+      dependent: :destroy
 
-  has_many :discussion_replies 
+  has_many :discussion_replies, dependent: :destroy 
 
   has_many :learning_topics,
-      foreign_key: "owner_id"
+      foreign_key: "owner_id",
+      dependent: :destroy
 
   has_many :follower_follows,
       foreign_key: "following_id",
-      class_name: "Follow"
+      class_name: "Follow",
+      dependent: :destroy
 
   has_many :followers,
       through:  :follower_follows,
@@ -36,7 +41,8 @@ class User < ActiveRecord::Base
 
   has_many :following_follows,
       foreign_key: "follower_id",
-      class_name: "Follow"
+      class_name: "Follow",
+      dependent: :destroy
 
   has_many :followings,
       through: :following_follows,
@@ -46,7 +52,8 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :shared_projects,
       class_name: "Project",
-      join_table: "shared_projects_users"
+      join_table: "shared_projects_users",
+      dependent: :destroy
 
   has_many :conversations, :foreign_key => :sender_id
 end

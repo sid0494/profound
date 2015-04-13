@@ -19,10 +19,10 @@
                 <% elsif notification.type == "discussion_reply" %>
                   <% discussion = Discussion.find(notification.type_id) %>
                   <% user = User.find(notification.optional_id) %>
-                  <i class='fa fa-users text-aqua'></i> <%= link_to user.username, {:controller => 'dashboard', :action => 'show_profile', :id => user.id} %> replied on your topic : <%= link_to discussion.topic_name, {:controller => 'discussions', :action => 'show', :id => discussion.id} %>.
+                  <i class='fa fa-briefcase text-aqua'></i> <%= link_to user.username, {:controller => 'dashboard', :action => 'show_profile', :id => user.id} %> replied on your topic : <%= link_to discussion.topic_name, {:controller => 'discussions', :action => 'show', :id => discussion.id} %>.
                 <% else %>
                   <% user = User.find(notification.optional_id) %>
-                  <i class='fa fa-users text-aqua'></i> <%= link_to user.username, {:controller => 'dashboard', :action => 'show_profile', :id => user.id} %> shared<%= link _to " project.".html_safe, {:controller => 'projects', :action => 'show', :id => notification.type_id} %>
+                  <i class='fa fa-graduation-cap text-aqua'></i> <%= link_to user.username, {:controller => 'dashboard', :action => 'show_profile', :id => user.id} %> shared a <%= link_to " project.".html_safe, {:controller => 'projects', :action => 'show', :id => notification.type_id} %>
                 <% end %>
               </td>
             </tr>
