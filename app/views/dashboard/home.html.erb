@@ -301,7 +301,7 @@
                     </tr>
                     <% @my_topics.each do |topic| %>
                         <tr>
-                          <td><%= link_to topic.topic_name, {:controller => 'learning_teaching', :action => 'show', :id => topic.owner_id} %></td>
+                          <td><%= link_to topic.topic_name, {:controller => 'learning_topics', :action => 'show', :id => topic.owner_id} %></td>
                           <td><%= time_ago_in_words(topic.created_at) %> ago</td>
                           <td><%= topic.description %></td>
                         </tr>
