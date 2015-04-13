@@ -26,6 +26,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Devise for login and email verification system
 gem 'devise'
 
+gem 'activeadmin', '~> 1.0.0.pre1'
+
+gem 'country_select', github: 'stefanpenner/country_select'
+
 # for some date time synchronization
 gem 'tzinfo-data'
 
