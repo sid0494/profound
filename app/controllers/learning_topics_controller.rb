@@ -32,14 +32,16 @@ class LearningTopicsController < ApplicationController
 
     if @topic.save
 
-     @tags.each do |tag|
-       temp_tag = Tag.find_by_tag_name(tag)
-        if not temp_tag.nil?
-          @topic.learning_tags << Tag.find_by_tag_name(tag)            
-        else
-          @topic.learning_tags << Tag.create(tag_name: tag)
+      if not @tags.nil?
+        @tags.each do |tag|
+         temp_tag = Tag.find_by_tag_name(tag)
+          if not temp_tag.nil?
+            @topic.learning_tags << Tag.find_by_tag_name(tag) if not @topic.learning_tags.include?(temp_tag)           
+          else
+            @topic.learning_tags << Tag.create(tag_name: tag)
+          end
         end
-     end
+      end
 
      # if @topic.save
         redirect_to(:action => 'my_topics')
@@ -64,15 +66,16 @@ class LearningTopicsController < ApplicationController
 
     if @topic.save
 
-      @tags.each do |tag|
-        temp_tag = Tag.find_by_tag_name(tag)
-        if not temp_tag.nil?
-          @topic.learning_tags << Tag.find_by_tag_name(tag)            
-        else
-          @topic.learning_tags << Tag.create(tag_name: tag)
+      if not @tags.nil?
+        @tags.each do |tag|
+          temp_tag = Tag.find_by_tag_name(tag)
+          if not temp_tag.nil?
+            @topic.learning_tags << Tag.find_by_tag_name(tag)            
+          else
+            @topic.learning_tags << Tag.create(tag_name: tag)
+          end
         end
-      end
-
+      end 
       # if @topic.save
         redirect_to(:action => 'my_topics')
       # else

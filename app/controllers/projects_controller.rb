@@ -44,12 +44,14 @@ class ProjectsController < ApplicationController
     #Try to save the newly created project
     if @project.save
       #Add tags for the project
-      @tags.each do |tag|
-        temp_tag = Tag.find_by_tag_name(tag)
-        if not temp_tag.nil?
-          @project.project_tags << Tag.find_by_tag_name(tag)            
-        else
-          @project.project_tags << Tag.create(tag_name: tag)
+      if not @tags.nil?
+        @tags.each do |tag|
+          temp_tag = Tag.find_by_tag_name(tag)
+          if not temp_tag.nil?
+            @project.project_tags << Tag.find_by_tag_name(tag)            
+          else
+            @project.project_tags << Tag.create(tag_name: tag)
+          end
         end
       end
       #If successful then display My Projects Page
@@ -73,12 +75,15 @@ class ProjectsController < ApplicationController
 
     #Try to save the newly update project
     if @project.save
-      @tags.each do |tag|
-        temp_tag = Tag.find_by_tag_name(tag)
-        if not temp_tag.nil?
-          @project.project_tags << Tag.find_by_tag_name(tag)            
-        else
-          @project.project_tags << Tag.create(tag_name: tag)
+
+      if not @tags.nil?
+        @tags.each do |tag|
+          temp_tag = Tag.find_by_tag_name(tag)
+          if not temp_tag.nil?
+            @project.project_tags << Tag.find_by_tag_name(tag) if not @project.project_tags.include?(temp_tag)            
+          else
+            @project.project_tags << Tag.create(tag_name: tag)
+          end
         end
       end
       #If successful then display My Projects Page

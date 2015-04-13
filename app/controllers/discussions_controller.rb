@@ -33,15 +33,16 @@ class DiscussionsController < ApplicationController
 
   	if @discussion.save
 
-  		@tags.each do |tag|
-  			temp_tag = Tag.find_by_tag_name(tag)
-        if not temp_tag.nil?
-          @discussion.discussion_tags << Tag.find_by_tag_name(tag)            
-        else
-          @discussion.discussion_tags << Tag.create(tag_name: tag)
-        end
-  		end
-
+      if not @tags.nil?
+    		@tags.each do |tag|
+    			temp_tag = Tag.find_by_tag_name(tag)
+          if not temp_tag.nil?
+            @discussion.discussion_tags << Tag.find_by_tag_name(tag)            
+          else
+            @discussion.discussion_tags << Tag.create(tag_name: tag)
+          end
+    		end
+      end
   		#if @discussion.save
   			redirect_to(:action => 'my_discussions')
   		#else
@@ -70,14 +71,16 @@ class DiscussionsController < ApplicationController
 
   	if @discussion.save
 
-  		@tags.each do |tag|
-  			temp_tag = Tag.find_by_tag_name(tag)
-        if not temp_tag.nil?
-          @discussion.discussion_tags << Tag.find_by_tag_name(tag)            
-        else
-          @discussion.discussion_tags << Tag.create(tag_name: tag)
-        end
-  		end
+      if not @tags.nil?
+  		  @tags.each do |tag|
+    			temp_tag = Tag.find_by_tag_name(tag)
+          if not temp_tag.nil?
+            @discussion.discussion_tags << Tag.find_by_tag_name(tag) if not @discussion.discussion_tags.include?(temp_tag)            
+          else
+            @discussion.discussion_tags << Tag.create(tag_name: tag)
+          end
+    		end
+      end
 
   		#if @discussion.save
   			redirect_to(:action => 'my_discussions')
