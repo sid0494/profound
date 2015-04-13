@@ -36,15 +36,17 @@
         </section>
       </div>
       <div class="modal-body">
-        <form role="form">
+        <%= form_for(@message, url: messages_create_path(@message), html: {role: :form}) do |f| %>
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Message To (Enter the username here)" autofocus="true" value="<%= @user.username %>" disabled="true" /><br>
-            <textarea rows="4" class="form-control" placeholder="Type the Message here" autofocus="true" /></textarea>
+            <% users = User.where.not(id: current_user.id) %>
+            <%= hidden_field_tag "recipient[]", @user.id %>
+            <%= f.label :message %>
+            <%= f.text_area :body, class: 'form-control' %>
           </div>
-        </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success">Send <i class="fa fa-fw fa-mail-forward"></i></button>
+        <%= f.submit "Send", class: 'btn btn-success' %>
+        <% end %>
       </div>
     </div>
   </div>
@@ -67,38 +69,48 @@
           		<%= ": "+@user.email %>
 	          	<br><br>
           		<%= f.label :address %>
-          		<% if !@user.address.empty? %>
-          			<%= ": "+@user.address %>
+          		<% if @user.address.nil? %>
+          		<%= " : N.A." %>
+          		<% elsif @user.address.empty? %>
+          		<%= " : N.A." %>
           		<% else %>
-          			<%= " : N.A." %>
+      			<%= ": "+@user.address %>
           		<% end %>
 	          	<br><br>
           		<%= f.label :city %>
-          		<% if !@user.city.empty? %>
-          			<%= ": "+@user.city %>
+          		<% if @user.city.nil? %>
+          		<%= " : N.A." %>
+          		<% elsif @user.city.empty? %>
+          		<%= " : N.A." %>
           		<% else %>
-          			<%= " : N.A." %>
+          		<%= ": "+@user.city %>
           		<% end %>
 	          	<br><br>
           		<%= f.label :state %>
-          		<% if !@user.state.empty? %>
-          			<%= ": "+@user.state %>
+          		<% if @user.state.nil? %>
+          		<%= " : N.A." %>
+          		<% elsif @user.state.empty? %>
+          		<%= " : N.A." %>
           		<% else %>
-          			<%= " : N.A." %>
+          		<%= ": "+@user.state %>
           		<% end %>
 	          	<br><br>
           		<%= f.label :country %>
-          		<% if !@user.country.empty? %>
-          			<%= ": "+@user.country %>
+          		<% if @user.country.nil? %>
+          		<%= " : N.A." %>
+          		<% elsif @user.country.empty? %>
+          		<%= " : N.A." %>
           		<% else %>
-          			<%= " : N.A." %>
+          		<%= ": "+@user.country %>
           		<% end %>
 	          	<br><br>
           		<%= f.label :contact_number %>
-          		<% if !@user.contact.empty? %>
-          			<%= ": "+@user.contact %>
+          		<% if @user.contact.nil? %>
+          		<%= " : N.A." %>
+          		<% elsif @user.contact.empty? %>
+          		<%= " : N.A." %>
           		<% else %>
-          			<%= " : N.A." %>
+          		<%= ": "+@user.contact %>
           		<% end %>
 	          </h4>
           	</div>
@@ -120,24 +132,30 @@
           <div class="box-body">
           	<div class="form-group"><h4>
 	          		<%= f.label :profession %>
-	          		<% if !@user.profession.empty? %>
-	          			<%= ": "+@user.profession %>
+	          		<% if @user.profession.nil? %>
+	          		<%= " : N.A." %>
+	          		<% elsif @user.profession.empty? %>
+	          		<%= " : N.A." %>
 	          		<% else %>
-	          			<%= " : N.A." %>
+	          		<%= ": "+@user.profession %>
 	          		<% end %>
 	          	<br><br>
 		          	<%= f.label :degree %>
-		          		<% if !@user.degree.empty? %>
-		          			<%= ": "+@user.degree %>
-		          		<% else %>
-		          			<%= " : N.A." %>
-		          		<% end %>
+	          		<% if @user.degree.nil? %>
+	          		<%= " : N.A." %>
+	          		<% elsif @user.degree.empty? %>
+	          		<%= " : N.A." %>
+	          		<% else %>
+	          		<%= ": "+@user.degree %>
+	          		<% end %>
 	          	<br><br>
 	          		<%= f.label :institute %>
-	          		<% if !@user.institute.empty? %>
-	          			<%= ": "+@user.institute %>
+	          		<% if @user.institute.nil? %>
+	          		<%= " : N.A." %>
+	          		<% elsif @user.institute.empty? %>
+	          		<%= " : N.A." %>
 	          		<% else %>
-	          			<%= " : N.A." %>
+	          		<%= ": "+@user.institute %>
 	          		<% end %>
 	          	<br><br>
 		          	<%= f.label :areas_Of_Interest %>
@@ -158,7 +176,7 @@
 		    	<br><br><br><br>
 		          	<% if @user != current_user %>
                   <!-- Modal button -->
-                  <button type="button" class="btn btn-info btn-s pull-left" data-toggle="modal" data-target="#myModal"><i class="fa fa-fw fa-envelope"></i> Message <%= @user.username %></button>
+                  <!-- <button type="button" class="btn btn-info btn-s pull-left" data-toggle="modal" data-target="#myModal"><i class="fa fa-fw fa-envelope"></i> Message <%= @user.username %></button> -->
 			          	<%= button_to "Report", '#', :class => 'btn btn-danger pull-right' %>
 			    	<% else %>
 				    	<%= button_to "Verify Account", '#', :class => 'btn btn-success pull-left' %>

@@ -4,6 +4,10 @@
   <h1>
     <b><i class="fa fa-fw fa-home"></i> <%= current_user.first_name %></b>
     <small>Dashboard</small>
+    <% form_tag dashboard_search_path, :method => 'get' do %>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "Search", :name => nil %>
+    <% end %>
     <div class="pull-right">
       <!-- Modal button -->
       <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"><i class="fa fa-fw fa-envelope"></i> Send a Message</button>
@@ -132,14 +136,21 @@
 <!-- general user dashboard -->
 <!-- Main content -->
 <section class="content">
+
+<br>
+    <%= form_tag dashboard_search_path, :method => 'get' do %>
+        <% users = User.where.not(id: current_user.id) %>
+        <%= select_tag "search", options_for_select(users.collect{ |u| [u.username, u.id] }), multiple: true, maximumSelectionSize: 1, class: "js-example-basic-multiple", :style => "width: 92%" %>
+        <%= submit_tag "Search", :name => nil, class: 'btn btn-warning btn-flat' %>
+    <% end %><br>
   <!-- Small boxes (Stat box) -->
   <div class="row">
     <div class="col-lg-3 col-xs-6">
       <!-- small box -->
       <div class="small-box bg-yellow">
         <div class="inner">
-          <h3>150</h3>
-          <p>Messages</p>
+          <h3><%= @message_count %></h3>
+          <p><%= link_to "Messages", messages_show_conversations_path, {:style=>'color:#FFFFFF;'} %></p>
         </div>
         <div class="icon">
           <i class="ion-email-unread"></i>

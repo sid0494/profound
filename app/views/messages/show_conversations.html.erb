@@ -1,0 +1,38 @@
+<section class="content-header">
+</section>
+
+<section class="content">
+  <div class="col-xs-12">
+    <div class="box box-info">
+      <div class="box-header">
+        <h3 class="box-title">Messages</h3>
+      </div>
+      <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+          <% if not @conversations.empty? %>
+          <% @conversations.each do |conversation| %>
+            <tr>
+              <td>
+                <% if conversation.sender != current_user %>
+                <% username = conversation.sender.username %>
+                <% else %>
+                <% username = conversation.recipient.username %>
+                <% end %>
+                <% count = 0 %>
+                <% conversation.messages.collect { |m| count += 1 if m.user_id != current_user.id and m.read == false } %>
+                <%= link_to username + " (#{count})", messages_show_messages_path(id: conversation.id) %>
+              </td>
+            </tr>
+          <% end %>
+          <% else %>
+          <tr>
+          <p><center>
+              <b>You have no conversations yet !!</b>
+          </center></p>
+          </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

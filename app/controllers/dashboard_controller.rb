@@ -9,17 +9,22 @@ class DashboardController < ApplicationController
   	@my_projects = current_user.projects
   	@my_discussions = current_user.discussions
     @my_topics = current_user.learning_topics
+    @message_count = 0
+    conversations = Conversation.where("sender_id = ? OR recipient_id = ?", current_user.id, current_user.id)
+    conversations.each do |conversation|
+    	conversation.messages.collect { |m| @message_count += 1 if m.user_id != current_user.id and m.read == false }
+    end
   	@message = Message.new
   end
 
   def show_profile
+  	@message = Message.new
     @user = User.find(params[:id])
     @rp = ((@user.learning_rp + @user.project_rp + @user.discussion_rp) * 10).to_i
   end
 
   def search
-  	@user = User.find_by_username(params[:username])
-  	render ('show_profile')
+  	redirect_to(:action => 'show_profile', :id => params[:search][0])
   end
 
   def follow

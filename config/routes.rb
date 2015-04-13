@@ -79,7 +79,7 @@ Rails.application.routes.draw do
 
   get 'dashboard/faqs'
 
-  post 'dashboard/search'
+  get 'dashboard/search'
 
   get 'dashboard/follow'
 
@@ -92,6 +92,10 @@ Rails.application.routes.draw do
   get 'dashboard/show_notifications'
 
   post 'messages/create'
+
+  get 'messages/show_conversations'
+
+  get 'messages/show_messages'
 
 
 
