@@ -173,7 +173,7 @@
 				<br><br>
 					<%= f.label :Resume %>
 				    <%= ": " %>
-				    <%= button_to "Download Resume/CV", '#', :class => 'btn btn-xs btn-success' %>
+				    <%= link_to "Download Resume/CV", @user.resume.url, :class => 'btn btn-xs btn-success' %>
 		    	<br><br><br><br>
 		          	<% if @user != current_user %>
 		                  <!-- Modal button -->
