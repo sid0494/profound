@@ -9,7 +9,7 @@
       <h2 class="page-header">
         <b><%= @discussion.topic_name %></b>
         <small class="pull-right"><i class="fa fa-clock-o"></i> Discussion started <%= time_ago_in_words(@discussion.created_at) + " ago" %></small>
-        <small><%= link_to @discussion.owner.first_name + " " + @discussion.owner.last_name, dashboard_show_profile_path(id: @discussion.owner.id) %></small>   
+        <small><i class="fa fa-fw fa-user"></i> <%= link_to @discussion.owner.first_name + " " + @discussion.owner.last_name, dashboard_show_profile_path(id: @discussion.owner.id) %></small>   
       </h2>
       
     </div><!-- /.col -->
@@ -43,7 +43,7 @@
     <div class="box-body">
       <div class="form-group">
         <%= f.hidden_field :id, :value => @discussion.id %>
-        <%= f.text_area :reply, autofocus: true, class: 'form-control', placeholder: 'Post a reply....', rows: '2' %>
+        <%= f.text_area :reply, autofocus: true, class: 'form-control', placeholder: 'Post a reply....', rows: '2', :required => true %>
         </div>
         <div class="form-group">
         <%= f.submit "Post Reply", class: 'btn btn-primary' %>

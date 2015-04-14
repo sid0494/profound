@@ -117,7 +117,7 @@
 
             <div class="form-group">
               <%= f.label :current_password %> <i>(we need your current password to confirm your changes, for security reasons)</i><br />
-              <%= f.password_field :current_password, autocomplete: "off", class: 'form-control', placeholder: 'Current Password' %>
+              <%= f.password_field :current_password, autocomplete: "off", class: 'form-control', placeholder: 'Current Password', :required => true %>
             </div>
 
             <div class="actions">

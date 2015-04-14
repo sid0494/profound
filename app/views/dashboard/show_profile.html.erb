@@ -1,5 +1,4 @@
 
-
 <section class="content-header">
   <h1>
     <font face="verdana" size="5px">
@@ -11,7 +10,7 @@
       	<span class="label label-warning"><i class="fa fa-star"></i> <%= @rp %></span>
 
       	<!-- show followers here. -->
-      	<span class="label label-success"><i class='fa fa-fw fa-users'></i><%= @user.followers.count %></span>
+      	<span class="label label-success"><i class='fa fa-fw fa-users'></i> <%= @user.followers.count %></span>
       
       <% if @user == current_user %>
 	    	<%= link_to "Edit Profile", edit_user_registration_path, :class => "btn btn-primary pull-right" %>

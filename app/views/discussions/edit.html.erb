@@ -22,11 +22,11 @@
           <div class="box-body">
             <div class="form-group">
               <label for="exampleInputEmail1"><font size="3">Discussion Topic/Question</font></label>
-              <%= f.text_field :topic_name, autofocus: true, class: 'form-control', placeholder: 'Enter your Question' %>
+              <%= f.text_field :topic_name, autofocus: true, class: 'form-control', placeholder: 'Enter your Question', :required => true %>
             </div>
             <div class="form-group">
               <label for="exampleInputPassword1"><font size="3">Description</font></label>
-              <%= f.text_area :description, autofocus: true, class: 'form-control', placeholder: 'Enter the Description here', rows: '4' %>
+              <%= f.text_area :description, autofocus: true, class: 'form-control', placeholder: 'Enter the Description here', rows: '4', :required => true %>
             </div>
             <div class="form-group">
               <label for="exampleInputPassword1"><font size="3">Tags</font></label>

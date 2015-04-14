@@ -4,7 +4,8 @@
       <h3 class="box-title"><%= link_to learning_topic.topic_name, {:action => 'show', :id => learning_topic.id} %></h3>
     </div>
     <div class="box-body">
-      <h4><%= link_to learning_topic.owner.username, {:controller => 'dashboard', :action => 'show_profile', :id => learning_topic.owner_id} %></h4>
+      <h4><i class="fa fa-fw fa-user"></i> <%= link_to learning_topic.owner.username, {:controller => 'dashboard', :action => 'show_profile', :id => learning_topic.owner_id} %></h4>
+      <p><i class="fa fa-clock-o"></i> <%= time_ago_in_words(learning_topic.created_at)+" ago" %></p>
       <p><%= learning_topic.description %></p>
       <p>
       <% learning_topic.learning_tags.each do |tag| %>
