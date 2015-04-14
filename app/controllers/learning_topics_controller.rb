@@ -18,6 +18,7 @@ class LearningTopicsController < ApplicationController
 
   def show
     @topic = LearningTopic.find(params[:id])
+    @message = Message.new
   end
 
   def new

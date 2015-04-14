@@ -7,6 +7,33 @@
   </h1>
 </section>
 
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <section class="content-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel"><b><i class="fa fa-fw fa-envelope"></i> Send <em><%= @project.user.username %></em> a Message</b></h4>
+        </section>
+      </div>
+      <div class="modal-body">
+        <%= form_for(@message, url: messages_create_path(@message), html: {role: :form}) do |f| %>
+          <div class="form-group">
+            <%= hidden_field_tag "recipient_id[]", @project.user.id %>
+            <%= f.label :messages %>
+            <% message = "I would like to work on your project : #{@project.project_name}" %>
+            <%= f.text_area :body, class: 'form-control', value: message %>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <%= f.submit "Send", class: 'btn btn-success' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
 <section class="content">
   <div class="row">
     <!-- left column -->
@@ -48,7 +75,10 @@
 	          	</div>
 	          	<br>
 	          	<% if not @project.user == current_user %>
-	          	<%= button_to "Apply for project", '#', :class => 'btn btn-primary pull-left' %>
+	          		<% if not @project.project_status == "completed" %>
+		          	<!-- Modal button -->
+	                <button type="button" class="btn btn-info btn-s pull-left" data-toggle="modal" data-target="#myModal"><i class="fa fa-fw fa-envelope"></i> Contact <%= @project.user.username %></button>
+	                <% end %>
 	          	<%= link_to "Commend User", {:action => 'commend', :id => @project.user_id}, :class => 'btn btn-success pull-right' %>
 	          	<br>
 	          	<% else %>

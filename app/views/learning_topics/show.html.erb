@@ -6,6 +6,33 @@
   </h1>
 </section>
 
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <section class="content-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel"><b><i class="fa fa-fw fa-envelope"></i> Send <em><%= @topic.owner.username %></em> a Message</b></h4>
+        </section>
+      </div>
+      <div class="modal-body">
+        <%= form_for(@message, url: messages_create_path(@message), html: {role: :form}) do |f| %>
+          <div class="form-group">
+            <%= hidden_field_tag "recipient_id[]", @topic.owner.id %>
+            <%= f.label :messages %>
+            <% message = "I would like to learn from you on the topic : #{@topic.topic_name}" %>
+            <%= f.text_area :body, class: 'form-control', value: message %>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <%= f.submit "Send", class: 'btn btn-success' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
 <section class="content">
   <div class="row">
     <!-- left column -->
@@ -36,11 +63,6 @@
       				<a class="btn btn-primary btn-xs disabled"><%= tag.tag_name %></a>
       				<% end %>
 	          	</div>
-	          	<div>
-	          		<% @topic.learning_tags.each do |tag| %>
-      				<a class="btn btn-primary btn-xs disabled"><%= tag.tag_name %></a>
-      				<% end %>
-	          	</div>
 	          	<br>
 	          	<div>
 	          		<small><span class="time"><i class="fa fa-clock-o"></i> Created <%= time_ago_in_words(@topic.created_at) + " ago" %></span></small>
@@ -48,7 +70,7 @@
 	          	<br>
 	          	<br>
 	          	<% if not @topic.owner_id == current_user.id %>
-	          	<%= button_to "Contact User", '#', :class => 'btn btn-primary pull-left' %>
+	          	<button type="button" class="btn btn-info btn-s pull-left" data-toggle="modal" data-target="#myModal"><i class="fa fa-fw fa-envelope"></i> Contact <%= @topic.owner.username %></button>
 	          	<%= link_to "Commend User", {:action => 'commend', :id => @topic.owner_id}, :class => 'btn btn-success pull-right' %>
 	          	<br>
 	          	<% else %>
