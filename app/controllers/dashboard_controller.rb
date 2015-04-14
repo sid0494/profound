@@ -56,6 +56,13 @@ class DashboardController < ApplicationController
   	@notifications = current_user.notifications
   end
 
+  def upload
+	uploaded_io = params[:person][:picture]
+	File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
+		file.write(uploaded_io.read)
+	end
+  end
+
   def about_us
   end
 
