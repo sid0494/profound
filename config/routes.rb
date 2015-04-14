@@ -66,6 +66,8 @@ Rails.application.routes.draw do
 
   get 'projects/share'
 
+  get 'projects/search'
+
 
   get 'dashboard/home'
 

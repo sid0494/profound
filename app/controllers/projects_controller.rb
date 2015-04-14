@@ -5,7 +5,13 @@ class ProjectsController < ApplicationController
   
   def index
     @projects = Array.new
+    @search_objects = Array.new
     temp_projects = Array.new
+
+    Project.all.collect { |project| @search_objects << {name: project.project_name, id: project.id, token: "p"} }
+    User.all.collect { |user| @search_objects << {name: user.username, id: user.id, token: "u"}  }
+    Tag.all.collect { |tag| @search_objects << {name: tag.tag_name, id: tag.id, token: "t"}  }
+
 
     #Create array of all the projects that have the tags of the user's expertise area
     current_user.expertise_areas.each do |area|
@@ -126,5 +132,15 @@ class ProjectsController < ApplicationController
     @user.save
 
     redirect_to(:action => 'index')
+  end
+
+  def search
+    @search_objects = Array.new
+
+    Project.all.collect { |project| @search_objects << {name: project.project_name, id: project.id, token: "p"} }
+    User.all.collect { |user| @search_objects << {name: user.username, id: user.id, token: "u"}  }
+    Tag.all.collect { |tag| @search_objects << {name: tag.tag_name, id: tag.id, token: "t"}  }
+
+    
   end
 end
