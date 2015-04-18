@@ -33,7 +33,7 @@
     <% @discussion.discussion_replies.each do |discussion_reply| %>
       <div class="row">
         <div class="col-xs-12">
-          <%=  render partial: "comments", locals: {discussion_reply: discussion_reply}   %>
+          <%=  render partial: "comments", locals: {discussion_reply: discussion_reply, blocked: false}, name: discussion_reply.id   %>
         </div>  
       </div>
     <% end %>

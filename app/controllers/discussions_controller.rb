@@ -121,4 +121,12 @@ class DiscussionsController < ApplicationController
     end
   end
 
+  def upvote
+    @discussion_reply = DiscussionReply.find(params[:id])
+    @discussion_reply.upvotes += 1
+    respond_to do |format|
+      format.js
+    end
+  end
+
 end

@@ -1,0 +1,3 @@
+@discussion_reply.upvotes += 1
+@discussion_reply.save
+$("upvote_" + @discussion_reply.id).html("<%= escape_javascript(      render(:partial => 'discussions/comments', :locals => {:discussion_reply => @discussion_reply, :blocked => true })      ) %>");

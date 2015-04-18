@@ -3,6 +3,8 @@
  * Copyright 2011-2015 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+ //= require jquery
+//= require jquery_ujs
 
 if (typeof jQuery === 'undefined') {
   throw new Error('Bootstrap\'s JavaScript requires jQuery')
@@ -2315,7 +2317,3 @@ if (typeof jQuery === 'undefined') {
   })
 
 }(jQuery);
-
-$('body')
-  .off('click.dropdown touchstart.dropdown.data-api', '.dropdown')
-  .on('click.dropdown touchstart.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() });
