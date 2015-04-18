@@ -93,6 +93,10 @@ Rails.application.routes.draw do
 
   get 'dashboard/show_notifications'
 
+  get 'dashboard/download_resume'
+
+  get 'dashboard/download_verification'
+
   post 'messages/create'
 
   get 'messages/show_conversations'

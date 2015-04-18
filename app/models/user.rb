@@ -56,4 +56,14 @@ class User < ActiveRecord::Base
       dependent: :destroy
 
   has_many :conversations, :foreign_key => :sender_id
+
+  has_attached_file :resume
+  validates_attachment_file_name :resume, :matches => [/pdf\Z/]
+  validates_attachment :resume, :size => { :in => 0..10.megabytes }
+
+  has_attached_file :verification
+  validates_attachment_file_name :verification, :matches => [/pdf\Z/]
+  validates_attachment :verification, :size => { :in => 0..10.megabytes }
+
+
 end

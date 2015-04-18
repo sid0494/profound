@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
                                 :security_que, :security_ans, :learning_rp,
                                 :discussion_rp, :project_rp,
                                 :projects_worked_on, :ongoing_projects,
-                                :email, :password, :password_confirmation, :current_password) }
+                                :email, :password, :password_confirmation, :current_password,
+                                :resume, :verification) }
 end
 end
