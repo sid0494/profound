@@ -8,9 +8,9 @@ class ProjectsController < ApplicationController
     @search_objects = Array.new
     temp_projects = Array.new
 
-    Project.all.collect { |project| @search_objects << {name: project.project_name, id: project.id, token: "p"} }
-    User.all.collect { |user| @search_objects << {name: user.username, id: user.id, token: "u"}  }
-    Tag.all.collect { |tag| @search_objects << {name: tag.tag_name, id: tag.id, token: "t"}  }
+    Project.all.collect { |project| @search_objects << {name: project.project_name, id: project.id.to_s + ":p"} }
+    User.all.collect { |user| @search_objects << {name: user.username, id: user.id.to_s + ":u"}  }
+    Tag.all.collect { |tag| @search_objects << {name: tag.tag_name, id: tag.id.to_s + ":t"}  }
 
 
     #Create array of all the projects that have the tags of the user's expertise area
@@ -136,11 +136,24 @@ class ProjectsController < ApplicationController
 
   def search
     @search_objects = Array.new
+    str = params[:search][0]
+    id = str.split(":")[0].to_i
+    token = str.split(":")[1]
+    print token
 
-    Project.all.collect { |project| @search_objects << {name: project.project_name, id: project.id, token: "p"} }
-    User.all.collect { |user| @search_objects << {name: user.username, id: user.id, token: "u"}  }
-    Tag.all.collect { |tag| @search_objects << {name: tag.tag_name, id: tag.id, token: "t"}  }
+    Project.all.collect { |project| @search_objects << {name: project.project_name, id: project.id.to_s + " p"} }
+    User.all.collect { |user| @search_objects << {name: user.username, id: user.id.to_s + " u"}  }
+    Tag.all.collect { |tag| @search_objects << {name: tag.tag_name, id: tag.id.to_s + " t"}  }
 
-    
+    if token == "t"
+      @projects = Tag.find(id).projects
+    elsif token == "u"
+      @projects = User.find(id).projects
+    else
+      @projects = []
+      @projects << Project.find(id)
+    end
+
+    render("index")
   end
 end
