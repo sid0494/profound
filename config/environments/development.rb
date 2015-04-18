@@ -13,7 +13,23 @@ Rails.application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.delivery_method = :smtp
+  # change to true to allow email to be sent during development
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default :charset => "utf-8"
+
+  config.action_mailer.smtp_settings = {
+    address: "webmail.daiict.ac.in",
+    port: 25,
+    domain: "profound.com",
+    authentication: :plain,
+    enable_starttls_auto: true,
+    user_name: "201201027@daiict.ac.in",
+    password: "testpassword"
+  }
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
