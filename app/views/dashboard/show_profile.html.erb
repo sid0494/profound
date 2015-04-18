@@ -172,15 +172,12 @@
 				<br><br>
 					<%= f.label :Resume %>
 				    <%= ": " %>
-				    <%= button_to "Download Resume/CV", '#', :class => 'btn btn-xs btn-success' %>
+				    <%= link_to "Download Resume/CV", dashboard_download_resume_path(id: @user.id), :class => 'btn btn-xs btn-success' %>
 		    	<br><br><br><br>
 		          	<% if @user != current_user %>
 		                  <!-- Modal button -->
 		                  <button type="button" class="btn btn-info btn-s pull-left" data-toggle="modal" data-target="#myModal"><i class="fa fa-fw fa-envelope"></i> Message <%= @user.username %></button>
 			          	<%= button_to "Report", '#', :class => 'btn btn-danger pull-right' %>
-			    	<% else %>
-				    	<%= button_to "Verify Account", '#', :class => 'btn btn-success pull-left' %>
-		          		<%= button_to "Upload Resume/CV", '#', :class => 'btn btn-success pull-right' %>
 			    	<% end %>
 	          	<br>
 	          </h4>

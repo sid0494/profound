@@ -6,6 +6,11 @@
 <hr>
 
 <section class="content">
+	<br>
+	<%= form_tag projects_search_path, :method => 'get' do %>
+	    <%= select_tag "search", options_for_select(@search_objects.collect{ |u| [u[:name], u[:id]] }), multiple: true, maximumSelectionLength: 1, class: "js-example-basic-multiple", :style => "width: 92%" %>
+	    <%= submit_tag "Search", :name => nil, class: 'btn btn-warning btn-flat' %>
+	<% end %><br>
   <% @projects.each do |project| %>
   <%=  render partial: "project", locals: {project: project}   %>
   <% end %>

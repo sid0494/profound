@@ -66,6 +66,8 @@ Rails.application.routes.draw do
 
   get 'projects/share'
 
+  get 'projects/search'
+
 
   get 'dashboard/home'
 
@@ -90,6 +92,10 @@ Rails.application.routes.draw do
   get 'dashboard/followings'
 
   get 'dashboard/show_notifications'
+
+  get 'dashboard/download_resume'
+
+  get 'dashboard/download_verification'
 
   post 'messages/create'
 

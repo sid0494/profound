@@ -56,6 +56,28 @@ class DashboardController < ApplicationController
   	@notifications = current_user.notifications
   end
 
+  def download_resume
+  	user = User.find(params[:id])
+  	file_path = user.resume_file_name
+  	if not file_path.nil?
+  		send_file "#{Rails.root}/public/system/users/resumes/000/000/#{format("%03d", user.id)}/original/#{file_path}", :x_sendfile => true
+  	else
+  		flash[:notice] = "File not found"
+  		redirect_to (dashboard_show_profile_path(id: user.id))
+  	end
+  end
+
+  def download_verification
+  	user = User.find(params[:id])
+  	file_path = user.resume_file_name
+  	if not file_path.nil?
+  		send_file "#{Rails.root}/public/system/users/verifications/000/000/#{format("%03d", user.id)}/original/#{file_path}", :x_sendfile => true
+  	else
+  		flash[:notice] = "File not found"
+  		redirect_to (dashboard_show_profile_path(id: user.id))
+  	end
+  end
+
   def about_us
   end
 
