@@ -20,6 +20,6 @@ class ApplicationController < ActionController::Base
                                 :discussion_rp, :project_rp,
                                 :projects_worked_on, :ongoing_projects,
                                 :email, :password, :password_confirmation, :current_password,
-                                :resume) }
+                                :resume, :verification) }
 end
 end
