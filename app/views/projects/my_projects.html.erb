@@ -6,6 +6,10 @@
 <hr>
 
 <section class="content">
+  <% flash.each do |key, value| %>
+    <div id="alert" class="alert alert-<%= key %>" onClick="$(this).fadeOut('slow')"><%= value %><span class="close">&times;</span></div>
+  <% end %>
+  
   <% @projects.each do |project| %>
   <%=  render partial: "project", locals: {project: project}   %>
   <% end %>

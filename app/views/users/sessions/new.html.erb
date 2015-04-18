@@ -2,28 +2,30 @@
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
+			<div class="alert-header" onClick="$(this).fadeOut('slow')">
+				<% if notice %>
+				  <center><p class="alert alert-success"><a href="#"><%= notice %></a></p></center>
+				<% end %>
+				<% if alert %>
+				  <center><p class="alert alert-danger"><%= alert %></p></center>
+				<% end %>
+			</div>
+
   	<div class="body"></div>
 		<div class="grad"></div>
 			<div class="header">
 				<div><h1><b>PRO<span>found</span></b></h1></div><br><br><br>
+				<!-- <b>PRO<span>found</span></b> -->
 				<font face="exo" size="3">
 					<center> Seek <br /> Endeavour <br /> Discover </center>
 					<center>-------</center>
 					<center>
-						Bridge the gap,<br />Broaden the Vision,<br />Proliferate the Skills
+						Bridge the gap,<br />Broaden the Vision,<br />Proliferate the Skills...
 					</center>
 				</font>
 			</div>
 			<br>
-			<div class="alert-box">
-				<% if notice %>
-			  <center><p class="alert alert-success"><%= notice %></p></center>
-			<% end %>
-			<% if alert %>
-			  <center><p class="alert alert-danger"><%= alert %></p></center>
-			<% end %>
-			
-			</div>
+
 		<div class="login">
 
 			<%= f.email_field :email, type: 'text', placeholder: 'Email', :required => true %>
