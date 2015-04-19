@@ -14,5 +14,25 @@ ActiveAdmin.register User do
   #   permitted
   # end
 
+  config.clear_action_items!
+
+  scope :reported_ones
+
+  action_item :view, only: :show do
+  link_to 'Delete User', admin_user_path(resource), data: {confirm: "Are you sure you want to delete ?"}, method: :delete
+  end  
+
+  action_item :view, only: :show do
+  link_to 'Download Resume', dashboard_download_resume_path(id: resource.id) if not resource.resume_file_name.nil?
+  end
+
+  action_item :view, only: :show do
+  link_to 'Download Verification Document', dashboard_download_verification_path(id: resource.id) if not resource.verification_file_name.nil?
+  end
+
+  action_item :view, only: :show do
+  link_to 'Verify Account', dashboard_verification_path(id: resource.id) if resource.verified == false
+  end
+
 
 end

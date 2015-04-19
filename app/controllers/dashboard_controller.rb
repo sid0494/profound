@@ -1,5 +1,6 @@
 class DashboardController < ApplicationController
 	before_action :authenticate_user!
+	skip_before_filter :authenticate_user!, :only => [:download_verification, :download_resume, :verification]
 
 	layout 'header_new'
 
@@ -69,7 +70,7 @@ class DashboardController < ApplicationController
 
   def download_verification
   	user = User.find(params[:id])
-  	file_path = user.resume_file_name
+  	file_path = user.verification_file_name
   	if not file_path.nil?
   		send_file "#{Rails.root}/public/system/users/verifications/000/000/#{format("%03d", user.id)}/original/#{file_path}", :x_sendfile => true
   	else
@@ -90,6 +91,13 @@ class DashboardController < ApplicationController
   	if @report.save
   		redirect_to (dashboard_show_profile_path(id: @report.reported_id))
   	end
+  end
+
+  def verification
+  	@user = User.find(params[:id])
+  	@user.verified = true
+  	@user.save
+  	redirect_to :back
   end
 
   def about_us

@@ -11,6 +11,9 @@
 
       	<!-- show followers here. -->
       	<span class="label label-success"><i class='fa fa-fw fa-users'></i> <%= @user.followers.count %></span>
+      	<% if @user.verified == true %>
+      	<span class="label label-info"><i class="fa fa-check-circle"></i></span>
+      	<% end %>
       
       <% if @user == current_user %>
 	    	<%= link_to "Edit Profile", edit_user_registration_path, :class => "btn btn-primary pull-right" %>

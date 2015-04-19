@@ -107,6 +107,8 @@ Rails.application.routes.draw do
 
   post 'dashboard/report_submit'
 
+  get 'dashboard/verification'
+
   post 'messages/create'
 
   get 'messages/show_conversations'

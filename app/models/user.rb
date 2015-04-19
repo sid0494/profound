@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  scope :reported_ones, ->{ User.where(:id => (User.all.select{|u| u.self_reports.count > 10}.map(&:id)))}
+
   has_many :projects, dependent: :destroy
 
   has_and_belongs_to_many :project_applications,

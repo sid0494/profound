@@ -13,6 +13,8 @@ ActiveAdmin.register Discussion do
   #   permitted << :other if resource.something?
   #   permitted
   # end
+  config.clear_action_items!
 
+  actions :all, :except => [:new]
 
 end
