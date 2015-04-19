@@ -59,9 +59,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # DELETE /resource
-  # def destroy
-  #   super
-  # end
+  def destroy
+    super
+
+    notifications = Notification.where("(notifications.type = ? AND notifications.type_id = ?)
+                                        OR (notifications.type = ? AND notifications.type_id = ?)", "follow", resource.id, "follow", resource.id)
+
+    notifications.destroy_all
+  end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
