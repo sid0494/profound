@@ -1,7 +1,7 @@
 class DiscussionsController < ApplicationController
   before_action :authenticate_user!
-  protect_from_forgery :except => :upvote 
-  protect_from_forgery :except => :downvote 
+  # protect_from_forgery :except => :upvote 
+  # protect_from_forgery :except => :downvote 
 
   layout 'header_new'
 
@@ -146,6 +146,7 @@ class DiscussionsController < ApplicationController
   def downvote
     @discussion_reply = DiscussionReply.find(params[:id])
     @discussion_reply.downvotes += 1
+    @user = User.find(@discussion_reply.user_id)
     @user.discussion_rp -= 1
     @user.save    
     @discussion_reply.voters << current_user

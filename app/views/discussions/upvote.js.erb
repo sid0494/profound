@@ -1,3 +1,1 @@
-alert(<%= @discussion_reply.upvotes %>);
-alert(<%= @discussion_reply.downvotes %>);
-$("#reply_@discussion_reply.id").html("<%= escape_javascript(      render(:partial => 'discussions/comments', :locals => {:discussion_reply => @discussion_reply, :blocked => true })      ) %>");
+$("#reply_<%= @discussion_reply.id %>").html("<%= escape_javascript(      render(:partial => 'discussions/comments', :locals => {:discussion_reply => @discussion_reply, :blocked => true })      ) %>");
