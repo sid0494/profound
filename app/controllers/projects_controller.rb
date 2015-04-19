@@ -79,6 +79,7 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
     @project.update_attributes(params.require(:project).permit(:id, :project_name, :project_description, :project_status))
+    @project.project_tags.destroy_all
     params.permit(:tags => [])
     @tags = params[:tags]
 

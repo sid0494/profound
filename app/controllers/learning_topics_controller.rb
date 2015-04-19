@@ -62,6 +62,7 @@ class LearningTopicsController < ApplicationController
   def update
     @topic = LearningTopic.find(params[:id])
     @topic.update_attributes(params.require(:learning_topic).permit(:topic_name, :description))
+    @topic.learning_tags.destroy_all
     params.permit(:tags => [])
     @tags = params[:tags]
 

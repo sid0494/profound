@@ -66,7 +66,8 @@ class DiscussionsController < ApplicationController
   def update
   	@discussion = Discussion.find(params[:id])
   	@discussion.update_attributes(params.require(:discussion).permit(:topic_name, :description))
-  	params.permit(:tags => [])
+  	@discussion.discussion_tags.destroy_all
+    params.permit(:tags => [])
     @tags = params[:tags]
 
   	if @discussion.save

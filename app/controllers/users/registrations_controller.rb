@@ -27,6 +27,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       params.permit(:tags_interest_areas => [])
       @interest_tags = params[:tags_interest_areas]
 
+      resource.interest_areas.destroy_all
+
       if not @interest_tags.nil?
         @interest_tags.each do |tag|
           temp_tag = Tag.find_by_tag_name(tag)
@@ -40,6 +42,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
       params.permit(:tags_expertise_areas => [])
       @expertise_tags = params[:tags_expertise_areas]
+
+      resource.expertise_areas.destroy_all
 
       if not @expertise_tags.nil?
         @expertise_tags.each do |tag|
