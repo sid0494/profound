@@ -175,9 +175,15 @@
 				    <%= link_to "Download Resume/CV", dashboard_download_resume_path(id: @user.id), :class => 'btn btn-xs btn-success' %>
 		    	<br><br><br><br>
 		          	<% if @user != current_user %>
-		                  <!-- Modal button -->
-		                  <button type="button" class="btn btn-info btn-s pull-left" data-toggle="modal" data-target="#myModal"><i class="fa fa-fw fa-envelope"></i> Message <%= @user.username %></button>
-			          	<%= button_to "Report", '#', :class => 'btn btn-danger pull-right' %>
+		                <!-- Modal button -->
+		                <button type="button" class="btn btn-info btn-s pull-left" data-toggle="modal" data-target="#myModal"><i class="fa fa-fw fa-envelope"></i> Message <%= @user.username %></button>
+		                <% reports = [] %>
+		                <% @user.self_reports.collect { |r| reports << r.reporter_id } %>
+		                <% if not reports.include?(current_user.id) %>
+			          	<%= link_to "Report", dashboard_report_path(id: @user.id), :class => 'btn btn-danger pull-right' %>
+			          	<% else %>
+			          	<%= button_to "Reported", '#', :class => 'btn btn-danger pull-right disabled' %>
+			          	<% end %>
 			    	<% end %>
 	          	<br>
 	          </h4>

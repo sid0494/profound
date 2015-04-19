@@ -65,5 +65,15 @@ class User < ActiveRecord::Base
   validates_attachment_file_name :verification, :matches => [/pdf\Z/]
   validates_attachment :verification, :size => { :in => 0..10.megabytes }
 
+  has_many :reports,
+      class_name: "Report",
+      foreign_key: "reporter_id",
+      dependent: :destroy
+
+  has_many :self_reports,
+      class_name: "Report",
+      foreign_key: "reported_id",
+      dependent: :destroy
+
 
 end

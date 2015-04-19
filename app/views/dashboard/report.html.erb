@@ -1,0 +1,35 @@
+<%= form_for(@report, url: dashboard_report_submit_path(@report)) do |f| %>
+
+<section class="content-header">
+  <h1>
+    <font face="verdana">
+      <b>Report <%= @user.username %></b>
+    </font>
+  </h1>
+</section>
+
+<section class="content">
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-12">
+      <!-- general form elements -->
+      <div class="box box-primary">
+        <form role="form">
+          <div class="box-body">
+            <div class="form-group">
+              <label for="exampleInputPassword1"><font size="3">Report Message</font></label>
+              <%= f.text_area :description, autofocus: true, class: 'form-control', placeholder: 'Reason for reporting the user....', rows: '4', :required => true %>
+              <%= f.hidden_field :reported_id, value: @user.id %>
+            </div>
+          <br>
+          <div class="form-group">
+            <%= f.submit "Submit Report", class: 'btn btn-danger' %>
+          </div>
+          </div>
+        </form>
+      </div><!-- /.box -->
+    </div>
+</section>
+
+
+<% end %>

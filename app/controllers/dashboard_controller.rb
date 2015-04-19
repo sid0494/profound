@@ -78,6 +78,20 @@ class DashboardController < ApplicationController
   	end
   end
 
+  def report
+  	@report = Report.new
+  	@user = User.find(params[:id])
+  end
+
+  def report_submit
+  	@report = Report.new(params.require(:report).permit(:description, :reported_id))
+  	@report.reporter_id = current_user.id
+
+  	if @report.save
+  		redirect_to (dashboard_show_profile_path(id: @report.reported_id))
+  	end
+  end
+
   def about_us
   end
 

@@ -97,6 +97,10 @@ Rails.application.routes.draw do
 
   get 'dashboard/download_verification'
 
+  get 'dashboard/report'
+
+  post 'dashboard/report_submit'
+
   post 'messages/create'
 
   get 'messages/show_conversations'
