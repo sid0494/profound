@@ -23,7 +23,7 @@
             <%= hidden_field_tag "recipient_id[]", @project.user.id %>
             <%= f.label :messages %>
             <% message = "I would like to work on your project : #{@project.project_name}" %>
-            <%= f.text_area :body, class: 'form-control', value: message %>
+            <%= f.text_area :body, class: 'form-control', value: message, :required => true %>
           </div>
       </div>
       <div class="modal-footer">

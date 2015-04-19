@@ -30,9 +30,9 @@
           <div class="form-group">
             <% users = User.where.not(id: current_user.id) %>
             <%= f.label :username %>
-            <%= select_tag "recipient_id", options_for_select(users.collect{ |u| [u.username, u.id] }), multiple: true, maximumSelectionSize: 1, class: "js-example-basic-multiple", :style => "width: 100%" %><br><br>
+            <%= select_tag "recipient_id", options_for_select(users.collect{ |u| [u.username, u.id] }), multiple: true, maximumSelectionSize: 1, class: "js-example-basic-multiple", :style => "width: 100%", :required => true %><br><br>
             <%= f.label :message %>
-            <%= f.text_area :body, class: 'form-control' %>
+            <%= f.text_area :body, class: 'form-control', :required => true %>
           </div>
       </div>
       <div class="modal-footer">
@@ -216,7 +216,7 @@
                       <th>Created At</th>
                       <th>Project Description</th>
                     </tr>
-                    <% @my_projects.reverse.each do |project| %>
+                    <% @my_projects.reverse[0..4].each do |project| %>
                         <% if project.project_status == "completed"%>
                         <%      badge = "label label-success" %>
                         <% elsif project.project_status == "ongoing"%>
@@ -261,7 +261,7 @@
                       <th>Created At</th>
                       <th>Description</th>
                     </tr>
-                    <% @my_discussions.reverse.each do |discussion| %>
+                    <% @my_discussions.reverse[0..4].each do |discussion| %>
                         <tr>
                           <td><%= link_to discussion.topic_name, {:controller => 'discussions', :action => 'show', :id => discussion.id} %></td>
                           <td><%= time_ago_in_words(discussion.created_at) %> ago</td>
@@ -299,7 +299,7 @@
                       <th>Created At</th>
                       <th>Description</th>
                     </tr>
-                    <% @my_topics.reverse.each do |topic| %>
+                    <% @my_topics.reverse[0..4].each do |topic| %>
                         <tr>
                           <td><%= link_to topic.topic_name, {:controller => 'learning_topics', :action => 'show', :id => topic.id} %></td>
                           <td><%= time_ago_in_words(topic.created_at) %> ago</td>

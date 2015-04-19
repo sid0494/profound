@@ -22,7 +22,7 @@
             <%= hidden_field_tag "recipient_id[]", @topic.owner.id %>
             <%= f.label :messages %>
             <% message = "I would like to learn from you on the topic : #{@topic.topic_name}" %>
-            <%= f.text_area :body, class: 'form-control', value: message %>
+            <%= f.text_area :body, class: 'form-control', value: message, :required => true %>
           </div>
       </div>
       <div class="modal-footer">
