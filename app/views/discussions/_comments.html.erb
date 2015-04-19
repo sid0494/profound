@@ -9,7 +9,7 @@
   <% end %>
   <p><b><iclass="fa fa-fw fa-user"></i> <%= link_to discussion_reply.user.first_name + " " + discussion_reply.user.last_name, dashboard_show_profile_path(id: discussion_reply.user.id) %></b></p>
   <p><%= discussion_reply.reply %></p>
-  <p><%= link_to("Upvote (#{discussion_reply.upvotes})", discussions_upvote_path(id: discussion_reply.id), :class => "#{badge_up}", :remote => true, :method => :post) %>  <%= link_to("Downvote (#{discussion_reply.downvotes})", discussions_downvote_path(id: discussion_reply.id), :class => "#{badge_down}", :remote => true, :method => :post) %>
+  <p><%= button_to("Upvote (#{discussion_reply.upvotes})", discussions_upvote_path(id: discussion_reply.id), :class => "#{badge_up}", :remote => true, :method => :post) %>  <%= link_to("Downvote (#{discussion_reply.downvotes})", discussions_downvote_path(id: discussion_reply.id), :class => "#{badge_down}", :remote => true, :method => :post) %>
   <small class="pull-right"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(discussion_reply.created_at) + " ago" %></small></p>
   </p>
 </div>  

@@ -1,5 +1,7 @@
 class DiscussionsController < ApplicationController
   before_action :authenticate_user!
+  protect_from_forgery :except => :upvote 
+  protect_from_forgery :except => :downvote 
 
   layout 'header_new'
 
