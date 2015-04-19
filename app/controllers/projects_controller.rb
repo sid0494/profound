@@ -19,9 +19,9 @@ class ProjectsController < ApplicationController
       # print "~~~~~~~~~~"
     end
 
-    current_user.interest_areas.each do |area|
-      area.projects.collect {|project| temp_projects << project}
-    end
+    # current_user.interest_areas.each do |area|
+    #   area.projects.collect {|project| temp_projects << project}
+    # end
 
     print temp_projects
 
