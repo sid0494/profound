@@ -175,7 +175,11 @@
 				<br><br>
 					<%= f.label :Resume %>
 				    <%= ": " %>
+				    <% if @user.resume_file_name.nil? %>
+				    No resume uploaded
+				    <% else %>
 				    <%= link_to "Download Resume/CV", dashboard_download_resume_path(id: @user.id), :class => 'btn btn-xs btn-success' %>
+				    <% end %>
 		    	<br><br><br><br>
 		          	<% if @user != current_user %>
 		                <!-- Modal button -->
