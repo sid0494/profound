@@ -46,6 +46,10 @@ Rails.application.routes.draw do
 
   post 'discussions/reply'
 
+  post 'discussions/upvote'
+
+  post 'discussions/downvote'
+
   get 'projects/index'
 
   get 'projects/show'

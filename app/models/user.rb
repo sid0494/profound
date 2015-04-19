@@ -75,5 +75,8 @@ class User < ActiveRecord::Base
       foreign_key: "reported_id",
       dependent: :destroy
 
-
+  has_and_belongs_to_many :voted_replies,
+      class_name: "DiscussionReply",
+      join_table: "voting",
+      dependent: :destroy
 end

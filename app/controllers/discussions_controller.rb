@@ -126,4 +126,33 @@ class DiscussionsController < ApplicationController
     end
   end
 
+  def upvote
+    @discussion_reply = DiscussionReply.find(params[:id])
+    @discussion_reply.upvotes += 1
+    @user = User.find(@discussion_reply.user_id)
+    @user.discussion_rp += 1
+    @user.save
+    @discussion_reply.voters << current_user
+
+    if @discussion_reply.save
+      respond_to do |format|
+        format.js
+      end
+    end
+  end
+
+  def downvote
+    @discussion_reply = DiscussionReply.find(params[:id])
+    @discussion_reply.downvotes += 1
+    @user.discussion_rp -= 1
+    @user.save    
+    @discussion_reply.voters << current_user
+
+    if @discussion_reply.save
+      respond_to do |format|
+        format.js
+      end
+    end
+  end
+
 end
