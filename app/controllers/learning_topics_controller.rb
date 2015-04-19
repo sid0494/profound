@@ -32,7 +32,7 @@ class LearningTopicsController < ApplicationController
     @tags = params[:tags]
 
     if @topic.save
-
+      flash[:success] = "Learning Topic Created Successfully!"
       if not @tags.nil?
         @tags.each do |tag|
          temp_tag = Tag.find_by_tag_name(tag)
@@ -66,7 +66,7 @@ class LearningTopicsController < ApplicationController
     @tags = params[:tags]
 
     if @topic.save
-
+      flash[:success] = "Learning Topic Updated Successfully!"
       if not @tags.nil?
         @tags.each do |tag|
           temp_tag = Tag.find_by_tag_name(tag)
@@ -95,18 +95,19 @@ class LearningTopicsController < ApplicationController
   def destroy
     @topic = LearningTopic.find(params[:id])
     @topic.destroy
+    flash[:danger] = "Learning Topic Deleted Successfully!"
     redirect_to(:action => 'my_topics')
   end
 
   def my_topics
-    @topics = current_user.learning_topics
+    @topics = current_user.learning_topics.sort {|topic_1, topic_2| topic_1.created_at <=> topic_2.created_at}.reverse
   end
 
   def commend
     @user = User.find(params[:id])
     @user.learning_rp += 1
     @user.save
-
+    flash[:info] = "User Commended Successfully!"
     redirect_to(:action => 'index')
   end
 end

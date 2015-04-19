@@ -2,10 +2,10 @@
 <i class="fa fa-flag bg-blue"></i>
 <div class="timeline-item">
   <span class="time"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(discussion.created_at) + " ago" %></span>
-  <h2 class="timeline-header"><b><%= link_to(discussion.topic_name, {:action => 'show', :id => discussion.id}) %></b>
+  <h2 class="timeline-header"><b><i class='fa fa-fw fa-briefcase'></i> <%= link_to(discussion.topic_name, {:action => 'show', :id => discussion.id}) %></b>
     <% if current_user == discussion.owner %>
-      <%= link_to("Edit", {:action => 'edit', :id => discussion.id}, class: 'btn btn-xs') %>
-      <%= link_to("Delete", {:action => 'delete', :id => discussion.id}, class: 'btn btn-xs') %>
+      <%= link_to("Delete", {:action => 'delete', :id => discussion.id}, class: 'btn btn-xs pull-right') %>
+      <%= link_to("Edit", {:action => 'edit', :id => discussion.id}, class: 'btn btn-xs pull-right') %>
     <% end %>
   </h2>
   <div class="timeline-body">

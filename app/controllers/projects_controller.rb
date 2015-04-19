@@ -50,6 +50,7 @@ class ProjectsController < ApplicationController
 
     #Try to save the newly created project
     if @project.save
+      flash[:success] = "Project Created Successfully!"
       #Add tags for the project
       if not @tags.nil?
         @tags.each do |tag|
@@ -63,6 +64,7 @@ class ProjectsController < ApplicationController
       end
       #If successful then display My Projects Page
       redirect_to(:action => 'my_projects')
+
     else
       #If fails then ask to fill the form again
       render('new')
@@ -82,7 +84,7 @@ class ProjectsController < ApplicationController
 
     #Try to save the newly update project
     if @project.save
-
+      flash[:success] = "Project Updated Successfully!"
       if not @tags.nil?
         @tags.each do |tag|
           temp_tag = Tag.find_by_tag_name(tag)
@@ -109,6 +111,7 @@ class ProjectsController < ApplicationController
   def destroy
     @project = Project.find(params[:id])
     @project.destroy
+    flash[:danger] = "Project Deleted Successfully!"
     redirect_to(:action => 'my_projects')
   end
 
@@ -123,14 +126,15 @@ class ProjectsController < ApplicationController
     current_user.followers.each do |user|
       Notification.create(type: "share", type_id: project.id, optional_id: current_user.id, user_id: user.id)
     end
-    redirect_to('/')
+    flash[:info] = "Project Shared Successfully!"
+    redirect_to('/projects/my_projects')
   end
 
   def commend
     @user = User.find(params[:id])
     @user.project_rp += 1
     @user.save
-
+    flash[:success] = "User Commended Successfully!"
     redirect_to(:action => 'index')
   end
 

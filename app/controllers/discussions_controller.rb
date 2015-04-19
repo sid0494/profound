@@ -32,7 +32,7 @@ class DiscussionsController < ApplicationController
   	@tags = params[:tags]
 
   	if @discussion.save
-
+      flash[:success] = "Discussion topic Created Successfully!"
       if not @tags.nil?
     		@tags.each do |tag|
     			temp_tag = Tag.find_by_tag_name(tag)
@@ -70,6 +70,7 @@ class DiscussionsController < ApplicationController
     @tags = params[:tags]
 
   	if @discussion.save
+      flash[:success] = "Discussion topic Updated Successfully!"
 
       if not @tags.nil?
   		  @tags.each do |tag|
@@ -99,6 +100,7 @@ class DiscussionsController < ApplicationController
   def destroy
   	@discussion = Discussion.find(params[:id])
   	@discussion.destroy
+    flash[:danger] = "Discussion topic Deleted Successfully!"
   	redirect_to(:action => 'my_discussions')	
   end
 
@@ -111,12 +113,14 @@ class DiscussionsController < ApplicationController
     @discussion_reply.user = current_user
 
     if @discussion_reply.save
+      flash[:success] = "Replied Successfully to the Discussion Topic!"
       params.require(:discussion_reply).permit(:id)
       @discussion = Discussion.find(params[:discussion_reply][:id])
       @discussion.discussion_replies << @discussion_reply
       Notification.create(type: "discussion_reply", type_id: @discussion.id, optional_id: @discussion_reply.user_id, user_id: @discussion.owner_id)
       redirect_to(:action =>'show',:id => @discussion.id)
     else
+      flash[:danger] = "Error Posting Reply!"
       print "Error posting reply"
     end
   end

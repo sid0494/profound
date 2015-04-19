@@ -5,6 +5,11 @@
 </section>
 <hr>
 <ul class="timeline">
+  <% flash.each do |key, value| %>
+    <div id="alert" class="alert alert-<%= key %>" onClick="$(this).fadeOut('slow')">
+    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    	<%= value %><span class="close">&times;</span></div>
+  <% end %>
 
   <% @discussions.each do |discussion| %>
   <%=  render partial: "my_discuss", locals: {discussion: discussion}   %>
