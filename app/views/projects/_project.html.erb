@@ -13,8 +13,8 @@
       </div>
     </div>
     <div class="box-body" style="overflow: hidden">
-      <h4><%= link_to project.user.username, {:controller => 'dashboard', :action => 'show_profile', :id => project.user.id} %></h4>
-      <p><%= time_ago_in_words(project.created_at)+" ago" %></p>
+      <h4><i class="fa fa-fw fa-user"></i> <%= link_to project.user.username, {:controller => 'dashboard', :action => 'show_profile', :id => project.user.id} %></h4>
+      <p><i class="fa fa-clock-o"></i> <%= time_ago_in_words(project.created_at)+" ago" %></p>
       <p style="text-overflow: ellipsis"><%= project.project_description %></p>
       <p>
       <% project.project_tags[0..4].each do |tag| %>

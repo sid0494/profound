@@ -17,28 +17,34 @@
       </div>
       <br>
 
+    <div class="col-md-offset-4 col-md-5">
+      <font color="red">
+        <b>
+          <h3><%= devise_error_messages! %></h3>
+        </b>
+      </font>
+    </div>
+
     <div class="login">
 
-      <%= devise_error_messages! %>
-
-      <%= f.email_field :email, input_html: {class: 'signup'}, placeholder: 'Email', type: 'text'%>
+      <%= f.email_field :email, input_html: {class: 'signup'}, placeholder: 'Email', type: 'text', :required => true %>
       <!-- <input type="text" placeholder="email" name="email"> -->
       
-      <%= f.text_field :username, input_html: {class: 'signup'}, placeholder: 'Username', type: 'text' %>
+      <%= f.text_field :username, input_html: {class: 'signup'}, placeholder: 'Username', type: 'text', :required => true %>
       <!-- <input type="text" placeholder="username" name="username"> -->
       
-      <%= f.text_field :first_name, input_html: {class: 'signup'}, placeholder: 'First name', type: 'text' %>
+      <%= f.text_field :first_name, input_html: {class: 'signup'}, placeholder: 'First name', type: 'text', :required => true %>
       <!-- <input type="text" placeholder="first name" name="firstname"> -->
 
-      <%= f.text_field :last_name, input_html: {class: 'signup'}, placeholder: 'Last name', type: 'text' %>
+      <%= f.text_field :last_name, input_html: {class: 'signup'}, placeholder: 'Last name', type: 'text', :required => true %>
 
       <div class="field">
-        <%= f.password_field :password, input_html: {class: 'signup'}, placeholder: 'Password', type: 'password', autocomplete: "off" %>
+        <%= f.password_field :password, input_html: {class: 'signup'}, placeholder: 'Password', type: 'password', autocomplete: "off", :required => true %>
       </div>
       <!-- <input type="password" placeholder="email" name="password"> -->
 
       <div class="field">
-        <%= f.password_field :password_confirmation, input_html: {class: 'signup'}, placeholder: 'Re-type password', type: 'password', autocomplete: "off" %>
+        <%= f.password_field :password_confirmation, input_html: {class: 'signup'}, placeholder: 'Re-type password', type: 'password', autocomplete: "off", :required => true %>
       </div>
       <!-- <input type="password" placeholder="password confirmation" name="passwordconfirmation"> -->
     </div>

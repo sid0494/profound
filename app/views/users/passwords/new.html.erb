@@ -28,7 +28,7 @@
 
   <div class="login">
   	<h3><font color="black">Forgot your password?</font></h3>
-    <%= f.email_field :email, type: 'text', placeholder: 'Email' %>
+    <%= f.email_field :email, type: 'text', placeholder: 'Email', :required => true %>
     <div class="actions">
 	    <%= f.submit "Send reset password instructions" %>
 	</div>
