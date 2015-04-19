@@ -1,13 +1,13 @@
 <section class="content-header"></section>
 
 <section class="content">
-  <div class="box box-warning direct-chat direct-chat-warning" style="height: 450px">
+  <div class="box box-warning direct-chat direct-chat-warning">
     <div class="box-header with-border">
       <h3 class="box-title"><%= link_to @recipient.first_name + " " + @recipient.last_name + " (" + @recipient.username + ")", dashboard_show_profile_path(id: @recipient.id)  %></h3>
     </div><!-- /.box-header -->
     <div class="box-body">
       <!-- Conversations are loaded here -->
-      <div class="direct-chat-messages" style="height: 100%">
+      <div class="direct-chat-messages" >
 
       <% @messages.each do |message| %>
         <% if message.user_id == current_user.id %>
@@ -33,10 +33,22 @@
         </div><!-- /.direct-chat-msg -->
         <% end %>
       <% end %>
-
+       </div>
       </div><!--/.direct-chat-messages-->
 
-    </div><!-- /.box-body -->
+      
+
+    <div class="box-footer">
+      <%= form_for(@message, url: messages_create_path(@message), html: {role: :form}) do |f| %>
+        <div class="input-group">
+          <%= hidden_field_tag "recipient_id[]", @recipient.id %>
+          <%= f.text_field :body, class: 'form-control', :required => true %>
+          <span class="input-group-btn">
+            <%= f.submit "Send", class: 'btn btn-success btn-flat', :required => true %>
+          </span>
+        </div>
+      <% end %>
+      </div><!-- /.box-body -->
     <!-- <div class="box-footer">
       <form action="#" method="post">
         <div class="input-group">

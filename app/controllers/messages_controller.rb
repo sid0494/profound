@@ -32,7 +32,7 @@ class MessagesController < ApplicationController
   			print 'Error saving message'
   		end
 
-  		redirect_to ('/')
+  		redirect_to :back
   	end
 
   	def show_conversations
@@ -41,6 +41,7 @@ class MessagesController < ApplicationController
   	end
 
   	def show_messages
+  		@message = Message.new
   		conversation = Conversation.find(params[:id])
   		if conversation.sender == current_user
   			@recipient = conversation.recipient

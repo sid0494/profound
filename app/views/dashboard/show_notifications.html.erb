@@ -10,7 +10,7 @@
       <div class="box-body table-responsive no-padding">
         <table class="table table-hover">
           <% if not @notifications.empty? %>
-          <% @notifications.each do |notification| %>
+          <% @notifications.reverse.each do |notification| %>
             <tr>
               <td>
                 <% if notification.type == "follow" %>
