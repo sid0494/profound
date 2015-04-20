@@ -57,7 +57,9 @@ class User < ActiveRecord::Base
       join_table: "shared_projects_users",
       dependent: :destroy
 
-  has_many :conversations, :foreign_key => :sender_id
+  has_many :conversations, 
+      :foreign_key => :sender_id,
+      dependent: :destroy
 
   has_attached_file :resume
   validates_attachment_file_name :resume, :matches => [/pdf\Z/]
@@ -66,6 +68,8 @@ class User < ActiveRecord::Base
   has_attached_file :verification
   validates_attachment_file_name :verification, :matches => [/pdf\Z/]
   validates_attachment :verification, :size => { :in => 0..10.megabytes }
+
+  validates :username, uniqueness: true
 
   has_many :reports,
       class_name: "Report",
@@ -80,5 +84,8 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :voted_replies,
       class_name: "DiscussionReply",
       join_table: "voting",
+      dependent: :destroy
+
+  has_many :commendations,
       dependent: :destroy
 end

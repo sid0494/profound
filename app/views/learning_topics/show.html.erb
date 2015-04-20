@@ -71,7 +71,10 @@
 	          	<br>
 	          	<% if not @topic.owner_id == current_user.id %>
 	          	<button type="button" class="btn btn-info btn-s pull-left" data-toggle="modal" data-target="#myModal"><i class="fa fa-fw fa-envelope"></i> Contact <%= @topic.owner.username %></button>
-	          	<%= link_to "Commend User", {:action => 'commend', :id => @topic.owner_id}, :class => 'btn btn-success pull-right' %>
+	          	<% ids = current_user.commendations.collect { |c| [c.commended_user_id, c.entity_id, c.entity] } %>
+	          	<% if not ids.include?([@topic.owner_id, @topic.id, "topic"]) %>
+	          	<%= link_to "Commend User", {:action => 'commend', :id => @topic.owner_id, :id_2 => @topic.id}, :class => 'btn btn-success pull-right' %>
+	          	<% end %>
 	          	<br>
 	          	<% else %>
 	          	<%= link_to "Edit Topic", {:action => 'edit', :id => @topic.id}, :class => "btn btn-success pull-left", method: :get %>

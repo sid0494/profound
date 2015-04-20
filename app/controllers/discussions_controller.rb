@@ -17,6 +17,8 @@ class DiscussionsController < ApplicationController
       area.discussions.collect {|discussion| temp_discussions << discussion}
     end
 
+    current_user.followings.collect { |user| user.discussions.collect { |discussion| temp_discussions << discussion  } }
+
   	@discussions = temp_discussions.sort!{|discussion1, discussion2| discussion1.created_at <=> discussion2.created_at}.uniq.reverse.reverse
 
     # @discussions = Discussion.all.reverse

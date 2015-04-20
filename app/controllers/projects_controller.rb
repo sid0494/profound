@@ -23,6 +23,8 @@ class ProjectsController < ApplicationController
     #   area.projects.collect {|project| temp_projects << project}
     # end
 
+    current_user.followings.collect { |user| user.projects.collect { |project| temp_projects << project }  }
+
     print temp_projects
 
     #Select the latest 10 projects to display
@@ -135,6 +137,13 @@ class ProjectsController < ApplicationController
     @user = User.find(params[:id])
     @user.project_rp += 1
     @user.save
+
+    commendation = Commendation.new
+    commendation.user = current_user
+    commendation.commended_user_id = @user.id
+    commendation.entity_id = params[:id_2]
+    commendation.entity = "project"
+    commendation.save
     flash[:success] = "User Commended Successfully!"
     redirect_to(:action => 'index')
   end

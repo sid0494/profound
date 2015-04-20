@@ -11,6 +11,8 @@ class LearningTopicsController < ApplicationController
       area.learning_topics.collect {|topic| temp_topics << topic }
     end
 
+    current_user.followings.collect { |user| user.learning_topics.collect { |topic| temp_topics << topic }  }
+
     @topics = temp_topics.sort!{|topic1, topic2| topic1.created_at <=> topic2.created_at}.uniq.reverse
     # @topics = LearningTopic.all
 
@@ -108,6 +110,14 @@ class LearningTopicsController < ApplicationController
     @user = User.find(params[:id])
     @user.learning_rp += 1
     @user.save
+
+    commendation = Commendation.new
+    commendation.user = current_user
+    commendation.commended_user_id = @user.id
+    commendation.entity_id = params[:id_2]
+    commendation.entity = "topic"
+    commendation.save
+
     flash[:info] = "User Commended Successfully!"
     redirect_to(:action => 'index')
   end

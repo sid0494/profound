@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150419201906) do
+ActiveRecord::Schema.define(version: 20150420000513) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -59,6 +59,17 @@ ActiveRecord::Schema.define(version: 20150419201906) do
   end
 
   add_index "areas_of_interest", ["tag_id", "user_id"], name: "index_areas_of_interest_on_tag_id_and_user_id"
+
+  create_table "commendations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "commended_user_id"
+    t.integer  "entity_id"
+    t.string   "entity"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "commendations", ["user_id"], name: "index_commendations_on_user_id"
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"
@@ -235,13 +246,7 @@ ActiveRecord::Schema.define(version: 20150419201906) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-
-  create_table "votes", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "reply_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+  add_index "users", ["username"], name: "index_users_on_username", unique: true
 
   create_table "voting", force: :cascade do |t|
     t.integer "discussion_reply_id"
