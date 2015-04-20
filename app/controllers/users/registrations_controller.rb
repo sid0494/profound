@@ -63,7 +63,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
 
     notifications = Notification.where("(notifications.type = ? AND notifications.type_id = ?)
-                                        OR (notifications.type = ? AND notifications.type_id = ?)", "follow", resource.id, "follow", resource.id)
+                                        OR (notifications.type != ? AND notifications.type_id = ?)", "follow", resource.id, "follow", resource.id)
 
     notifications.destroy_all
   end
